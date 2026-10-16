@@ -94,7 +94,7 @@ Limites do MER atual: agregação conceitual ainda não está implementada; hera
 - A geração de SQL não declara interoperabilidade completa. Revise os tipos e recursos específicos do SGBD, sobretudo identidades, schemas e expressões CHECK/DEFAULT.
 - `ON DELETE/UPDATE SET DEFAULT` é bloqueado na geração MySQL/MariaDB para evitar DDL incompatível com InnoDB; as referências oficiais confirmam a limitação para ambos ([MySQL](https://dev.mysql.com/doc/refman/8.4/en/create-table-foreign-keys.html), [MariaDB](https://mariadb.com/docs/server/ha-and-performance/optimization-and-tuning/optimization-and-indexes/foreign-keys)).
 - A normalização oferece diagnósticos conservadores a partir das dependências funcionais informadas; não prova 1FN/2FN/3FN/BCNF por inferência automática.
-- Ainda não há suporte completo a domínios reutilizáveis, PK/FK composta configurada manualmente no inspector, múltiplos diagramas sobre um único modelo semântico, exportação PDF/PNG ou auto-layout por dependências. A conversão conceitual → lógica já existe, mas cobre as regras descritas na seção anterior e requer revisão do resultado.
+- Ainda não há suporte completo a domínios reutilizáveis, PK/FK composta configurada manualmente no inspector, múltiplos diagramas sobre um único modelo semântico ou exportação PDF/PNG. A organização automática usa as referências de chave estrangeira para distribuir tabelas, mas não otimiza globalmente os cruzamentos de linhas. A conversão conceitual → lógica já existe, mas cobre as regras descritas na seção anterior e requer revisão do resultado.
 
 ### Modelagem de Atividades UML
 

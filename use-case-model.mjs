@@ -44,7 +44,7 @@ export function validateUseCaseDiagram(diagram){
   return issues;
 }
 
-function dimensions(node){return node.kind==='actor'?{w:90,h:132}:node.kind==='useCase'?{w:Number(node.width)||210,h:Number(node.height)||86}:{w:Number(node.width)||480,h:Number(node.height)||360};}
+function dimensions(node){return node.kind==='actor'?{w:90,h:132}:node.kind==='useCase'?{w:Number(node.width)||210,h:Number(node.height)||86}:node.kind==='note'?{w:Number(node.width)||180,h:Number(node.height)||90}:{w:Number(node.width)||480,h:Number(node.height)||360};}
 function contains(boundary,node){const a=dimensions(boundary),b=dimensions(node);return node.x>=boundary.x&&node.y>=boundary.y&&node.x+b.w<=boundary.x+a.w&&node.y+b.h<=boundary.y+a.h;}
 function overlaps(a,b){const aa=dimensions(a),bb=dimensions(b);return a.x<b.x+bb.w-12&&a.x+aa.w-12>b.x&&a.y<b.y+bb.h-12&&a.y+aa.h-12>b.y;}
 
@@ -56,14 +56,20 @@ export function layoutUseCaseDiagram(diagram){
   const rank=new Map(),seen=new Set();
   function getRank(id){if(rank.has(id))return rank.get(id);if(seen.has(id))return 0;seen.add(id);const parents=edges.filter(e=>e.type==='include'&&e.from===id&&caseSet.has(e.to)).map(e=>getRank(e.to));const value=parents.length?Math.min(3,Math.max(...parents)+1):0;rank.set(id,value);return value;}
   cases.forEach(n=>getRank(n.id));
-  const groups=new Map();for(const node of cases){const group=node.systemBoundaryId||boundaries[0]?.id||'__default';if(!groups.has(group))groups.set(group,[]);groups.get(group).push(node);}
-  for(const[groupId,items]of groups){items.sort((a,b)=>(rank.get(a.id)-rank.get(b.id))||a.title.localeCompare(b.title));const columns=Math.max(1,Math.ceil(Math.sqrt(items.length))),gapX=270,gapY=145,left=groupId!=='__default'?60:260,top=85,rows=Math.ceil(items.length/columns),boundary=byId.get(groupId);
-    items.forEach((node,index)=>{node.x=left+(index%columns)*gapX;node.y=top+Math.floor(index/columns)*gapY;});
-    if(boundary){boundary.x=Math.max(0,boundary.x||180);boundary.y=Math.max(0,boundary.y||30);boundary.width=Math.max(480,columns*gapX+100);boundary.height=Math.max(300,rows*gapY+130);items.forEach(node=>{node.x+=boundary.x;node.y+=boundary.y;});}
+  const groups=new Map(boundaries.map(boundary=>[boundary.id,[]]));groups.set('__default',[]);
+  for(const node of cases)groups.get(groups.has(node.systemBoundaryId)?node.systemBoundaryId:boundaries[0]?.id||'__default').push(node);
+  let boundaryX=260,maxBottom=0;for(const boundary of boundaries){const items=groups.get(boundary.id);items.sort((a,b)=>(rank.get(a.id)-rank.get(b.id))||String(a.title).localeCompare(String(b.title),'pt-BR'));const columns=Math.max(1,Math.min(3,Math.ceil(Math.sqrt(items.length||1)))),rows=Math.ceil(items.length/columns),columnWidths=Array(columns).fill(210),rowHeights=Array(rows).fill(86);
+    items.forEach((node,index)=>{columnWidths[index%columns]=Math.max(columnWidths[index%columns],dimensions(node).w);rowHeights[Math.floor(index/columns)]=Math.max(rowHeights[Math.floor(index/columns)],dimensions(node).h)});
+    const left=[72],top=[90];for(let i=1;i<columns;i++)left[i]=left[i-1]+columnWidths[i-1]+75;for(let i=1;i<rows;i++)top[i]=top[i-1]+rowHeights[i-1]+66;
+    boundary.x=boundaryX;boundary.y=70;boundary.width=Math.max(480,left.at(-1)+columnWidths.at(-1)+72);boundary.height=Math.max(300,(rows?top.at(-1)+rowHeights.at(-1):100)+90);
+    items.forEach((node,index)=>{node.x=boundary.x+left[index%columns];node.y=boundary.y+top[Math.floor(index/columns)]});boundaryX+=boundary.width+210;maxBottom=Math.max(maxBottom,boundary.y+boundary.height);
   }
+  const ungrouped=groups.get('__default');ungrouped.sort((a,b)=>(rank.get(a.id)-rank.get(b.id))||String(a.title).localeCompare(String(b.title),'pt-BR'));let looseY=boundaries.length?maxBottom+130:150;for(const node of ungrouped){node.x=boundaries.length?260:280;node.y=looseY;looseY+=dimensions(node).h+65}
   const assoc=edges.filter(e=>e.type==='association');
-  const caseLeft=Math.min(260,...cases.map(node=>node.x)),caseRight=Math.max(500,...cases.map(node=>node.x+(Number(node.width)||210)));
-  actors.forEach((actor,index)=>{const related=assoc.filter(e=>e.from===actor.id||e.to===actor.id).map(e=>byId.get(e.from===actor.id?e.to:e.from)).filter(n=>n?.kind==='useCase');const center=related.length?related.reduce((sum,n)=>sum+n.x+(Number(n.width)||210)/2,0)/related.length:(index%2?caseRight:caseLeft),side=center<(caseLeft+caseRight)/2?'left':'right',y=related.length?related.reduce((sum,n)=>sum+n.y,0)/related.length:100+index*160;actor.x=side==='left'?30:Math.max(caseRight,...boundaries.map(b=>b.x+(Number(b.width)||480)))+100;actor.y=Math.max(30,Math.round(y-20));});
+  const caseLeft=Math.min(280,...cases.map(node=>node.x)),caseRight=Math.max(500,...cases.map(node=>node.x+dimensions(node).w)),leftX=Math.max(20,caseLeft-155),rightX=caseRight+105,centerX=(caseLeft+caseRight)/2;
+  const actorGroups={left:[],right:[]};actors.forEach((actor,index)=>{const related=assoc.filter(e=>e.from===actor.id||e.to===actor.id).map(e=>byId.get(e.from===actor.id?e.to:e.from)).filter(n=>n?.kind==='useCase');const targetX=related.length?related.reduce((sum,node)=>sum+node.x+dimensions(node).w/2,0)/related.length:centerX;const targetY=related.length?related.reduce((sum,node)=>sum+node.y+dimensions(node).h/2,0)/related.length:140+index*170;const side=Number.isFinite(actor.x)&&actor.x<caseLeft?'left':Number.isFinite(actor.x)&&actor.x>caseRight?'right':targetX<centerX?'left':'right';actorGroups[side].push({actor,targetY})});
+  for(const side of ['left','right']){let nextY=80;for(const {actor,targetY} of actorGroups[side].sort((a,b)=>a.targetY-b.targetY||String(a.actor.title).localeCompare(String(b.actor.title),'pt-BR'))){actor.x=side==='left'?leftX:rightX;actor.y=Math.max(nextY,Math.round(targetY-dimensions(actor).h/2));nextY=actor.y+dimensions(actor).h+48}}
+  let noteY=Math.max(looseY,maxBottom,80)+85;for(const note of nodes.filter(node=>node.kind==='note').sort((a,b)=>String(a.title).localeCompare(String(b.title),'pt-BR'))){note.x=260;note.y=noteY;noteY+=dimensions(note).h+40}
   return true;
 }
 
