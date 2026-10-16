@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="fonts.css?v=self-hosted-1" />
   <link rel="stylesheet" href="styles.css?v=arqon-logo-1" />
 <link rel="stylesheet" href="brand-logo.css?v=arqon-logo-6">
+<link rel="stylesheet" href="example-controls.css?v=2">
 <link rel="stylesheet" href="author-footer.css?v=font-bundle-1">
 </head>
 <body>
@@ -17,12 +18,14 @@
         <div class="breadcrumbs"><span class="brand-name"><span class="arqon-mark" role="img" aria-label="ARQON Software Engineering Studio"></span><span class="brand-copy"><span>ARQON</span><strong>Software Engineering Studio</strong></span></span><span class="slash">/</span><span id="crumbProject">Meu projeto</span></div>
         <div class="top-actions">
           <span class="save-status" id="saveStatus" aria-live="polite"><span class="status-dot"></span> Salvo</span>
-          <details class="file-menu" id="fileMenu"><summary>Arquivo</summary><div class="file-menu-items" role="menu"><button role="menuitem" data-file-action="save">Salvar <kbd>⌘S</kbd></button><button role="menuitem" data-file-action="saveAs">Salvar como…</button><button role="menuitem" data-file-action="export">Salvar arquivo no dispositivo</button><button role="menuitem" data-file-action="open">Abrir documento…</button><hr><button role="menuitem" data-file-action="close">Fechar documento</button><button role="menuitem" data-file-action="closeAll">Fechar todas as abas</button></div></details>
+          <details class="file-menu" id="fileMenu"><summary>Arquivo</summary><div class="file-menu-items" role="menu"><button role="menuitem" data-file-action="save">Salvar <kbd>⌘S</kbd></button><button role="menuitem" data-file-action="saveAs">Salvar como…</button><button role="menuitem" data-file-action="export">Salvar arquivo no dispositivo</button><button role="menuitem" data-file-action="open">Abrir documento…</button><button role="menuitem" data-file-action="example">Ver exemplo…</button><button role="menuitem" data-file-action="clear">Limpar diagrama</button><hr><button role="menuitem" data-file-action="close">Fechar documento</button><button role="menuitem" data-file-action="closeAll">Fechar todas as abas</button></div></details>
           <button class="button subtle" id="projectsNav" data-view="projects">Projetos</button>
           <button class="button subtle help-nav" id="helpButton" title="Ajuda">Ajuda</button>
           <button class="button subtle theme-toggle" id="themeToggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-toggle-label">Tema escuro</span></button>
           <button class="button focus-mode-toggle" id="focusModeButton" type="button" aria-label="Entrar em tela cheia" aria-pressed="false" title="Tela cheia">⛶ <span>Tela cheia</span></button>
           <button class="button subtle" id="importButton">Importar</button>
+          <details class="file-menu example-menu" id="exampleMenu"><summary title="Carregar um exemplo para este tipo de diagrama">◈ <span>Ver exemplo</span></summary><div class="file-menu-items" id="exampleItems" role="menu"></div></details>
+          <button class="button subtle clear-diagram-button" id="clearDiagramButton" type="button" title="Limpar o diagrama atual">⌫ <span>Limpar diagrama</span></button>
           <button class="button primary" id="exportButton">Exportar <span>↗</span></button>
         </div>
       </header>
@@ -103,7 +106,7 @@
   <dialog id="unsavedDialog" class="unsaved-dialog"><form method="dialog"><div class="unsaved-icon" aria-hidden="true">!</div><h2>Salvar alterações antes de fechar?</h2><p id="unsavedMessage"></p><div class="unsaved-actions"><button value="discard">Não salvar</button><button value="cancel">Cancelar</button><button class="save-choice" value="save">▣ Salvar</button></div></form></dialog>
   <input id="fileInput" type="file" accept=".json,application/json" hidden />
   <input id="ddlInput" type="file" accept=".sql,text/plain" hidden />
-  <script type="module" src="script.js?v=arqon-brand-1"></script>
+  <script type="module" src="script.js?v=examples-1"></script>
 <script type="module" src="author-footer.mjs"></script>
 </body>
 </html>

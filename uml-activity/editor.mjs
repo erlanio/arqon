@@ -1,5 +1,5 @@
 import {NODE_GROUPS,NODE_TYPES,NODE_REGISTRY,EDGE_TYPES,CONTAINER_KINDS,NON_EXECUTABLE_KINDS} from './registry.mjs';
-import {clone,createProject,activeDiagram,addDiagram,duplicateDiagram,addNode,addPartition,addEdge,removeElement,connectionProblem,createProfile,createStereotype,stereotypeOptions,sampleProfile,parseProject} from './model.mjs';
+import {clone,createProject,createDiagram,activeDiagram,addDiagram,duplicateDiagram,addNode,addPartition,addEdge,removeElement,connectionProblem,createProfile,createStereotype,stereotypeOptions,sampleProfile,parseProject} from './model.mjs';
 import {validateDiagram} from './validation.mjs';
 import {getDocument} from '../document-store.mjs';
 import {loadProject,saveProject,persistProjectDocument,loadStoredProject,listProjects,loadSavedProject,deleteSavedProject,listVersions,saveVersion,removeVersion} from './storage.mjs';
@@ -44,6 +44,9 @@ async function handleParentCommand(event){
       await persistProjectDocument(copy,copy.activeDiagramId);replyToParent(request,{success:true,status:'copy-saved'});toast('Cópia salva no armazenamento do navegador.');
     }else if(request.command==='export'){
       replyToParent(request,{success:true,name:`${diagram().name.replace(/[^\wÀ-ÿ-]+/g,'-').toLowerCase()}.json`,content:JSON.stringify({format:'brmodelo-uml-activity-document',version:1,project:S.project,diagramId:diagram().id},null,2)});
+    }else if(request.command==='clear'){
+      const previous=diagram();commit(()=>{const empty=createDiagram(previous.name);empty.id=previous.id;empty.createdAt=previous.createdAt;S.project.diagrams=S.project.diagrams.map(item=>item.id===previous.id?empty:item);S.selection=[];});
+      replyToParent(request,{success:true,status:'dirty'});
     }else if(request.command==='discard'){
       const stored=await getDocument(`uml-activity:${S.project.id}:${diagram().id}`);S.project=stored?parseProject(stored.content.project):clone(openedProjectBaseline);S.project.activeDiagramId=diagram().id;
       localStorage.setItem('brmodelo.uml-activity.project.v1',JSON.stringify(S.project));const projects=JSON.parse(localStorage.getItem('brmodelo.uml-activity.projects.v1')||'{}');projects[S.project.id]=S.project;localStorage.setItem('brmodelo.uml-activity.projects.v1',JSON.stringify(projects));documentDirty=false;render();replyToParent(request,{success:true,status:'saved'});

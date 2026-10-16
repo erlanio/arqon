@@ -1,0 +1,333 @@
+{
+  "id": "projeto-modelo-logico-ecommerce",
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z",
+  "title": "E-commerce — Modelo Lógico",
+  "active": "logico-ecommerce",
+  "openDiagramIds": [
+    "logico-ecommerce"
+  ],
+  "diagrams": [
+    {
+      "id": "logico-ecommerce",
+      "type": "logico",
+      "title": "Modelo lógico de e-commerce",
+      "nodes": [
+        {
+          "id": "logical:ent-cliente",
+          "kind": "table",
+          "title": "cliente",
+          "x": 180,
+          "y": 290,
+          "fields": [
+            {
+              "id": "attr-cliente-id",
+              "name": "id_cliente",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "PK",
+              "nullable": false,
+              "conceptualSourceId": "attr-cliente-id"
+            },
+            {
+              "id": "attr-cliente-nome",
+              "name": "nome",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-cliente-nome"
+            },
+            {
+              "id": "attr-cliente-email",
+              "name": "email",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-cliente-email"
+            }
+          ],
+          "primaryKey": [
+            "attr-cliente-id"
+          ],
+          "schema": "",
+          "conceptualSourceId": "ent-cliente"
+        },
+        {
+          "id": "logical:ent-pedido",
+          "kind": "table",
+          "title": "pedido",
+          "x": 710,
+          "y": 290,
+          "fields": [
+            {
+              "id": "attr-pedido-id",
+              "name": "id_pedido",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "PK",
+              "nullable": false,
+              "conceptualSourceId": "attr-pedido-id"
+            },
+            {
+              "id": "attr-pedido-data",
+              "name": "data",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-pedido-data"
+            },
+            {
+              "id": "attr-pedido-status",
+              "name": "status",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-pedido-status"
+            },
+            {
+              "id": "fk:rel-realiza:ent-pedido:attr-cliente-id",
+              "name": "cliente_id_cliente",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "FK",
+              "nullable": true,
+              "references": {
+                "tableId": "logical:ent-cliente",
+                "columnId": "attr-cliente-id",
+                "columnName": "id_cliente",
+                "relationshipId": "edge:fk:rel-realiza:ent-pedido:attr-cliente-id"
+              },
+              "conceptualSourceId": "rel-realiza"
+            }
+          ],
+          "primaryKey": [
+            "attr-pedido-id"
+          ],
+          "schema": "",
+          "conceptualSourceId": "ent-pedido"
+        },
+        {
+          "id": "logical:ent-produto",
+          "kind": "table",
+          "title": "produto",
+          "x": 1240,
+          "y": 290,
+          "fields": [
+            {
+              "id": "attr-produto-id",
+              "name": "id_produto",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "PK",
+              "nullable": false,
+              "conceptualSourceId": "attr-produto-id"
+            },
+            {
+              "id": "attr-produto-nome",
+              "name": "nome",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-produto-nome"
+            },
+            {
+              "id": "attr-produto-preco",
+              "name": "preco",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-produto-preco"
+            },
+            {
+              "id": "fk:rel-classifica:ent-produto:attr-categoria-id",
+              "name": "categoria_id_categoria",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "FK",
+              "nullable": true,
+              "references": {
+                "tableId": "logical:ent-categoria",
+                "columnId": "attr-categoria-id",
+                "columnName": "id_categoria",
+                "relationshipId": "edge:fk:rel-classifica:ent-produto:attr-categoria-id"
+              },
+              "conceptualSourceId": "rel-classifica"
+            }
+          ],
+          "primaryKey": [
+            "attr-produto-id"
+          ],
+          "schema": "",
+          "conceptualSourceId": "ent-produto"
+        },
+        {
+          "id": "logical:ent-categoria",
+          "kind": "table",
+          "title": "categoria",
+          "x": 1770,
+          "y": 290,
+          "fields": [
+            {
+              "id": "attr-categoria-id",
+              "name": "id_categoria",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "PK",
+              "nullable": false,
+              "conceptualSourceId": "attr-categoria-id"
+            },
+            {
+              "id": "attr-categoria-nome",
+              "name": "nome",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-categoria-nome"
+            }
+          ],
+          "primaryKey": [
+            "attr-categoria-id"
+          ],
+          "schema": "",
+          "conceptualSourceId": "ent-categoria"
+        },
+        {
+          "id": "logical:relationship:rel-contem",
+          "kind": "table",
+          "title": "contem",
+          "x": 990,
+          "y": 305,
+          "fields": [
+            {
+              "id": "fk:rel-contem:ent-pedido:attr-pedido-id",
+              "name": "pedido_id_pedido",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "FK",
+              "nullable": false,
+              "references": {
+                "tableId": "logical:ent-pedido",
+                "columnId": "attr-pedido-id",
+                "columnName": "id_pedido",
+                "relationshipId": "edge:fk:rel-contem:ent-pedido:attr-pedido-id"
+              },
+              "conceptualSourceId": "rel-contem"
+            },
+            {
+              "id": "fk:rel-contem:ent-produto:attr-produto-id",
+              "name": "produto_id_produto",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "FK",
+              "nullable": false,
+              "references": {
+                "tableId": "logical:ent-produto",
+                "columnId": "attr-produto-id",
+                "columnName": "id_produto",
+                "relationshipId": "edge:fk:rel-contem:ent-produto:attr-produto-id"
+              },
+              "conceptualSourceId": "rel-contem"
+            },
+            {
+              "id": "attr-item-quantidade",
+              "name": "quantidade",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-item-quantidade"
+            },
+            {
+              "id": "attr-item-preco",
+              "name": "preco_unitario",
+              "type": "VARCHAR",
+              "size": 255,
+              "key": "",
+              "nullable": false,
+              "conceptualSourceId": "attr-item-preco"
+            }
+          ],
+          "primaryKey": [
+            "fk:rel-contem:ent-pedido:attr-pedido-id",
+            "fk:rel-contem:ent-produto:attr-produto-id"
+          ],
+          "conceptualSourceId": "rel-contem"
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge:fk:rel-realiza:ent-pedido:attr-cliente-id",
+          "from": "logical:ent-pedido",
+          "to": "logical:ent-cliente",
+          "fromMin": "0",
+          "fromMax": "N",
+          "toMin": "1",
+          "toMax": "1",
+          "foreignKey": {
+            "columnName": "cliente_id_cliente",
+            "nullable": true
+          },
+          "conceptualSourceId": "rel-realiza"
+        },
+        {
+          "id": "edge:fk:rel-classifica:ent-produto:attr-categoria-id",
+          "from": "logical:ent-produto",
+          "to": "logical:ent-categoria",
+          "fromMin": "0",
+          "fromMax": "N",
+          "toMin": "1",
+          "toMax": "1",
+          "foreignKey": {
+            "columnName": "categoria_id_categoria",
+            "nullable": true
+          },
+          "conceptualSourceId": "rel-classifica"
+        },
+        {
+          "id": "edge:fk:rel-contem:ent-pedido:attr-pedido-id",
+          "from": "logical:relationship:rel-contem",
+          "to": "logical:ent-pedido",
+          "fromMin": "1",
+          "fromMax": "N",
+          "toMin": "1",
+          "toMax": "1",
+          "foreignKey": {
+            "columnName": "pedido_id_pedido",
+            "nullable": false
+          },
+          "conceptualSourceId": "rel-contem"
+        },
+        {
+          "id": "edge:fk:rel-contem:ent-produto:attr-produto-id",
+          "from": "logical:relationship:rel-contem",
+          "to": "logical:ent-produto",
+          "fromMin": "1",
+          "fromMax": "N",
+          "toMin": "1",
+          "toMax": "1",
+          "foreignKey": {
+            "columnName": "produto_id_produto",
+            "nullable": false
+          },
+          "conceptualSourceId": "rel-contem"
+        }
+      ],
+      "conversion": {
+        "sourceDiagramId": "conceitual-ecommerce",
+        "inheritance": "joined",
+        "strategyNotes": {
+          "joined": "Supertipos e subtipos usam tabelas separadas com chave do supertipo herdada.",
+          "single": "Estratégia de tabela única ainda exige mapeamento manual.",
+          "concrete": "Estratégia de tabelas concretas ainda exige mapeamento manual."
+        }
+      }
+    }
+  ]
+}

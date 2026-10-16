@@ -26,6 +26,9 @@ async function handleParentCommand(event){
       persist(false);const copy=moduleDocument();copy.id=`uml-class:${crypto.randomUUID()}:${diagram.id}`;copy.projectId=copy.id.split(':')[1];copy.name=`${copy.name} — cópia`;copy.content.project.id=copy.projectId;copy.content.project.title=`${copy.content.project.title} — cópia`;await saveDocument(copy);replyCommand(request,{success:true,status:'copy-saved'});toast('Cópia salva no armazenamento do navegador.');
     }else if(request.command==='export'){
       replyCommand(request,{success:true,name:`${slug(project.title)}.json`,content:JSON.stringify({format:'brmodelo-uml-class-document',version:1,project,diagramId:diagram.id},null,2)});
+    }else if(request.command==='clear'){
+      commit(()=>{diagram.elementIds=[];diagram.relationshipIds=[];diagram.view.nodes={};diagram.view.edges={};selection=[];});
+      replyCommand(request,{success:true,status:'dirty'});
     }else if(request.command==='discard'){
       const stored=await getDocument(moduleDocument().id);project=stored?parseProject(stored.content.project):clone(openedProjectBaseline);diagram=project.diagrams.find(d=>d.id===request.diagramId)||project.diagrams[0];selection=[];documentDirty=false;localStorage.setItem(KEY,JSON.stringify(project));const all=JSON.parse(localStorage.getItem(PROJECTS)||'{}');all[project.id]=project;localStorage.setItem(PROJECTS,JSON.stringify(all));render();replyCommand(request,{success:true,status:'saved'});
     }else replyCommand(request,{success:false,error:'Comando não suportado.'});

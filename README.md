@@ -60,6 +60,8 @@ Os rascunhos ficam no navegador. O comando **Arquivo → Salvar** registra docum
 
 A interface inclui abas, zoom, organização visual, desfazer/refazer, tema claro ou escuro, importação/exportação JSON e exemplos prontos em `exemplo-*.json`. Os formatos de exportação adicionais variam conforme o editor; consulte as seções abaixo.
 
+Com um diagrama aberto, use **Ver exemplo** para escolher um JSON do mesmo tipo. O exemplo abre como novo documento e preserva o trabalho atual. Use **Limpar diagrama** para remover todos os elementos da visão ativa após confirmar; a ação pode ser desfeita. Em telas menores, os dois comandos ficam no menu **Arquivo**. Os exemplos também são incluídos no pacote desktop para funcionar sem internet.
+
 ## Estrutura do código
 
 - `index.html`, `script.js` e `styles.css`: espaço de trabalho principal e editores de dados, fluxograma, casos de uso e iStar.

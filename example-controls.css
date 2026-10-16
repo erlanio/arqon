@@ -1,0 +1,6 @@
+.example-menu .file-menu-items{min-width:250px;max-height:min(360px,70vh);overflow-y:auto}
+.clear-diagram-button{color:#a83b4b!important}
+:root[data-theme="dark"] .clear-diagram-button{color:#f2a1ae!important}
+.example-empty{padding:9px 10px;color:#7b879c;font-size:12px}
+@media(max-width:980px){.example-menu summary span,.clear-diagram-button span{display:none}.example-menu summary,.clear-diagram-button{min-width:35px;text-align:center;padding:7px 8px}.example-menu .file-menu-items{right:0}}
+@media(max-width:720px){.top-actions .example-menu,.top-actions .clear-diagram-button{display:none}}
