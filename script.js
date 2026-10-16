@@ -12,7 +12,7 @@ import {desktopRuntime} from './desktop-bridge.mjs';
 const $ = (selector) => document.querySelector(selector);
 const STORAGE_KEY = 'brmodelo-studio-v1';
 const PROJECTS_KEY = 'brmodelo-studio-projects-v1';
-const THEME_KEY = 'brmodelo-studio-theme';
+const THEME_KEY = 'brmodelo-studio-theme-v2';
 const OPEN_DOCUMENTS_KEY = 'brmodelo-studio-open-documents-v1';
 const ACTIVE_TAB_KEY = 'brmodelo-studio-active-tab-v1';
 const palettes = {
