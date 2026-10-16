@@ -39,9 +39,11 @@ jobs:
         shell: bash
       - name: Pillow para gerar ícones
         run: python -m pip install Pillow==11.3.0
+        shell: bash
       - name: CLI Tauri
         working-directory: desktop
         run: npm ci --no-audit --no-fund
+        shell: bash
       - name: Build Tauri
         run: npm run build --prefix desktop
       - uses: actions/upload-artifact@v4
