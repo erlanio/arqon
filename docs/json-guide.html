@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guia dos formatos JSON de diagramas e modelagens do ARQON Software Engineering Studio.">
+  <title>Guia JSON · ARQON</title>
+  <link rel="icon" type="image/png" href="../assets/branding/arqon-dark-transparent.png">
+  <link rel="stylesheet" href="../author-footer.css">
+  <link rel="stylesheet" href="json-guide.css">
+  <script type="module" src="../author-footer.mjs"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html" aria-label="Voltar ao ARQON"><img src="../assets/branding/arqon-dark-transparent.png" alt="" width="42" height="42"><span>ARQON <small>Software Engineering Studio</small></span></a>
+    <a class="back-link" href="../index.html">Abrir o editor <span aria-hidden="true">↗</span></a>
+  </header>
+  <div class="page-layout">
+    <nav class="toc" aria-label="Nesta página">
+      <p class="toc-title">Guia de formatos</p>
+      <a href="#inicio">Comece aqui</a><a href="#estrutura">Estrutura e importação</a>
+      <span class="toc-group">Editor principal</span>
+      <a href="#conceitual">Modelo conceitual</a><a href="#logico">Modelo lógico</a><a href="#fluxo">Fluxograma</a><a href="#casos">Casos de uso</a><a href="#istar">iStar 2.0</a>
+      <span class="toc-group">Editores UML</span>
+      <a href="#atividades">Atividades</a><a href="#classes">Classes</a><a href="#sequencia">Sequência</a>
+      <a href="#cuidados">Checklist</a>
+    </nav>
+    <main id="inicio">
+      <div class="eyebrow">Referência para desenvolvedores · arquivos locais</div>
+      <h1>Diagramas e modelagens em JSON</h1>
+      <p class="lead">Cada arquivo guarda elementos editáveis, propriedades e relações. Use este guia para criar integrações, gerar diagramas por código ou modificar um exemplo sem perder o significado do modelo.</p>
+      <div class="callout"><strong>Caminho mais seguro:</strong> abra um diagrama no editor, use <b>Ver exemplo</b> ou crie elementos, exporte pelo menu <b>Arquivo</b>, altere uma cópia do JSON e importe novamente. Os arquivos <code>exemplo-*.json</code> na raiz são modelos completos e importáveis.</div>
+      <section id="estrutura">
+        <h2>Estrutura e importação</h2>
+        <p>Existem quatro famílias de arquivo. O editor principal reúne conceitual, lógico, fluxograma, casos de uso e iStar; os três editores UML têm modelos próprios. Não misture objetos de uma família com outra.</p>
+        <div class="table-wrap"><table><thead><tr><th>Editor</th><th>Identificação no JSON</th><th>Onde ficam os elementos</th></tr></thead><tbody>
+          <tr><td>Principal</td><td>Projeto com <code>title</code> e <code>diagrams</code>; exportação de documento pode envolver <code>format: "brmodelo-studio-document"</code></td><td><code>project.diagrams[].nodes</code> e <code>edges</code></td></tr>
+          <tr><td>Atividades</td><td><code>format: "brmodelo.uml-activity"</code>, <code>version: 1</code></td><td><code>diagrams[].model</code> e <code>view</code></td></tr>
+          <tr><td>Classes</td><td><code>project.format: "brmodelo.uml-class"</code> dentro de <code>brmodelo-uml-class-document</code></td><td><code>project.classifiers</code>, <code>relationships</code> e <code>diagrams[].view</code></td></tr>
+          <tr><td>Sequência</td><td><code>project.format: "brmodelo.uml-sequence"</code> dentro de <code>brmodelo-uml-sequence-document</code></td><td><code>project.diagrams[].lifelines</code>, <code>messages</code> e outros arrays</td></tr>
+        </tbody></table></div>
+        <h3>Projeto do editor principal</h3>
+        <p>Um projeto contém vários diagramas. <code>active</code> aponta para o diagrama aberto; <code>openDiagramIds</code> lista as abas abertas. O exemplo abaixo é um arquivo completo mínimo para um fluxograma:</p>
+<pre><code>{
+  "id": "projeto-exemplo",
+  "title": "Meu projeto",
+  "active": "fluxo-1",
+  "openDiagramIds": ["fluxo-1"],
+  "diagrams": [{
+    "id": "fluxo-1",
+    "type": "fluxo",
+    "title": "Fluxo inicial",
+    "nodes": [{"id": "inicio", "kind": "start", "title": "Início", "x": 120, "y": 120, "fields": []}],
+    "edges": []
+  }]
+}</code></pre>
+        <p>O documento exportado pelo espaço principal envolve o projeto em <code>{"format":"brmodelo-studio-document","version":1,"project":{...},"diagramId":"..."}</code>. Para criar um arquivo manualmente, um projeto simples como o exemplo acima também pode ser importado. Mantenha <code>diagramId</code>, <code>active</code> e IDs das abas coerentes com o diagrama escolhido.</p>
+        <h3>Regras comuns</h3>
+        <ul><li>Use JSON válido em UTF-8: aspas duplas, sem comentários e sem vírgula final.</li><li>Crie IDs únicos por elemento e mantenha as referências entre IDs. Nomes visíveis podem se repetir; IDs não devem.</li><li>No editor principal, todo nó usa <code>id</code>, <code>kind</code>, <code>title</code>, coordenadas numéricas finitas <code>x</code>/<code>y</code> e <code>fields</code> (mesmo quando vazio). Toda aresta usa <code>id</code>, <code>from</code> e <code>to</code> com IDs de nós existentes.</li><li><code>type</code> do diagrama seleciona o editor. Já <code>kind</code> identifica o tipo de nó; <code>type</code> ou <code>kind</code> de uma relação define sua semântica conforme o editor.</li><li>Coordenadas e rotas controlam a aparência. Propriedades como cardinalidade, chaves, guardas e dependências controlam o modelo. Revise ambos após importar.</li></ul>
+      </section>
+      <section id="conceitual">
+        <div class="section-kicker">Editor principal · <code>type: "conceitual"</code></div><h2>Modelo conceitual de dados</h2>
+        <p>As entidades, os relacionamentos e os atributos são <strong>nós separados</strong>. Uma relação conceitual é um losango com <code>kind: "relationship"</code>, ligado por arestas às entidades participantes. Atributos também são nós ligados ao seu proprietário; não monte atributos como colunas da entidade.</p>
+        <p><code>diagram.conceptual</code> guarda a notação e metadados, como <code>{"version":1,"notation":"chen","specializations":[],"constraints":[]}</code>. Entidades usam <code>conceptual.entityKind</code>; atributos e relações têm propriedades próprias. As pontas das arestas podem guardar <code>fromMin</code>, <code>fromMax</code>, <code>toMin</code> e <code>toMax</code>. Relacionamentos n-ários precisam de uma aresta por participante.</p>
+<pre><code>{
+  "id": "ent-cliente", "kind": "entity", "title": "Cliente",
+  "x": 180, "y": 290, "fields": [],
+  "conceptual": {"entityKind": "strong", "partialKey": ""}
+}</code></pre>
+        <p>Ao converter para lógico, o editor cria outro diagrama; o conceitual original permanece. Revise as chaves e tipos SQL do resultado. <a href="../exemplo-modelo-conceitual-ecommerce.json">Baixar exemplo conceitual completo</a>.</p>
+      </section>
+      <section id="logico">
+        <div class="section-kicker">Editor principal · <code>type: "logico"</code></div><h2>Modelo lógico de dados</h2>
+        <p>Cada nó <code>kind: "table"</code> representa uma tabela. <code>fields</code> é o array de colunas; cada coluna tem <code>id</code>, <code>name</code>, <code>type</code>, <code>size</code>, <code>key</code> e <code>nullable</code>. <code>primaryKey</code> contém IDs de colunas da própria tabela. <code>schema</code> pode ser vazio.</p>
+<pre><code>{
+  "id": "cliente", "kind": "table", "title": "cliente",
+  "x": 180, "y": 290, "schema": "",
+  "fields": [
+    {"id": "cliente-id", "name": "id_cliente", "type": "INTEGER", "size": 11, "key": "PK", "nullable": false}
+  ],
+  "primaryKey": ["cliente-id"]
+}</code></pre>
+        <p>Arestas ligam a tabela dependente (<code>from</code>) à referenciada (<code>to</code>). O objeto <code>foreignKey</code> descreve a coluna de referência; os campos <code>fromMin</code>/<code>fromMax</code>/<code>toMin</code>/<code>toMax</code> registram cardinalidades. Ao gerar SQL para MySQL, MariaDB, PostgreSQL ou SQLite, confira nome, tipo, nulidade e coerência entre colunas, PK e FK. <a href="../exemplo-modelo-logico-ecommerce.json">Baixar exemplo lógico completo</a>.</p>
+      </section>
+      <section id="fluxo">
+        <div class="section-kicker">Editor principal · <code>type: "fluxo"</code></div><h2>Fluxograma</h2>
+        <p>Etapas são nós, por exemplo <code>start</code>, <code>inputOutput</code>, <code>process</code>, <code>decision</code> e <code>end</code>. A sequência de execução é definida por arestas. Uma decisão costuma ter saídas com <code>label</code> diferente, como “Sim” e “Não”.</p>
+<pre><code>{
+  "id": "fluxo-aprovado", "from": "decisao", "to": "concluir",
+  "label": "Sim", "direction": "forward", "lineType": "straight",
+  "comment": "", "route": {"corners": [], "curves": {}}
+}</code></pre>
+        <p><code>route</code> altera a linha desenhada, não os nós de origem e destino. Use a validação e a simulação do editor para conferir decisões e caminhos alcançáveis. <a href="../exemplo-fluxograma-atendimento.json">Baixar exemplo de fluxograma</a>.</p>
+      </section>
+      <section id="casos">
+        <div class="section-kicker">Editor principal · <code>type: "usecase"</code></div><h2>Casos de uso UML</h2>
+        <p>Use <code>actor</code> para atores, <code>useCase</code> para casos e <code>systemBoundary</code> para o limite do sistema. O limite usa <code>width</code> e <code>height</code> além de <code>x</code>/<code>y</code>. As arestas usam <code>type</code> igual a <code>association</code>, <code>include</code>, <code>extend</code> ou <code>generalization</code>.</p>
+<pre><code>{
+  "id": "rel-consulta", "from": "ator-cliente", "to": "uc-consultar",
+  "type": "association", "label": ""
+}</code></pre>
+        <p>Associação liga ator a caso; <code>include</code> e <code>extend</code> ligam dois casos; generalização liga dois atores ou dois casos. Em <code>extend</code>, <code>extensionPoint</code> pode referenciar um ponto do caso estendido. A direção <code>from</code> → <code>to</code> importa nessas relações. <a href="../exemplo-diagrama-casos-de-uso-ecommerce.json">Baixar exemplo de casos de uso</a>.</p>
+      </section>
+      <section id="istar">
+        <div class="section-kicker">Editor principal · <code>type: "istar"</code></div><h2>Modelagem iStar 2.0</h2>
+        <p><code>diagram.istar</code> define <code>version: "2.0"</code>, <code>view</code> (<code>SD</code> ou <code>SR</code>) e estereótipos. Atores usam <code>istarBoundary</code>, <code>istarAgent</code> ou <code>istarRole</code>; elementos intencionais usam <code>istarGoal</code>, <code>istarQuality</code>, <code>istarTask</code> ou <code>istarResource</code>.</p>
+<pre><code>{
+  "id": "dep-cliente-plataforma", "from": "actor-cliente",
+  "to": "agent-plataforma", "type": "dependencyGoal",
+  "dependumKind": "goal", "dependum": "Pedido processado",
+  "documentation": "Dependência do cliente",
+  "route": {"corners": [], "curves": {}}
+}</code></pre>
+        <p>Em cada elemento intencional, <code>node.istar.ownerId</code> aponta para o ator proprietário. Dependências <code>dependencyGoal</code>, <code>dependencyQuality</code>, <code>dependencyTask</code> e <code>dependencyResource</code> ligam atores e descrevem o <code>dependum</code>. Refinamentos e contribuições ligam elementos intencionais do mesmo ator. Outros tipos incluem <code>qualification</code>, <code>neededBy</code>, <code>isA</code> e <code>participatesIn</code>. <a href="../exemplo-istar-2.0.json">Baixar exemplo iStar completo</a>.</p>
+      </section>
+      <section id="atividades">
+        <div class="section-kicker">Editor UML · <code>format: "brmodelo.uml-activity"</code></div><h2>Atividades UML</h2>
+        <p>O arquivo é um projeto com <code>version: 1</code>, <code>diagrams</code>, <code>activeDiagramId</code> e <code>profiles</code>. Cada diagrama separa <strong>semântica</strong> em <code>model</code> e <strong>posição</strong> em <code>view</code>. <code>model.nodes</code> contém <code>id</code>, <code>kind</code>, <code>name</code>, <code>properties</code>, <code>partitionIds</code> e <code>parentId</code>; <code>model.edges</code> usa <code>sourceId</code>/<code>targetId</code>, <code>kind</code> (<code>control</code> ou <code>object</code>) e pode ter <code>guard</code>, <code>weight</code> e documentação.</p>
+<pre><code>{
+  "id": "validar-dados", "kind": "action", "name": "Validar dados",
+  "documentation": "", "properties": {"body": "Conferir pedido"},
+  "stereotypes": [], "partitionIds": [], "parentId": null
+}</code></pre>
+        <p>Partições ficam em <code>model.partitions</code>. As coordenadas dos nós e a geometria das arestas ficam em <code>view.nodes</code> e <code>view.edges</code>, indexadas pelo ID semântico. Ao adicionar ou remover um elemento, mantenha modelo, referências e visão sincronizados. <a href="../exemplo-diagrama-atividades-uml.json">Baixar projeto de atividades completo</a>.</p>
+      </section>
+      <section id="classes">
+        <div class="section-kicker">Editor UML · <code>project.format: "brmodelo.uml-class"</code></div><h2>Classes UML</h2>
+        <p>A exportação de documento usa <code>format: "brmodelo-uml-class-document"</code>, <code>version: 1</code>, <code>project</code> e <code>diagramId</code>. No projeto, <code>classifiers</code> guarda classes, interfaces e enumerações; <code>relationships</code> guarda associações e outras relações. <code>diagrams</code> são visões desses mesmos elementos.</p>
+<pre><code>{
+  "id": "cliente", "kind": "class", "name": "Cliente",
+  "visibility": "public", "isAbstract": false, "isLeaf": false,
+  "attributes": [], "operations": [], "literals": [],
+  "templateParameters": [], "stereotypes": [], "constraints": [],
+  "documentation": "", "representation": "classifier",
+  "compartments": {"attributes": true, "operations": true}, "parentId": null
+}</code></pre>
+        <p>Atributos e operações pertencem ao classificador. Cada relação usa <code>sourceId</code> e <code>targetId</code> de classificadores, com pontas <code>sourceEnd</code>/<code>targetEnd</code> para multiplicidade, papel e navegabilidade. Cada diagrama seleciona IDs em <code>elementIds</code>/<code>relationshipIds</code>; <code>view.nodes</code> e <code>view.edges</code> posicionam esses IDs. Criar outro diagrama não duplica a classe semântica. <a href="../exemplo-diagrama-classes-pedidos.json">Baixar exemplo de classes completo</a>.</p>
+      </section>
+      <section id="sequencia">
+        <div class="section-kicker">Editor UML · <code>project.format: "brmodelo.uml-sequence"</code></div><h2>Sequência UML</h2>
+        <p>A exportação de documento usa <code>format: "brmodelo-uml-sequence-document"</code>, <code>version: 1</code>, <code>project</code> e <code>diagramId</code>. Cada diagrama tem <code>lifelines</code>, <code>messages</code>, <code>occurrences</code>, <code>executions</code>, <code>fragments</code>, <code>constraints</code>, <code>gates</code> e <code>view</code>.</p>
+<pre><code>{
+  "id": "msg-login", "kind": "sync", "name": "autenticar()",
+  "sourceId": "usuario", "targetId": "sistema", "y": 150,
+  "sendOccurrenceId": "envio-login",
+  "receiveOccurrenceId": "recebimento-login", "executionId": "ativacao-login"
+}</code></pre>
+        <p><code>sourceId</code>/<code>targetId</code> apontam para linhas de vida. Os IDs de ocorrência e ativação apontam para objetos nos arrays correspondentes; cada ocorrência também referencia a mensagem e sua linha de vida. A ordem vertical é dada por <code>y</code>. <code>view.lifelines[id]</code> guarda <code>x</code>, <code>top</code> e <code>bottom</code>. Como uma mensagem envolve várias referências, crie uma no editor e use o JSON exportado como molde para alterações por código. <a href="../exemplo-diagrama-sequencia-login.json">Baixar exemplo de sequência completo</a>.</p>
+      </section>
+      <section id="cuidados">
+        <h2>Antes de compartilhar ou integrar</h2>
+        <ol><li>Parta de um exemplo completo do mesmo editor ou de um arquivo exportado pela versão atual.</li><li>Valide a sintaxe com <code>python3 -m json.tool arquivo.json</code> ou outro parser JSON.</li><li>Confirme IDs, referências, arrays e metadados do formato; JSON sintaticamente válido ainda pode ser um modelo inválido.</li><li>Importe uma cópia no ARQON, use <b>Validar</b>, confira o desenho e exporte novamente para verificar a interpretação.</li></ol>
+        <p>Esta página descreve os formatos usados pelo projeto hoje; não é uma especificação JSON Schema formal. Os exemplos completos e os módulos <code>*-model.mjs</code> do repositório são a referência para campos e regras adicionais.</p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

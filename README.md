@@ -41,6 +41,8 @@ No macOS, também é possível abrir `Abrir ARQON.command` com um duplo clique. 
 
 Crie um projeto, escolha um tipo de diagrama no botão **＋** e arraste elementos da biblioteca para o canvas. Use o painel de propriedades para editar os elementos e o menu **Arquivo** para salvar ou exportar.
 
+Para criar ou alterar arquivos JSON, consulte o [guia dos formatos de diagramas e modelagens](docs/json-guide.html). Ele explica a estrutura de cada editor e aponta para exemplos completos que podem ser importados.
+
 As fontes DM Sans e Manrope são servidas pelos arquivos locais em `fonts/`; suas licenças estão na mesma pasta. A interface não depende de um serviço externo de fontes.
 
 Os rascunhos ficam no navegador. O comando **Arquivo → Salvar** registra documentos confirmados em IndexedDB; projetos e versões de alguns módulos também usam `localStorage`. Exporte JSON para manter uma cópia transferível. Limpar os dados do navegador pode remover projetos que não foram exportados. Os links de Lattes, LinkedIn e GitHub no rodapé são opcionais e só abrem páginas externas quando clicados.

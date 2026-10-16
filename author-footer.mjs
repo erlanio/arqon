@@ -1,8 +1,10 @@
 if (new URLSearchParams(location.search).get('embedded') !== '1') {
   const footer = document.createElement('footer');
   footer.className = 'author-footer';
+  const guideUrl = new URL('./docs/json-guide.html', import.meta.url).href;
   footer.innerHTML = `
     <span>Desenvolvido por <a class="author-name" href="https://www.linkedin.com/in/erlaniofreire" target="_blank" rel="noopener noreferrer">Erlânio Freire</a></span>
+    <a class="footer-guide-link" href="${guideUrl}" target="_blank" rel="noopener noreferrer">Guia dos formatos JSON</a>
     <nav aria-label="Perfis de Erlânio Freire">
       <a href="http://lattes.cnpq.br/8383140784249878" target="_blank" rel="noopener noreferrer" aria-label="Currículo Lattes de Erlânio Freire" title="Currículo Lattes">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 6.5v11h7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -16,5 +18,9 @@ if (new URLSearchParams(location.search).get('embedded') !== '1') {
     </nav>`;
   const studioMain = document.querySelector('.app > .main');
   if (studioMain) studioMain.append(footer);
-  else document.querySelector('.app, .uml-app').after(footer);
+  else {
+    const app = document.querySelector('.app, .uml-app');
+    if (app) app.after(footer);
+    else document.body.append(footer);
+  }
 }
