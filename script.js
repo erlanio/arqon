@@ -1925,5 +1925,5 @@ document.addEventListener('keyup',event=>{if(event.code==='Space'){spacePanActiv
 window.addEventListener('blur',()=>{spacePanActive=false;viewport.classList.remove('space-pan-active');});
 window.addEventListener('beforeunload',event=>{if(hasUnsavedDocuments()){event.preventDefault();event.returnValue='';}});
 
-applyTheme(localStorage.getItem(THEME_KEY)); render(); if(hadLegacyWorkspace)save(); initializeDocumentRepository();
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark'); render(); if(hadLegacyWorkspace)save(); initializeDocumentRepository();
 window.addEventListener('pageshow', renderTabs);

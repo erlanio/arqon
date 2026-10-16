@@ -12,7 +12,7 @@ const routeParams=new URLSearchParams(location.search);
 const routedProject=routeParams.get('projectId')?loadSavedProject(routeParams.get('projectId')):null;
 const isEmbedded=routeParams.get('embedded')==='1';
 if(isEmbedded)document.body.classList.add('embedded');
-const S={project:routedProject||loadProject()||createProject(),selection:[],tool:'select',history:[],future:[],drag:null,minimapDragging:false,minimapCollapsed:false,issues:[],theme:routeParams.get('theme')||localStorage.getItem('brmodelo-studio-theme')||localStorage.getItem('brmodelo.uml-theme')||'light',showGrid:true};
+const S={project:routedProject||loadProject()||createProject(),selection:[],tool:'select',history:[],future:[],drag:null,minimapDragging:false,minimapCollapsed:false,issues:[],theme:routeParams.get('theme')||localStorage.getItem('brmodelo-studio-theme')||localStorage.getItem('brmodelo.uml-theme')||'dark',showGrid:true};
 const openedProjectBaseline=clone(S.project);
 if(routedProject&&routedProject.diagrams.some(d=>d.id===routeParams.get('diagramId')))S.project.activeDiagramId=routeParams.get('diagramId');
 let announcedDiagramId=null;
