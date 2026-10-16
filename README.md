@@ -1,5 +1,10 @@
 # ARQON Software Engineering Studio
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/branding/arqon-dark.png">
+  <img src="assets/branding/arqon-light.png" alt="Logo do ARQON Software Engineering Studio" width="600">
+</picture>
+
 Editor web para modelagem de dados, processos e sistemas em um único espaço de trabalho. O projeto reúne modelos conceituais e lógicos, fluxogramas, UML e iStar 2.0, com edição visual, propriedades semânticas, validação e arquivos de projeto locais.
 
 O ARQON Software Engineering Studio é um projeto independente inspirado na experiência de modelagem do brModelo. Está em fase final de desenvolvimento e é preparado para publicação como código aberto. Não abre arquivos nativos do brModelo nem declara conformidade integral com UML 2.5.1.

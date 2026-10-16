@@ -394,9 +394,10 @@ body.projects-active{height:auto;min-height:100vh;overflow-x:hidden;overflow-y:a
 
 /* Distraction-free editor controls. */
 .focus-mode-toggle{white-space:nowrap}
-.topbar .brand-name{display:flex;flex-direction:column;gap:2px;line-height:1.05;letter-spacing:0;white-space:nowrap}
-.topbar .brand-name>span{font-size:18px;letter-spacing:.3px}
-.topbar .brand-name strong{font-size:10px;font-weight:700;letter-spacing:.2px}
+.topbar .brand-name{display:inline-flex;align-items:center;gap:7px;line-height:1.05;letter-spacing:0;white-space:nowrap}
+.topbar .brand-copy{display:flex;flex-direction:column;gap:2px}
+.topbar .brand-copy>span{font-size:18px;letter-spacing:.3px}
+.topbar .brand-copy strong{font-size:10px;font-weight:700;letter-spacing:.2px}
 .focus-mode-exit{position:fixed;right:12px;bottom:7px;z-index:250;display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid #8279e9;border-radius:9px;background:#fff;color:#5146b8;box-shadow:0 5px 18px #0003;font-size:12px;font-weight:750}
 .focus-mode-exit[hidden]{display:none}
 :root[data-theme="dark"] .focus-mode-exit{background:#202c3f;border-color:#756ce2;color:#e2dcff}

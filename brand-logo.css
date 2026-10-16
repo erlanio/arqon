@@ -1,0 +1,11 @@
+.arqon-mark{display:inline-block;flex:none;width:72px;height:48px;background:#fff url('assets/branding/arqon-light.png') -31px -11px/132px auto no-repeat;border-radius:5px;mix-blend-mode:multiply}
+:root[data-theme="dark"] .arqon-mark{width:72px;height:48px;background-color:transparent;background-image:url('assets/branding/arqon-dark-transparent.png')}
+.topbar .brand-copy{display:none}
+:root[data-theme="dark"] .arqon-mark{background-position:center;background-size:contain;mix-blend-mode:normal}
+.module-brand{display:flex;align-items:center;gap:8px;min-width:0}
+.module-brand>div{min-width:0}
+@media(max-width:620px){.module-brand .arqon-mark{width:62px;height:42px;background-size:113px auto;background-position:-27px -8px}}
+@media(max-width:720px){.topbar .brand-name{gap:3px}.topbar .arqon-mark{width:62px;height:42px;background-size:113px auto;background-position:-27px -8px}}
+@media(max-width:600px){.topbar .breadcrumbs .slash,.topbar #crumbProject{display:none}}
+@media(max-width:620px){:root[data-theme="dark"] .module-brand .arqon-mark{width:62px;height:42px}}
+@media(max-width:720px){:root[data-theme="dark"] .topbar .arqon-mark{width:62px;height:42px;background-position:center;background-size:contain}}

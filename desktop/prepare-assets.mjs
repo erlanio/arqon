@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 const desktop = dirname(fileURLToPath(import.meta.url));
 const source = resolve(desktop, '..');
 const output = join(desktop, 'web-dist');
-const extensions = new Set(['.html', '.css', '.js', '.mjs', '.json', '.woff2', '.txt']);
+const extensions = new Set(['.html', '.css', '.js', '.mjs', '.json', '.woff2', '.txt', '.png']);
 const excluded = new Set(['desktop', 'dist', 'tests', '__pycache__', 'macos']);
 
 await rm(output, {recursive: true, force: true});

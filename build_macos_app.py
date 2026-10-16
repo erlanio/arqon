@@ -11,7 +11,7 @@ from tempfile import TemporaryDirectory
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "dist" / "ARQON Software Engineering Studio.app"
-WEB_SUFFIXES = {".html", ".css", ".js", ".mjs", ".json", ".woff2", ".txt"}
+WEB_SUFFIXES = {".html", ".css", ".js", ".mjs", ".json", ".woff2", ".txt", ".png"}
 
 
 def main():
