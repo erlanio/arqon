@@ -1,0 +1,769 @@
+{
+  "format": "brmodelo.uml-activity",
+  "version": 1,
+  "id": "2ea426bd-86bb-4f06-a0a9-91f91460289c",
+  "title": "Loja virtual — Processo de compra",
+  "diagrams": [
+    {
+      "id": "139223b4-270c-47d0-846c-0316346256b4",
+      "name": "Processar pedido de compra",
+      "activity": {
+        "id": "0b9c82bf-be98-466f-aa6e-14ec12a7403d",
+        "name": "Processar pedido de compra",
+        "parameters": []
+      },
+      "model": {
+        "nodes": [
+          {
+            "id": "inicio",
+            "kind": "initial",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "54206f53-4b9d-495c-abb6-01331bc1c3d6"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "receber-pedido",
+            "kind": "action",
+            "name": "Enviar pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Cliente informa os itens e confirma o pedido."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "54206f53-4b9d-495c-abb6-01331bc1c3d6"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "validar-dados",
+            "kind": "action",
+            "name": "Validar dados do pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Conferir endereço, itens e dados do cliente."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "9c5ee679-9cfc-489f-8f10-33a6e77f278d"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "dados-validos",
+            "kind": "decision",
+            "name": "Dados válidos?",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "9c5ee679-9cfc-489f-8f10-33a6e77f278d"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "solicitar-correcao",
+            "kind": "sendSignal",
+            "name": "Solicitar correção",
+            "documentation": "",
+            "properties": {
+              "signal": "Correção necessária"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "54206f53-4b9d-495c-abb6-01331bc1c3d6"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-correcao",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "54206f53-4b9d-495c-abb6-01331bc1c3d6"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "consultar-estoque",
+            "kind": "action",
+            "name": "Consultar disponibilidade",
+            "documentation": "",
+            "properties": {
+              "body": ""
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "2cdfb95f-156b-4d8d-be37-ac3968093e5f"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "estoque-disponivel",
+            "kind": "decision",
+            "name": "Estoque disponível?",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "2cdfb95f-156b-4d8d-be37-ac3968093e5f"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "avisar-indisponibilidade",
+            "kind": "sendSignal",
+            "name": "Informar indisponibilidade",
+            "documentation": "",
+            "properties": {
+              "signal": "Item indisponível"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "2cdfb95f-156b-4d8d-be37-ac3968093e5f"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-indisponivel",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "2cdfb95f-156b-4d8d-be37-ac3968093e5f"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "reservar-itens",
+            "kind": "action",
+            "name": "Reservar itens",
+            "documentation": "",
+            "properties": {
+              "body": "Reservar temporariamente os itens do pedido."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "2cdfb95f-156b-4d8d-be37-ac3968093e5f"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "processar-pagamento",
+            "kind": "callOperation",
+            "name": "Processar pagamento",
+            "documentation": "",
+            "properties": {
+              "operation": "Pagamento.autorizar"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "pagamento-aprovado",
+            "kind": "decision",
+            "name": "Pagamento aprovado?",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "cancelar-pedido",
+            "kind": "action",
+            "name": "Cancelar pedido e liberar reserva",
+            "documentation": "",
+            "properties": {
+              "body": ""
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-cancelado",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "preparar-entrega",
+            "kind": "action",
+            "name": "Preparar e despachar pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Separar os itens e gerar a remessa."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "confirmar-compra",
+            "kind": "sendSignal",
+            "name": "Enviar confirmação ao cliente",
+            "documentation": "",
+            "properties": {
+              "signal": "Pedido confirmado"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-compra",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "36206db8-e485-43b5-b52d-fe95bb23e94c"
+            ],
+            "parentId": null
+          }
+        ],
+        "edges": [
+          {
+            "id": "f01",
+            "kind": "control",
+            "sourceId": "inicio",
+            "targetId": "receber-pedido",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f02",
+            "kind": "control",
+            "sourceId": "receber-pedido",
+            "targetId": "validar-dados",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f03",
+            "kind": "control",
+            "sourceId": "validar-dados",
+            "targetId": "dados-validos",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f04",
+            "kind": "control",
+            "sourceId": "dados-validos",
+            "targetId": "consultar-estoque",
+            "guard": "[dados válidos]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f05",
+            "kind": "control",
+            "sourceId": "dados-validos",
+            "targetId": "solicitar-correcao",
+            "guard": "[dados inválidos]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f06",
+            "kind": "control",
+            "sourceId": "solicitar-correcao",
+            "targetId": "fim-correcao",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f07",
+            "kind": "control",
+            "sourceId": "consultar-estoque",
+            "targetId": "estoque-disponivel",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f08",
+            "kind": "control",
+            "sourceId": "estoque-disponivel",
+            "targetId": "reservar-itens",
+            "guard": "[disponível]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f09",
+            "kind": "control",
+            "sourceId": "estoque-disponivel",
+            "targetId": "avisar-indisponibilidade",
+            "guard": "[indisponível]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f10",
+            "kind": "control",
+            "sourceId": "avisar-indisponibilidade",
+            "targetId": "fim-indisponivel",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f11",
+            "kind": "control",
+            "sourceId": "reservar-itens",
+            "targetId": "processar-pagamento",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f12",
+            "kind": "control",
+            "sourceId": "processar-pagamento",
+            "targetId": "pagamento-aprovado",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f13",
+            "kind": "control",
+            "sourceId": "pagamento-aprovado",
+            "targetId": "preparar-entrega",
+            "guard": "[aprovado]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f14",
+            "kind": "control",
+            "sourceId": "pagamento-aprovado",
+            "targetId": "cancelar-pedido",
+            "guard": "[recusado]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f15",
+            "kind": "control",
+            "sourceId": "cancelar-pedido",
+            "targetId": "fim-cancelado",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f16",
+            "kind": "control",
+            "sourceId": "preparar-entrega",
+            "targetId": "confirmar-compra",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f17",
+            "kind": "control",
+            "sourceId": "confirmar-compra",
+            "targetId": "fim-compra",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          }
+        ],
+        "partitions": [
+          {
+            "id": "54206f53-4b9d-495c-abb6-01331bc1c3d6",
+            "name": "Cliente",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "",
+            "role": ""
+          },
+          {
+            "id": "9c5ee679-9cfc-489f-8f10-33a6e77f278d",
+            "name": "Vendas",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "",
+            "role": ""
+          },
+          {
+            "id": "2cdfb95f-156b-4d8d-be37-ac3968093e5f",
+            "name": "Estoque",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "",
+            "role": ""
+          },
+          {
+            "id": "36206db8-e485-43b5-b52d-fe95bb23e94c",
+            "name": "Pagamento e entrega",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "",
+            "role": ""
+          }
+        ]
+      },
+      "view": {
+        "nodes": {
+          "inicio": {
+            "x": 155,
+            "y": 75,
+            "w": 38,
+            "h": 38
+          },
+          "receber-pedido": {
+            "x": 115,
+            "y": 165,
+            "w": 164,
+            "h": 66
+          },
+          "validar-dados": {
+            "x": 470,
+            "y": 165,
+            "w": 164,
+            "h": 66
+          },
+          "dados-validos": {
+            "x": 500,
+            "y": 280,
+            "w": 72,
+            "h": 72
+          },
+          "solicitar-correcao": {
+            "x": 100,
+            "y": 340,
+            "w": 164,
+            "h": 66
+          },
+          "fim-correcao": {
+            "x": 155,
+            "y": 440,
+            "w": 38,
+            "h": 38
+          },
+          "consultar-estoque": {
+            "x": 825,
+            "y": 165,
+            "w": 164,
+            "h": 66
+          },
+          "estoque-disponivel": {
+            "x": 850,
+            "y": 280,
+            "w": 72,
+            "h": 72
+          },
+          "avisar-indisponibilidade": {
+            "x": 805,
+            "y": 405,
+            "w": 164,
+            "h": 66
+          },
+          "fim-indisponivel": {
+            "x": 850,
+            "y": 510,
+            "w": 38,
+            "h": 38
+          },
+          "reservar-itens": {
+            "x": 825,
+            "y": 405,
+            "w": 164,
+            "h": 66
+          },
+          "processar-pagamento": {
+            "x": 1165,
+            "y": 165,
+            "w": 164,
+            "h": 66
+          },
+          "pagamento-aprovado": {
+            "x": 1175,
+            "y": 280,
+            "w": 72,
+            "h": 72
+          },
+          "cancelar-pedido": {
+            "x": 1160,
+            "y": 405,
+            "w": 164,
+            "h": 66
+          },
+          "fim-cancelado": {
+            "x": 1175,
+            "y": 525,
+            "w": 38,
+            "h": 38
+          },
+          "preparar-entrega": {
+            "x": 1165,
+            "y": 620,
+            "w": 164,
+            "h": 66
+          },
+          "confirmar-compra": {
+            "x": 1155,
+            "y": 750,
+            "w": 164,
+            "h": 66
+          },
+          "fim-compra": {
+            "x": 1175,
+            "y": 875,
+            "w": 38,
+            "h": 38
+          }
+        },
+        "edges": {
+          "07185ce5-1b0e-4f87-aef3-018cdd77c5de": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f01": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "dd57b96e-ae80-4ee0-b151-cee4bf7bc2ad": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f02": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "b3200de2-bcf1-433c-bf2e-d551b7caa320": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f03": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "72bfd803-8cb2-4d7d-af41-18635e70895d": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f04": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "eb9825aa-9bf1-441f-9946-fbe45d718005": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f05": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "b0d54126-88a7-427d-b1d8-c4118f0238e7": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f06": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "751bac49-b4d6-461c-aa00-50548db5e170": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f07": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "4be04ad7-c569-45ac-a95d-8a132089a811": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f08": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "10d410bb-b233-4619-9001-16b9a0de72ba": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f09": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "e774d94a-9dcf-4db4-b5e9-7af4e157eaf1": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f10": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "e0433cf2-4796-46d9-9595-16bada71fce2": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f11": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "3c4d6dd1-0706-494d-9753-ddd29c11da65": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f12": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "1dc51537-d858-4c3b-afce-5184d9500669": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f13": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "ba329195-cde5-4c21-808a-333e13004dac": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f14": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "d84f77a5-822e-4019-be06-358313df3dad": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f15": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "8184f8b1-57a5-4d2a-894d-8205ace87b04": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f16": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "69534c32-d709-4519-a5e5-3d7b8b23821f": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f17": {
+            "style": "orthogonal",
+            "points": []
+          }
+        },
+        "partitions": {
+          "54206f53-4b9d-495c-abb6-01331bc1c3d6": {
+            "x": 35,
+            "y": 35,
+            "w": 335,
+            "h": 910
+          },
+          "9c5ee679-9cfc-489f-8f10-33a6e77f278d": {
+            "x": 390,
+            "y": 35,
+            "w": 335,
+            "h": 910
+          },
+          "2cdfb95f-156b-4d8d-be37-ac3968093e5f": {
+            "x": 745,
+            "y": 35,
+            "w": 335,
+            "h": 910
+          },
+          "36206db8-e485-43b5-b52d-fe95bb23e94c": {
+            "x": 1100,
+            "y": 35,
+            "w": 335,
+            "h": 910
+          }
+        },
+        "grid": 20,
+        "snap": true,
+        "zoom": 1,
+        "pan": {
+          "x": 120,
+          "y": 95
+        }
+      },
+      "createdAt": "2026-10-16T12:00:00.000Z",
+      "updatedAt": "2026-10-16T12:00:00.000Z"
+    }
+  ],
+  "activeDiagramId": "139223b4-270c-47d0-846c-0316346256b4",
+  "profiles": [],
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z"
+}

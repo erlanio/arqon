@@ -1,0 +1,83 @@
+{
+  "format": "brmodelo.uml-activity",
+  "version": 1,
+  "id": "6fc3a345-fd40-4f3d-8650-671b218cf001",
+  "title": "Processamento paralelo de pedido",
+  "diagrams": [
+    {
+      "id": "b831b2cc-d59c-4f91-bf70-5633474bf002",
+      "name": "Separar pedido e autorizar pagamento",
+      "activity": { "id": "b831b2cc-d59c-4f91-bf70-5633474bf003", "name": "Separar pedido e autorizar pagamento", "parameters": [] },
+      "model": {
+        "nodes": [
+          { "id": "inicio", "kind": "initial", "name": "", "documentation": "", "properties": {}, "stereotypes": [], "partitionIds": [], "parentId": null },
+          { "id": "receber", "kind": "action", "name": "Receber pedido", "documentation": "", "properties": { "body": "Registrar o pedido confirmado pelo cliente." }, "stereotypes": [], "partitionIds": ["part-vendas"], "parentId": null },
+          { "id": "fork-processamento", "kind": "fork", "name": "", "documentation": "Inicia em paralelo a separação dos itens e a autorização do pagamento.", "properties": { "orientation": "horizontal" }, "stereotypes": [], "partitionIds": ["part-sistema"], "parentId": null },
+          { "id": "separar-itens", "kind": "action", "name": "Separar itens", "documentation": "", "properties": { "body": "Conferir produtos, quantidades e embalagem." }, "stereotypes": [], "partitionIds": ["part-estoque"], "parentId": null },
+          { "id": "autorizar-pagamento", "kind": "callOperation", "name": "Autorizar pagamento", "documentation": "", "properties": { "operation": "Pagamento.autorizar" }, "stereotypes": [], "partitionIds": ["part-pagamento"], "parentId": null },
+          { "id": "join-processamento", "kind": "join", "name": "", "documentation": "A continuação aguarda a conclusão dos dois fluxos paralelos.", "properties": { "orientation": "horizontal", "joinSpec": "2" }, "stereotypes": [], "partitionIds": ["part-sistema"], "parentId": null },
+          { "id": "despachar", "kind": "action", "name": "Despachar pedido", "documentation": "", "properties": { "body": "Gerar etiqueta e encaminhar o pacote para entrega." }, "stereotypes": [], "partitionIds": ["part-estoque"], "parentId": null },
+          { "id": "notificar", "kind": "sendSignal", "name": "Notificar cliente", "documentation": "", "properties": { "signal": "Pedido despachado" }, "stereotypes": [], "partitionIds": ["part-vendas"], "parentId": null },
+          { "id": "fim", "kind": "activityFinal", "name": "", "documentation": "", "properties": {}, "stereotypes": [], "partitionIds": [], "parentId": null }
+        ],
+        "edges": [
+          { "id": "fluxo-01", "kind": "control", "sourceId": "inicio", "targetId": "receber", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "" },
+          { "id": "fluxo-02", "kind": "control", "sourceId": "receber", "targetId": "fork-processamento", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "" },
+          { "id": "fluxo-03", "kind": "control", "sourceId": "fork-processamento", "targetId": "separar-itens", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "Ramo paralelo: preparação física do pedido." },
+          { "id": "fluxo-04", "kind": "control", "sourceId": "fork-processamento", "targetId": "autorizar-pagamento", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "Ramo paralelo: autorização financeira." },
+          { "id": "fluxo-05", "kind": "control", "sourceId": "separar-itens", "targetId": "join-processamento", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "" },
+          { "id": "fluxo-06", "kind": "control", "sourceId": "autorizar-pagamento", "targetId": "join-processamento", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "" },
+          { "id": "fluxo-07", "kind": "control", "sourceId": "join-processamento", "targetId": "despachar", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "O despacho só começa após os dois ramos terminarem." },
+          { "id": "fluxo-08", "kind": "control", "sourceId": "despachar", "targetId": "notificar", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "" },
+          { "id": "fluxo-09", "kind": "control", "sourceId": "notificar", "targetId": "fim", "guard": "", "weight": 1, "objectType": "", "interrupting": false, "documentation": "" }
+        ],
+        "partitions": [
+          { "id": "part-vendas", "name": "Vendas", "orientation": "vertical", "parentId": null, "responsible": "Equipe de vendas", "role": "Atendimento" },
+          { "id": "part-estoque", "name": "Estoque e expedição", "orientation": "vertical", "parentId": null, "responsible": "Equipe de logística", "role": "Operação" },
+          { "id": "part-pagamento", "name": "Pagamento", "orientation": "vertical", "parentId": null, "responsible": "Serviço de pagamentos", "role": "Sistema externo" },
+          { "id": "part-sistema", "name": "Coordenação do sistema", "orientation": "vertical", "parentId": null, "responsible": "Sistema", "role": "Orquestração" }
+        ]
+      },
+      "view": {
+        "nodes": {
+          "inicio": { "x": 160, "y": 90, "w": 38, "h": 38 },
+          "receber": { "x": 95, "y": 180, "w": 164, "h": 66 },
+          "fork-processamento": { "x": 560, "y": 200, "w": 154, "h": 26 },
+          "separar-itens": { "x": 400, "y": 315, "w": 190, "h": 66 },
+          "autorizar-pagamento": { "x": 700, "y": 315, "w": 190, "h": 66 },
+          "join-processamento": { "x": 560, "y": 435, "w": 154, "h": 26 },
+          "despachar": { "x": 400, "y": 520, "w": 190, "h": 66 },
+          "notificar": { "x": 95, "y": 640, "w": 190, "h": 66 },
+          "fim": { "x": 170, "y": 745, "w": 38, "h": 38 }
+        },
+        "edges": {
+          "fluxo-01": { "style": "orthogonal", "points": [] },
+          "fluxo-02": { "style": "orthogonal", "points": [] },
+          "fluxo-03": { "style": "orthogonal", "points": [] },
+          "fluxo-04": { "style": "orthogonal", "points": [] },
+          "fluxo-05": { "style": "orthogonal", "points": [] },
+          "fluxo-06": { "style": "orthogonal", "points": [] },
+          "fluxo-07": { "style": "orthogonal", "points": [] },
+          "fluxo-08": { "style": "orthogonal", "points": [] },
+          "fluxo-09": { "style": "orthogonal", "points": [] }
+        },
+        "partitions": {
+          "part-vendas": { "x": 35, "y": 35, "w": 320, "h": 800 },
+          "part-estoque": { "x": 370, "y": 35, "w": 320, "h": 800 },
+          "part-pagamento": { "x": 705, "y": 35, "w": 320, "h": 800 },
+          "part-sistema": { "x": 1040, "y": 35, "w": 320, "h": 800 }
+        },
+        "grid": 20,
+        "snap": true,
+        "zoom": 1,
+        "pan": { "x": 120, "y": 95 }
+      },
+      "createdAt": "2026-10-16T12:00:00.000Z",
+      "updatedAt": "2026-10-16T12:00:00.000Z"
+    }
+  ],
+  "activeDiagramId": "b831b2cc-d59c-4f91-bf70-5633474bf002",
+  "profiles": [],
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z"
+}

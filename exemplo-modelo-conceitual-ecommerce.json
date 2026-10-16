@@ -1,0 +1,68 @@
+{
+  "id": "projeto-modelo-conceitual-ecommerce",
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z",
+  "title": "E-commerce — Modelo Conceitual",
+  "active": "conceitual-ecommerce",
+  "openDiagramIds": ["conceitual-ecommerce"],
+  "diagrams": [
+    {
+      "id": "conceitual-ecommerce",
+      "type": "conceitual",
+      "title": "Modelo conceitual de e-commerce",
+      "nodes": [
+        {"id":"ent-cliente","kind":"entity","title":"Cliente","x":180,"y":290,"fields":[],"conceptual":{"entityKind":"strong","partialKey":""}},
+        {"id":"ent-pedido","kind":"entity","title":"Pedido","x":710,"y":290,"fields":[],"conceptual":{"entityKind":"strong","partialKey":""}},
+        {"id":"ent-produto","kind":"entity","title":"Produto","x":1240,"y":290,"fields":[],"conceptual":{"entityKind":"strong","partialKey":""}},
+        {"id":"ent-categoria","kind":"entity","title":"Categoria","x":1770,"y":290,"fields":[],"conceptual":{"entityKind":"strong","partialKey":""}},
+
+        {"id":"rel-realiza","kind":"relationship","title":"realiza","x":465,"y":305,"fields":[],"conceptual":{"identifying":false}},
+        {"id":"rel-contem","kind":"relationship","title":"contém","x":990,"y":305,"fields":[],"conceptual":{"identifying":false}},
+        {"id":"rel-classifica","kind":"relationship","title":"classifica","x":1515,"y":305,"fields":[],"conceptual":{"identifying":false}},
+
+        {"id":"attr-cliente-id","kind":"attribute","title":"id_cliente","x":130,"y":145,"fields":[],"conceptual":{"attributeKind":"simple","identifier":true,"required":true,"domain":"Inteiro","derivation":"","parentId":null}},
+        {"id":"attr-cliente-nome","kind":"attribute","title":"nome","x":300,"y":130,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Texto","derivation":"","parentId":null}},
+        {"id":"attr-cliente-email","kind":"attribute","title":"email","x":155,"y":465,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"E-mail","derivation":"","parentId":null}},
+
+        {"id":"attr-pedido-id","kind":"attribute","title":"id_pedido","x":665,"y":145,"fields":[],"conceptual":{"attributeKind":"simple","identifier":true,"required":true,"domain":"Inteiro","derivation":"","parentId":null}},
+        {"id":"attr-pedido-data","kind":"attribute","title":"data","x":835,"y":130,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Data e hora","derivation":"","parentId":null}},
+        {"id":"attr-pedido-status","kind":"attribute","title":"status","x":685,"y":465,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Texto controlado","derivation":"","parentId":null}},
+
+        {"id":"attr-produto-id","kind":"attribute","title":"id_produto","x":1195,"y":145,"fields":[],"conceptual":{"attributeKind":"simple","identifier":true,"required":true,"domain":"Inteiro","derivation":"","parentId":null}},
+        {"id":"attr-produto-nome","kind":"attribute","title":"nome","x":1365,"y":130,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Texto","derivation":"","parentId":null}},
+        {"id":"attr-produto-preco","kind":"attribute","title":"preço","x":1215,"y":465,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Moeda","derivation":"","parentId":null}},
+
+        {"id":"attr-categoria-id","kind":"attribute","title":"id_categoria","x":1725,"y":145,"fields":[],"conceptual":{"attributeKind":"simple","identifier":true,"required":true,"domain":"Inteiro","derivation":"","parentId":null}},
+        {"id":"attr-categoria-nome","kind":"attribute","title":"nome","x":1895,"y":130,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Texto","derivation":"","parentId":null}},
+
+        {"id":"attr-item-quantidade","kind":"attribute","title":"quantidade","x":945,"y":490,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Inteiro positivo","derivation":"","parentId":null}},
+        {"id":"attr-item-preco","kind":"attribute","title":"preço_unitário","x":1080,"y":490,"fields":[],"conceptual":{"attributeKind":"simple","identifier":false,"required":true,"domain":"Moeda","derivation":"","parentId":null}}
+      ],
+      "edges": [
+        {"id":"edge-realiza-cliente","from":"rel-realiza","to":"ent-cliente","fromMin":"1","fromMax":"1","toMin":"1","toMax":"1"},
+        {"id":"edge-realiza-pedido","from":"rel-realiza","to":"ent-pedido","fromMin":"1","fromMax":"1","toMin":"0","toMax":"N"},
+
+        {"id":"edge-contem-pedido","from":"rel-contem","to":"ent-pedido","fromMin":"1","fromMax":"1","toMin":"1","toMax":"N"},
+        {"id":"edge-contem-produto","from":"rel-contem","to":"ent-produto","fromMin":"1","fromMax":"1","toMin":"0","toMax":"N"},
+
+        {"id":"edge-classifica-categoria","from":"rel-classifica","to":"ent-categoria","fromMin":"1","fromMax":"1","toMin":"1","toMax":"1"},
+        {"id":"edge-classifica-produto","from":"rel-classifica","to":"ent-produto","fromMin":"1","fromMax":"1","toMin":"0","toMax":"N"},
+
+        {"id":"edge-cliente-id","from":"ent-cliente","to":"attr-cliente-id"},
+        {"id":"edge-cliente-nome","from":"ent-cliente","to":"attr-cliente-nome"},
+        {"id":"edge-cliente-email","from":"ent-cliente","to":"attr-cliente-email"},
+        {"id":"edge-pedido-id","from":"ent-pedido","to":"attr-pedido-id"},
+        {"id":"edge-pedido-data","from":"ent-pedido","to":"attr-pedido-data"},
+        {"id":"edge-pedido-status","from":"ent-pedido","to":"attr-pedido-status"},
+        {"id":"edge-produto-id","from":"ent-produto","to":"attr-produto-id"},
+        {"id":"edge-produto-nome","from":"ent-produto","to":"attr-produto-nome"},
+        {"id":"edge-produto-preco","from":"ent-produto","to":"attr-produto-preco"},
+        {"id":"edge-categoria-id","from":"ent-categoria","to":"attr-categoria-id"},
+        {"id":"edge-categoria-nome","from":"ent-categoria","to":"attr-categoria-nome"},
+        {"id":"edge-contem-quantidade","from":"rel-contem","to":"attr-item-quantidade"},
+        {"id":"edge-contem-preco","from":"rel-contem","to":"attr-item-preco"}
+      ],
+      "conceptual": {"version":1,"notation":"chen","specializations":[],"constraints":[]}
+    }
+  ]
+}

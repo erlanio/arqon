@@ -1,0 +1,812 @@
+{
+  "format": "brmodelo.uml-activity",
+  "version": 1,
+  "id": "9911f0b7-e7f7-4dd8-a07a-08bc9900c101",
+  "title": "Processamento de pedido — fluxo completo",
+  "diagrams": [
+    {
+      "id": "9911f0b7-e7f7-4dd8-a07a-08bc9900c102",
+      "name": "Processamento completo do pedido",
+      "activity": {
+        "id": "9911f0b7-e7f7-4dd8-a07a-08bc9900c103",
+        "name": "Processamento completo do pedido",
+        "parameters": []
+      },
+      "model": {
+        "nodes": [
+          {
+            "id": "inicio",
+            "kind": "initial",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [],
+            "parentId": null
+          },
+          {
+            "id": "receber",
+            "kind": "action",
+            "name": "Receber pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Registrar itens e endereço informados pelo cliente."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-cliente"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "validar",
+            "kind": "action",
+            "name": "Validar pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Conferir endereço, disponibilidade dos dados e regras comerciais."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-vendas"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "dados-ok",
+            "kind": "decision",
+            "name": "Dados válidos?",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "part-vendas"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "solicitar-ajuste",
+            "kind": "sendSignal",
+            "name": "Solicitar correção",
+            "documentation": "",
+            "properties": {
+              "signal": "Pedir ao cliente que corrija os dados do pedido."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-cliente"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-correcao",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [],
+            "parentId": null
+          },
+          {
+            "id": "verificar-estoque",
+            "kind": "action",
+            "name": "Verificar estoque",
+            "documentation": "",
+            "properties": {
+              "body": "Consultar disponibilidade de todos os itens."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-operacao"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "estoque-ok",
+            "kind": "decision",
+            "name": "Itens disponíveis?",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "part-operacao"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "avisar-indisponivel",
+            "kind": "sendSignal",
+            "name": "Informar indisponibilidade",
+            "documentation": "",
+            "properties": {
+              "signal": "Informar indisponibilidade e oferecer nova previsão."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-cliente"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-indisponivel",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [],
+            "parentId": null
+          },
+          {
+            "id": "fork",
+            "kind": "fork",
+            "name": "",
+            "documentation": "",
+            "properties": {
+              "orientation": "horizontal"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-vendas"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "separar",
+            "kind": "action",
+            "name": "Separar e embalar itens",
+            "documentation": "",
+            "properties": {
+              "body": "Reservar os itens e preparar a embalagem."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-operacao"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "pagar",
+            "kind": "callOperation",
+            "name": "Autorizar pagamento",
+            "documentation": "",
+            "properties": {
+              "operation": "Pagamento.autorizar"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-pagamento"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "join",
+            "kind": "join",
+            "name": "",
+            "documentation": "",
+            "properties": {
+              "orientation": "horizontal",
+              "joinSpec": "2"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-vendas"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "pagamento-ok",
+            "kind": "decision",
+            "name": "Pagamento aprovado?",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "part-pagamento"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "cancelar",
+            "kind": "action",
+            "name": "Cancelar e liberar reserva",
+            "documentation": "",
+            "properties": {
+              "body": "Liberar os itens reservados e registrar a recusa."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-operacao"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-cancelado",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [],
+            "parentId": null
+          },
+          {
+            "id": "nota-fiscal",
+            "kind": "action",
+            "name": "Emitir nota fiscal",
+            "documentation": "",
+            "properties": {
+              "body": "Gerar documento fiscal para o pedido aprovado."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-operacao"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "despachar",
+            "kind": "action",
+            "name": "Despachar pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Encaminhar o pacote para entrega."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-operacao"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "notificar",
+            "kind": "sendSignal",
+            "name": "Notificar cliente",
+            "documentation": "",
+            "properties": {
+              "signal": "Enviar confirmação, rastreio e resumo do pedido."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "part-cliente"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "fim-sucesso",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [],
+            "parentId": null
+          }
+        ],
+        "edges": [
+          {
+            "id": "f01",
+            "kind": "control",
+            "sourceId": "inicio",
+            "targetId": "receber",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f02",
+            "kind": "control",
+            "sourceId": "receber",
+            "targetId": "validar",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f03",
+            "kind": "control",
+            "sourceId": "validar",
+            "targetId": "dados-ok",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f04",
+            "kind": "control",
+            "sourceId": "dados-ok",
+            "targetId": "verificar-estoque",
+            "guard": "[válidos]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f05",
+            "kind": "control",
+            "sourceId": "dados-ok",
+            "targetId": "solicitar-ajuste",
+            "guard": "[inválidos]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f06",
+            "kind": "control",
+            "sourceId": "solicitar-ajuste",
+            "targetId": "fim-correcao",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f07",
+            "kind": "control",
+            "sourceId": "verificar-estoque",
+            "targetId": "estoque-ok",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f08",
+            "kind": "control",
+            "sourceId": "estoque-ok",
+            "targetId": "fork",
+            "guard": "[disponíveis]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f09",
+            "kind": "control",
+            "sourceId": "estoque-ok",
+            "targetId": "avisar-indisponivel",
+            "guard": "[indisponíveis]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f10",
+            "kind": "control",
+            "sourceId": "avisar-indisponivel",
+            "targetId": "fim-indisponivel",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f11",
+            "kind": "control",
+            "sourceId": "fork",
+            "targetId": "separar",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f12",
+            "kind": "control",
+            "sourceId": "fork",
+            "targetId": "pagar",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f13",
+            "kind": "control",
+            "sourceId": "separar",
+            "targetId": "join",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f14",
+            "kind": "control",
+            "sourceId": "pagar",
+            "targetId": "join",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f15",
+            "kind": "control",
+            "sourceId": "join",
+            "targetId": "pagamento-ok",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f16",
+            "kind": "control",
+            "sourceId": "pagamento-ok",
+            "targetId": "nota-fiscal",
+            "guard": "[aprovado]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f17",
+            "kind": "control",
+            "sourceId": "pagamento-ok",
+            "targetId": "cancelar",
+            "guard": "[recusado]",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f18",
+            "kind": "control",
+            "sourceId": "cancelar",
+            "targetId": "fim-cancelado",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f19",
+            "kind": "control",
+            "sourceId": "nota-fiscal",
+            "targetId": "despachar",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f20",
+            "kind": "control",
+            "sourceId": "despachar",
+            "targetId": "notificar",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f21",
+            "kind": "control",
+            "sourceId": "notificar",
+            "targetId": "fim-sucesso",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          }
+        ],
+        "partitions": [
+          {
+            "id": "part-cliente",
+            "name": "Cliente",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Cliente",
+            "role": "Solicitante"
+          },
+          {
+            "id": "part-vendas",
+            "name": "Vendas",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Equipe de vendas",
+            "role": "Atendimento"
+          },
+          {
+            "id": "part-operacao",
+            "name": "Estoque e operação",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Equipe de operações",
+            "role": "Logística"
+          },
+          {
+            "id": "part-pagamento",
+            "name": "Pagamento",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Gateway de pagamento",
+            "role": "Serviço externo"
+          }
+        ]
+      },
+      "view": {
+        "nodes": {
+          "inicio": {
+            "x": 155,
+            "y": 70,
+            "w": 38,
+            "h": 38
+          },
+          "receber": {
+            "x": 90,
+            "y": 150,
+            "w": 164,
+            "h": 66
+          },
+          "validar": {
+            "x": 445,
+            "y": 150,
+            "w": 164,
+            "h": 66
+          },
+          "dados-ok": {
+            "x": 490,
+            "y": 260,
+            "w": 72,
+            "h": 72
+          },
+          "solicitar-ajuste": {
+            "x": 90,
+            "y": 370,
+            "w": 180,
+            "h": 66
+          },
+          "fim-correcao": {
+            "x": 160,
+            "y": 480,
+            "w": 38,
+            "h": 38
+          },
+          "verificar-estoque": {
+            "x": 800,
+            "y": 150,
+            "w": 180,
+            "h": 66
+          },
+          "estoque-ok": {
+            "x": 850,
+            "y": 260,
+            "w": 72,
+            "h": 72
+          },
+          "avisar-indisponivel": {
+            "x": 770,
+            "y": 370,
+            "w": 220,
+            "h": 66
+          },
+          "fim-indisponivel": {
+            "x": 860,
+            "y": 480,
+            "w": 38,
+            "h": 38
+          },
+          "fork": {
+            "x": 560,
+            "y": 390,
+            "w": 154,
+            "h": 26
+          },
+          "separar": {
+            "x": 400,
+            "y": 480,
+            "w": 190,
+            "h": 66
+          },
+          "pagar": {
+            "x": 700,
+            "y": 480,
+            "w": 190,
+            "h": 66
+          },
+          "join": {
+            "x": 560,
+            "y": 590,
+            "w": 154,
+            "h": 26
+          },
+          "pagamento-ok": {
+            "x": 600,
+            "y": 660,
+            "w": 72,
+            "h": 72
+          },
+          "cancelar": {
+            "x": 700,
+            "y": 770,
+            "w": 210,
+            "h": 66
+          },
+          "fim-cancelado": {
+            "x": 790,
+            "y": 875,
+            "w": 38,
+            "h": 38
+          },
+          "nota-fiscal": {
+            "x": 400,
+            "y": 770,
+            "w": 190,
+            "h": 66
+          },
+          "despachar": {
+            "x": 400,
+            "y": 875,
+            "w": 190,
+            "h": 66
+          },
+          "notificar": {
+            "x": 90,
+            "y": 770,
+            "w": 190,
+            "h": 66
+          },
+          "fim-sucesso": {
+            "x": 165,
+            "y": 900,
+            "w": 38,
+            "h": 38
+          }
+        },
+        "edges": {
+          "f01": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f02": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f03": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f04": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f05": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f06": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f07": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f08": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f09": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f10": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f11": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f12": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f13": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f14": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f15": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f16": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f17": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f18": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f19": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f20": {
+            "style": "orthogonal",
+            "points": []
+          },
+          "f21": {
+            "style": "orthogonal",
+            "points": []
+          }
+        },
+        "partitions": {
+          "part-cliente": {
+            "x": 35,
+            "y": 35,
+            "w": 320,
+            "h": 960
+          },
+          "part-vendas": {
+            "x": 370,
+            "y": 35,
+            "w": 320,
+            "h": 960
+          },
+          "part-operacao": {
+            "x": 705,
+            "y": 35,
+            "w": 320,
+            "h": 960
+          },
+          "part-pagamento": {
+            "x": 1040,
+            "y": 35,
+            "w": 320,
+            "h": 960
+          }
+        },
+        "grid": 20,
+        "snap": true,
+        "zoom": 1,
+        "pan": {
+          "x": 120,
+          "y": 95
+        }
+      },
+      "createdAt": "2026-10-16T12:00:00.000Z",
+      "updatedAt": "2026-10-16T12:00:00.000Z"
+    }
+  ],
+  "activeDiagramId": "9911f0b7-e7f7-4dd8-a07a-08bc9900c102",
+  "profiles": [],
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z"
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f7fa">
+  <title>Modelagem de Atividades UML · brModelo Studio</title>
+  <link rel="stylesheet" href="styles.css?v=activity-inspector-inpanel-6">
+<link rel="stylesheet" href="../author-footer.css">
+</head>
+<body>
+<div class="uml-app">
+  <header class="topbar">
+    <div class="brand"><a class="back" href="../index.html" aria-label="Voltar ao brModelo Studio">‹</a><span class="brand-dot">◉</span><div><small>BRMODELO STUDIO</small><strong>Modelagem de Atividades UML</strong></div></div>
+    <div class="top-center"><label class="sr-only" for="projectName">Nome do projeto</label><input id="projectName" aria-label="Nome do projeto"><span id="saveState" role="status">Salvo automaticamente</span></div>
+    <div class="top-actions"><button id="projectsButton" class="button ghost">Projetos</button><button id="themeButton" class="icon-button" title="Alternar tema" aria-label="Alternar tema">◐</button><button id="saveVersion" class="button ghost">Salvar versão</button><div class="history-controls" role="group" aria-label="Histórico"><button id="undo" class="icon-button" title="Desfazer (Ctrl/⌘ Z)" aria-label="Desfazer">↶</button><button id="redo" class="icon-button" title="Refazer (Ctrl/⌘ Shift Z)" aria-label="Refazer">↷</button></div><button id="validate" class="button primary">Validar</button></div>
+  </header>
+  <nav class="diagram-bar" aria-label="Diagramas"><div id="diagramTabs" class="diagram-tabs"></div><button id="newDiagram" class="button soft">＋ Nova atividade</button><button id="duplicateDiagram" class="icon-button" title="Duplicar atividade" aria-label="Duplicar atividade">⧉</button><button id="deleteDiagram" class="icon-button" title="Excluir atividade" aria-label="Excluir atividade">⌫</button></nav>
+  <main class="workspace">
+    <aside class="library" id="library"><div class="pane-heading"><div><small>BIBLIOTECA UML</small><h2>Elementos</h2></div><button id="toggleLibrary" class="icon-button" aria-label="Recolher biblioteca">☰</button></div><div class="library-search"><input id="nodeSearch" type="search" placeholder="Buscar elemento…" aria-label="Buscar elemento"></div><div id="libraryGroups" class="library-groups"></div><div class="library-footer"><button id="profileManager" class="button soft">Perfis e estereótipos</button></div></aside>
+    <section class="editor-area" aria-label="Editor de atividades UML">
+      <div class="toolbar"><button id="mobileLibrary" class="icon-button mobile-library" title="Abrir biblioteca" aria-label="Abrir biblioteca">☰</button><div class="tool-group"><button id="selectTool" class="tool active" data-tool="select">↖ Selecionar</button><button id="panTool" class="tool" data-tool="pan" title="Mover canvas (H)">✋ Mover <kbd>H</kbd></button><button id="controlTool" class="tool" data-tool="control">↗ Control Flow</button><button id="objectTool" class="tool" data-tool="object">↗ Object Flow</button><button id="partitionTool" class="tool" data-tool="partition">▥ Partição</button></div><span class="separator"></span><div class="tool-group"><label class="toolbar-select-label" title="Direção do fluxo"><span>Direção</span><select id="layoutDirection" aria-label="Direção do layout automático"><option value="auto">Auto</option><option value="horizontal">Horizontal</option><option value="vertical">Vertical</option></select></label><button id="autoLayout" class="tool">Organizar</button><button id="alignNodes" class="tool" title="Alinhar elementos selecionados">Alinhar</button><button id="distributeNodes" class="tool" title="Distribuir elementos selecionados">Distribuir</button><label class="toolbar-check"><input id="snapGrid" type="checkbox" checked> Snap</label><label class="toolbar-check"><input id="showGrid" type="checkbox" checked> Grid</label></div><span class="toolbar-spacer"></span><div class="tool-group"><button id="zoomOut" class="icon-button" aria-label="Diminuir zoom">−</button><span id="zoomValue">100%</span><button id="zoomIn" class="icon-button" aria-label="Aumentar zoom">＋</button><button id="fitView" class="icon-button" title="Ajustar à tela" aria-label="Ajustar à tela">⛶</button></div><div class="tool-group export-group"><button id="exportMenu" class="button ghost" aria-expanded="false">Exportar ▾</button><div id="exportOptions" class="export-options hidden"><button data-export="json">Projeto JSON</button><button data-export="svg">Diagrama SVG</button><button data-export="png">Imagem PNG</button><button data-export="pdf">Documento PDF</button><button data-export="puml">PlantUML (subconjunto)</button></div><button id="importButton" class="button ghost">Importar</button></div></div>
+      <div class="canvas-viewport" id="viewport" tabindex="0" aria-label="Canvas de atividades. Arraste elementos da biblioteca para adicionar."><div id="stage" class="stage"><div id="partitionLayer" class="partition-layer"></div><svg id="edgeLayer" class="edge-layer" width="4000" height="3000" aria-label="Fluxos do diagrama"></svg><div id="nodeLayer" class="node-layer"></div></div><div id="emptyState" class="empty-state"><div class="empty-glyph">◇</div><h3>Comece pela atividade</h3><p>Arraste um Initial Node e uma Action para a área de trabalho.</p></div><div id="selectionBox" class="selection-box hidden"></div><div id="minimap" class="minimap" aria-label="Minimapa"></div></div>
+      <div class="statusbar"><span id="diagramStatus">0 elementos · 0 fluxos</span><span id="toolHint">Arraste elementos para o canvas. Conecte pelos pontos laterais.</span><span class="footer-shortcuts"><kbd>⌘S</kbd> salvar <i>·</i> <kbd>H</kbd> mover</span><button id="versions" class="status-button">Versões</button></div>
+    </section>
+    <aside class="inspector" id="inspector"><div class="pane-heading"><div><small>DETALHES</small><h2>Propriedades</h2></div></div><div id="inspectorBody" class="inspector-body"></div><div class="validation-panel" id="validationPanel"><div class="validation-header"><h3>Validação</h3><span id="issueCount">0</span></div><div id="issueList"><p class="muted">Execute a validação para examinar o modelo.</p></div></div><button class="inspector-edge-toggle" id="toggleInspectorEdge" type="button" aria-label="Recolher propriedades" aria-controls="inspector" aria-expanded="true" title="Recolher propriedades">›</button></aside>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="contextMenu" class="context-menu hidden"></div>
+<dialog id="appDialog"><form method="dialog"><header><h2 id="dialogTitle"></h2><button value="cancel" class="icon-button" aria-label="Fechar">×</button></header><div id="dialogBody"></div><footer><button value="cancel" class="button ghost">Cancelar</button><button value="confirm" id="dialogConfirm" class="button primary">Confirmar</button></footer></form></dialog>
+<input id="importFile" type="file" accept=".json,application/json" hidden>
+<script type="module" src="editor.mjs?v=activity-inspector-inpanel-6"></script>
+<script type="module" src="../author-footer.mjs"></script>
+</body>
+</html>

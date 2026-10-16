@@ -1,0 +1,63 @@
+{
+  "id": "projeto-fluxogramas-vendas",
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z",
+  "title": "Operação de vendas e estoque",
+  "active": "fluxo-pedidos",
+  "openDiagramIds": [
+    "fluxo-pedidos",
+    "fluxo-reposicao"
+  ],
+  "diagrams": [
+    {
+      "id": "fluxo-pedidos",
+      "type": "fluxo",
+      "title": "Processamento de pedido",
+      "nodes": [
+        { "id": "pedido-inicio", "kind": "start", "title": "Início", "x": 80, "y": 210, "fields": [] },
+        { "id": "pedido-receber", "kind": "process", "title": "Receber pedido", "x": 250, "y": 195, "width": 180, "height": 70, "fields": [] },
+        { "id": "pedido-validar-estoque", "kind": "decision", "title": "Estoque disponível?", "condition": "quantidade disponível >= quantidade solicitada", "branchType": "yes-no", "x": 500, "y": 180, "width": 190, "height": 100, "fields": [] },
+        { "id": "pedido-repor-estoque", "kind": "subprocess", "title": "Repor estoque", "subprocessRef": "fluxo-reposicao", "x": 760, "y": 340, "width": 190, "height": 76, "fields": [] },
+        { "id": "pedido-separar", "kind": "process", "title": "Separar e embalar itens", "x": 1030, "y": 195, "width": 210, "height": 76, "fields": [] },
+        { "id": "pedido-enviar", "kind": "process", "title": "Emitir etiqueta e despachar", "x": 1320, "y": 195, "width": 210, "height": 76, "fields": [] },
+        { "id": "pedido-fim", "kind": "end", "title": "Pedido enviado", "x": 1600, "y": 205, "fields": [] }
+      ],
+      "edges": [
+        { "id": "pedido-e1", "from": "pedido-inicio", "to": "pedido-receber", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "pedido-e2", "from": "pedido-receber", "to": "pedido-validar-estoque", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "pedido-e3", "from": "pedido-validar-estoque", "to": "pedido-separar", "label": "Sim", "direction": "forward", "lineType": "straight", "comment": "Há unidades suficientes para atender o pedido.", "route": { "corners": [], "curves": {} } },
+        { "id": "pedido-e4", "from": "pedido-validar-estoque", "to": "pedido-repor-estoque", "label": "Não", "direction": "forward", "lineType": "straight", "comment": "Aciona o processo de reposição antes de continuar.", "route": { "corners": [], "curves": {} } },
+        { "id": "pedido-e5", "from": "pedido-repor-estoque", "to": "pedido-separar", "label": "Reposição concluída", "direction": "forward", "lineType": "straight", "comment": "O pedido segue para separação após a atualização do estoque.", "route": { "corners": [], "curves": {} } },
+        { "id": "pedido-e6", "from": "pedido-separar", "to": "pedido-enviar", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "pedido-e7", "from": "pedido-enviar", "to": "pedido-fim", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } }
+      ]
+    },
+    {
+      "id": "fluxo-reposicao",
+      "type": "fluxo",
+      "title": "Reposição de estoque",
+      "nodes": [
+        { "id": "reposicao-inicio", "kind": "start", "title": "Início", "x": 80, "y": 240, "fields": [] },
+        { "id": "reposicao-registrar", "kind": "process", "title": "Registrar item em falta", "x": 250, "y": 225, "width": 195, "height": 76, "fields": [] },
+        { "id": "reposicao-cotar", "kind": "process", "title": "Consultar fornecedor", "x": 520, "y": 225, "width": 190, "height": 76, "fields": [] },
+        { "id": "reposicao-aprovado", "kind": "decision", "title": "Reposição aprovada?", "condition": "preço e prazo atendem aos limites", "branchType": "yes-no", "x": 790, "y": 210, "width": 190, "height": 100, "fields": [] },
+        { "id": "reposicao-alternativo", "kind": "process", "title": "Consultar fornecedor alternativo", "x": 1060, "y": 385, "width": 220, "height": 76, "fields": [] },
+        { "id": "reposicao-receber", "kind": "process", "title": "Receber mercadoria", "x": 1330, "y": 210, "width": 190, "height": 76, "fields": [] },
+        { "id": "reposicao-atualizar", "kind": "process", "title": "Atualizar saldo do estoque", "x": 1600, "y": 210, "width": 215, "height": 76, "fields": [] },
+        { "id": "reposicao-fim", "kind": "end", "title": "Reposição concluída", "x": 1900, "y": 220, "fields": [] },
+        { "id": "reposicao-cancelada", "kind": "end", "title": "Reposição cancelada", "x": 1330, "y": 470, "fields": [] }
+      ],
+      "edges": [
+        { "id": "reposicao-e1", "from": "reposicao-inicio", "to": "reposicao-registrar", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e2", "from": "reposicao-registrar", "to": "reposicao-cotar", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e3", "from": "reposicao-cotar", "to": "reposicao-aprovado", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e4", "from": "reposicao-aprovado", "to": "reposicao-receber", "label": "Sim", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e5", "from": "reposicao-aprovado", "to": "reposicao-alternativo", "label": "Não", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e6", "from": "reposicao-alternativo", "to": "reposicao-receber", "label": "Cotação aprovada", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e7", "from": "reposicao-alternativo", "to": "reposicao-cancelada", "label": "Sem opção viável", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e8", "from": "reposicao-receber", "to": "reposicao-atualizar", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "reposicao-e9", "from": "reposicao-atualizar", "to": "reposicao-fim", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } }
+      ]
+    }
+  ]
+}

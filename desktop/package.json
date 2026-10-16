@@ -1,0 +1,13 @@
+{
+  "name": "brmodelo-studio-desktop",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "prepare:assets": "node prepare-assets.mjs",
+    "dev": "npm run prepare:assets && tauri dev",
+    "build": "npm run prepare:assets && tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

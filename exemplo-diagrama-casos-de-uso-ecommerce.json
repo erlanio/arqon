@@ -1,0 +1,355 @@
+{
+  "id": "projeto-casos-uso-ecommerce",
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z",
+  "title": "Loja virtual — Casos de uso",
+  "active": "casos-uso-ecommerce",
+  "openDiagramIds": [
+    "casos-uso-ecommerce"
+  ],
+  "diagrams": [
+    {
+      "id": "casos-uso-ecommerce",
+      "type": "usecase",
+      "title": "Casos de uso — Loja virtual",
+      "nodes": [
+        {
+          "id": "sistema",
+          "kind": "systemBoundary",
+          "title": "Plataforma de comércio eletrônico",
+          "x": 280,
+          "y": 65,
+          "width": 1120,
+          "height": 800,
+          "fields": []
+        },
+        {
+          "id": "cliente",
+          "kind": "actor",
+          "title": "Cliente",
+          "x": 60,
+          "y": 300,
+          "representation": "stick",
+          "stereotypes": [],
+          "constraints": [],
+          "fields": []
+        },
+        {
+          "id": "cliente-premium",
+          "kind": "actor",
+          "title": "Cliente premium",
+          "x": 60,
+          "y": 600,
+          "representation": "stick",
+          "stereotypes": [],
+          "constraints": [],
+          "fields": []
+        },
+        {
+          "id": "gateway",
+          "kind": "actor",
+          "title": "Gateway de pagamento",
+          "x": 1520,
+          "y": 235,
+          "representation": "stick",
+          "stereotypes": [],
+          "constraints": [],
+          "fields": []
+        },
+        {
+          "id": "transportadora",
+          "kind": "actor",
+          "title": "Transportadora",
+          "x": 1520,
+          "y": 600,
+          "representation": "stick",
+          "stereotypes": [],
+          "constraints": [],
+          "fields": []
+        },
+        {
+          "id": "catalogo",
+          "kind": "useCase",
+          "title": "Consultar catálogo",
+          "x": 370,
+          "y": 145,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Pesquisar e visualizar produtos disponíveis.",
+          "preconditions": "O catálogo está publicado.",
+          "postconditions": "Os produtos correspondentes são apresentados.",
+          "mainFlow": "Informar critérios; consultar catálogo; exibir resultados.",
+          "fields": []
+        },
+        {
+          "id": "carrinho",
+          "kind": "useCase",
+          "title": "Gerenciar carrinho",
+          "x": 735,
+          "y": 145,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Adicionar, alterar ou remover produtos do carrinho.",
+          "preconditions": "O cliente selecionou produtos.",
+          "postconditions": "Carrinho atualizado.",
+          "mainFlow": "Selecionar produto; definir quantidade; atualizar carrinho.",
+          "fields": []
+        },
+        {
+          "id": "compra",
+          "kind": "useCase",
+          "title": "Finalizar compra",
+          "x": 735,
+          "y": 330,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [
+            {
+              "id": "ponto-cupom",
+              "name": "Validar cupom"
+            }
+          ],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Concluir o pedido a partir do carrinho.",
+          "preconditions": "Carrinho contém ao menos um produto.",
+          "postconditions": "Pedido criado ou motivo de falha apresentado.",
+          "mainFlow": "Informar endereço; escolher frete; confirmar pagamento; receber confirmação.",
+          "fields": []
+        },
+        {
+          "id": "autenticar",
+          "kind": "useCase",
+          "title": "Autenticar cliente",
+          "x": 1080,
+          "y": 145,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Validar identidade e sessão do cliente.",
+          "preconditions": "Cliente possui uma conta.",
+          "postconditions": "Sessão autenticada.",
+          "mainFlow": "Informar credenciais; validar credenciais; iniciar sessão.",
+          "fields": []
+        },
+        {
+          "id": "calcular-frete",
+          "kind": "useCase",
+          "title": "Calcular frete",
+          "x": 370,
+          "y": 330,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Obter opções e prazos de entrega.",
+          "preconditions": "Endereço de entrega informado.",
+          "postconditions": "Opções de frete disponíveis.",
+          "mainFlow": "Consultar transportadora; apresentar prazo e preço.",
+          "fields": []
+        },
+        {
+          "id": "aplicar-cupom",
+          "kind": "useCase",
+          "title": "Aplicar cupom",
+          "x": 370,
+          "y": 515,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Aplicar desconto promocional quando elegível.",
+          "preconditions": "Cliente informa um código promocional.",
+          "postconditions": "Desconto aplicado ou justificativa apresentada.",
+          "mainFlow": "Validar código; conferir regras; recalcular total.",
+          "fields": []
+        },
+        {
+          "id": "pagamento",
+          "kind": "useCase",
+          "title": "Processar pagamento",
+          "x": 1080,
+          "y": 330,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Autorizar o valor do pedido pelo meio escolhido.",
+          "preconditions": "Pedido e valor total definidos.",
+          "postconditions": "Pagamento autorizado ou recusado.",
+          "mainFlow": "Enviar transação; aguardar resposta; registrar resultado.",
+          "fields": []
+        },
+        {
+          "id": "pedido",
+          "kind": "useCase",
+          "title": "Acompanhar pedido",
+          "x": 735,
+          "y": 515,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Consultar situação e previsão de entrega.",
+          "preconditions": "Existe pedido associado ao cliente.",
+          "postconditions": "Situação atual apresentada.",
+          "mainFlow": "Consultar pedido; obter atualização logística; exibir eventos.",
+          "fields": []
+        },
+        {
+          "id": "devolver",
+          "kind": "useCase",
+          "title": "Solicitar devolução",
+          "x": 1080,
+          "y": 515,
+          "width": 220,
+          "height": 86,
+          "systemBoundaryId": "sistema",
+          "extensionPoints": [],
+          "stereotypes": [],
+          "constraints": [],
+          "objective": "Solicitar devolução de item elegível.",
+          "preconditions": "Pedido entregue dentro do prazo de devolução.",
+          "postconditions": "Solicitação registrada para análise.",
+          "mainFlow": "Selecionar item; informar motivo; registrar solicitação.",
+          "fields": []
+        }
+      ],
+      "edges": [
+        {
+          "id": "r01",
+          "from": "cliente-premium",
+          "to": "cliente",
+          "type": "generalization",
+          "label": ""
+        },
+        {
+          "id": "r02",
+          "from": "cliente",
+          "to": "catalogo",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r03",
+          "from": "cliente",
+          "to": "carrinho",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r04",
+          "from": "cliente",
+          "to": "compra",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r05",
+          "from": "cliente",
+          "to": "autenticar",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r06",
+          "from": "cliente",
+          "to": "calcular-frete",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r07",
+          "from": "cliente-premium",
+          "to": "aplicar-cupom",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r08",
+          "from": "cliente",
+          "to": "pedido",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r09",
+          "from": "cliente",
+          "to": "devolver",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r10",
+          "from": "compra",
+          "to": "autenticar",
+          "type": "include",
+          "label": ""
+        },
+        {
+          "id": "r11",
+          "from": "compra",
+          "to": "calcular-frete",
+          "type": "include",
+          "label": ""
+        },
+        {
+          "id": "r12",
+          "from": "compra",
+          "to": "pagamento",
+          "type": "include",
+          "label": ""
+        },
+        {
+          "id": "r13",
+          "from": "aplicar-cupom",
+          "to": "compra",
+          "type": "extend",
+          "label": "cupom informado",
+          "extensionPoint": "ponto-cupom"
+        },
+        {
+          "id": "r14",
+          "from": "gateway",
+          "to": "pagamento",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r15",
+          "from": "transportadora",
+          "to": "pedido",
+          "type": "association",
+          "label": ""
+        },
+        {
+          "id": "r16",
+          "from": "transportadora",
+          "to": "calcular-frete",
+          "type": "association",
+          "label": ""
+        }
+      ]
+    }
+  ]
+}

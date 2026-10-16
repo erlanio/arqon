@@ -1,0 +1,507 @@
+{
+  "format": "brmodelo-uml-sequence-document",
+  "version": 1,
+  "project": {
+    "format": "brmodelo.uml-sequence",
+    "version": 1,
+    "id": "f543af7a-bfc4-425c-b474-10b383389841",
+    "title": "Autenticação de usuário",
+    "diagrams": [
+      {
+        "id": "ad0bc5d4-e14e-4a87-8a29-375d052861ee",
+        "name": "Login com autenticação",
+        "interaction": {
+          "id": "5cf8dcc8-d280-4981-b534-942173dd039c",
+          "name": "Autenticar usuário",
+          "documentation": "Fluxo de autenticação com validação de credenciais e consulta ao banco de dados."
+        },
+        "lifelines": [
+          {
+            "id": "183dfe02-1fba-498f-85ee-3a53416c4501",
+            "name": "Usuário",
+            "kind": "actor",
+            "color": null,
+            "representedClassifierId": null,
+            "selector": "",
+            "stereotypes": [],
+            "constraints": [],
+            "documentation": "",
+            "createdAt": "2026-10-16T15:45:47.632Z"
+          },
+          {
+            "id": "33177be6-2301-4700-8155-687db81af3b7",
+            "name": "Frontend",
+            "kind": "component",
+            "color": null,
+            "representedClassifierId": null,
+            "selector": "",
+            "stereotypes": [],
+            "constraints": [],
+            "documentation": "",
+            "createdAt": "2026-10-16T15:45:47.632Z"
+          },
+          {
+            "id": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "name": "AuthService",
+            "kind": "component",
+            "color": null,
+            "representedClassifierId": null,
+            "selector": "",
+            "stereotypes": [],
+            "constraints": [],
+            "documentation": "",
+            "createdAt": "2026-10-16T15:45:47.632Z"
+          },
+          {
+            "id": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "name": "Banco de dados",
+            "kind": "object",
+            "color": null,
+            "representedClassifierId": null,
+            "selector": "",
+            "stereotypes": [],
+            "constraints": [],
+            "documentation": "",
+            "createdAt": "2026-10-16T15:45:47.632Z"
+          }
+        ],
+        "messages": [
+          {
+            "id": "21e44eb7-2687-4523-8522-ff3dfe5d7f59",
+            "kind": "sync",
+            "name": "informarCredenciais(email, senha)",
+            "sourceId": "183dfe02-1fba-498f-85ee-3a53416c4501",
+            "targetId": "33177be6-2301-4700-8155-687db81af3b7",
+            "y": 150,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "1c05c053-16db-4ed0-9a3f-550a9a0d1ee0",
+            "receiveOccurrenceId": "15ba90b2-00ad-48fa-92f2-280198db45f5",
+            "executionId": "6b6d9c4a-a82b-46bd-a716-368c94d66b86"
+          },
+          {
+            "id": "57ef1498-d12e-48a9-8c3b-3297bd744898",
+            "kind": "sync",
+            "name": "autenticar(email, senha)",
+            "sourceId": "33177be6-2301-4700-8155-687db81af3b7",
+            "targetId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "y": 225,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "0c6f22c4-464d-47f6-bbc6-155795077398",
+            "receiveOccurrenceId": "76edb313-1b0d-45ad-8c4e-32f943b8b6dc",
+            "executionId": "4b8e8171-56ab-41c2-92b4-7dfc5d93d9e3"
+          },
+          {
+            "id": "47032e3f-bddf-412c-89fd-cee6127b1987",
+            "kind": "sync",
+            "name": "buscarUsuarioPorEmail(email)",
+            "sourceId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "targetId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "y": 300,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "52bda3e4-989a-4a70-8526-7680b6506444",
+            "receiveOccurrenceId": "6f072852-fe97-4f4f-83b3-c273ec414eff",
+            "executionId": "2fcedf09-b253-4440-94ce-e2cad13b1510"
+          },
+          {
+            "id": "f9caf626-9f8e-4e88-a74a-b44b1bf8e303",
+            "kind": "reply",
+            "name": "usuario + hashSenha",
+            "sourceId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "targetId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "y": 365,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "e12b07ae-f9c7-4d69-b4eb-2d4626c42404",
+            "receiveOccurrenceId": "d7220a33-9571-47db-bb2b-7b0b8d7fced3",
+            "executionId": null
+          },
+          {
+            "id": "3e1ed76e-0c9a-46ec-a7d2-e2a8d84e8282",
+            "kind": "sync",
+            "name": "registrarUltimoAcesso(usuario.id)",
+            "sourceId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "targetId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "y": 465,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "cca4240a-725e-4fa3-8800-f7db3db44c83",
+            "receiveOccurrenceId": "d8e0a0f3-9c68-4b2d-9543-99a701d30ed3",
+            "executionId": "e7e2d85d-d11f-458d-9c36-85ff7c7bcf66"
+          },
+          {
+            "id": "952f842e-f3aa-43b3-874e-d8ecd2b027f4",
+            "kind": "reply",
+            "name": "acesso registrado",
+            "sourceId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "targetId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "y": 515,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "26bd3806-3dd1-4703-9dbe-1f2816e5918b",
+            "receiveOccurrenceId": "4edd584d-3b19-4333-a215-5cf83f886d46",
+            "executionId": null
+          },
+          {
+            "id": "a0dd5389-61b4-41d4-8f79-a1055e758a41",
+            "kind": "reply",
+            "name": "200 OK · token JWT",
+            "sourceId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "targetId": "33177be6-2301-4700-8155-687db81af3b7",
+            "y": 575,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "99fb5ded-0721-4916-9f1b-63c0e3760a5f",
+            "receiveOccurrenceId": "613185be-a6b2-46e6-abfd-7410ce680c77",
+            "executionId": null
+          },
+          {
+            "id": "d4366f16-9bc0-494c-b168-94bb934be9ed",
+            "kind": "reply",
+            "name": "exibir painel autenticado",
+            "sourceId": "33177be6-2301-4700-8155-687db81af3b7",
+            "targetId": "183dfe02-1fba-498f-85ee-3a53416c4501",
+            "y": 645,
+            "color": null,
+            "arguments": "",
+            "returnType": "",
+            "operationId": null,
+            "signalId": null,
+            "stereotypes": [],
+            "documentation": "",
+            "constraints": [],
+            "sendOccurrenceId": "0f45022d-71e5-428f-8780-d21aa8cd7fe7",
+            "receiveOccurrenceId": "28146241-86c8-4f0d-9558-f89c60fd4c5d",
+            "executionId": null
+          }
+        ],
+        "occurrences": [
+          {
+            "id": "1c05c053-16db-4ed0-9a3f-550a9a0d1ee0",
+            "messageId": "21e44eb7-2687-4523-8522-ff3dfe5d7f59",
+            "lifelineId": "183dfe02-1fba-498f-85ee-3a53416c4501",
+            "kind": "send",
+            "y": 150
+          },
+          {
+            "id": "15ba90b2-00ad-48fa-92f2-280198db45f5",
+            "messageId": "21e44eb7-2687-4523-8522-ff3dfe5d7f59",
+            "lifelineId": "33177be6-2301-4700-8155-687db81af3b7",
+            "kind": "receive",
+            "y": 150
+          },
+          {
+            "id": "0c6f22c4-464d-47f6-bbc6-155795077398",
+            "messageId": "57ef1498-d12e-48a9-8c3b-3297bd744898",
+            "lifelineId": "33177be6-2301-4700-8155-687db81af3b7",
+            "kind": "send",
+            "y": 225
+          },
+          {
+            "id": "76edb313-1b0d-45ad-8c4e-32f943b8b6dc",
+            "messageId": "57ef1498-d12e-48a9-8c3b-3297bd744898",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "kind": "receive",
+            "y": 225
+          },
+          {
+            "id": "52bda3e4-989a-4a70-8526-7680b6506444",
+            "messageId": "47032e3f-bddf-412c-89fd-cee6127b1987",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "kind": "send",
+            "y": 300
+          },
+          {
+            "id": "6f072852-fe97-4f4f-83b3-c273ec414eff",
+            "messageId": "47032e3f-bddf-412c-89fd-cee6127b1987",
+            "lifelineId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "kind": "receive",
+            "y": 300
+          },
+          {
+            "id": "e12b07ae-f9c7-4d69-b4eb-2d4626c42404",
+            "messageId": "f9caf626-9f8e-4e88-a74a-b44b1bf8e303",
+            "lifelineId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "kind": "send",
+            "y": 365
+          },
+          {
+            "id": "d7220a33-9571-47db-bb2b-7b0b8d7fced3",
+            "messageId": "f9caf626-9f8e-4e88-a74a-b44b1bf8e303",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "kind": "receive",
+            "y": 365
+          },
+          {
+            "id": "cca4240a-725e-4fa3-8800-f7db3db44c83",
+            "messageId": "3e1ed76e-0c9a-46ec-a7d2-e2a8d84e8282",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "kind": "send",
+            "y": 465
+          },
+          {
+            "id": "d8e0a0f3-9c68-4b2d-9543-99a701d30ed3",
+            "messageId": "3e1ed76e-0c9a-46ec-a7d2-e2a8d84e8282",
+            "lifelineId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "kind": "receive",
+            "y": 465
+          },
+          {
+            "id": "26bd3806-3dd1-4703-9dbe-1f2816e5918b",
+            "messageId": "952f842e-f3aa-43b3-874e-d8ecd2b027f4",
+            "lifelineId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "kind": "send",
+            "y": 515
+          },
+          {
+            "id": "4edd584d-3b19-4333-a215-5cf83f886d46",
+            "messageId": "952f842e-f3aa-43b3-874e-d8ecd2b027f4",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "kind": "receive",
+            "y": 515
+          },
+          {
+            "id": "99fb5ded-0721-4916-9f1b-63c0e3760a5f",
+            "messageId": "a0dd5389-61b4-41d4-8f79-a1055e758a41",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "kind": "send",
+            "y": 575
+          },
+          {
+            "id": "613185be-a6b2-46e6-abfd-7410ce680c77",
+            "messageId": "a0dd5389-61b4-41d4-8f79-a1055e758a41",
+            "lifelineId": "33177be6-2301-4700-8155-687db81af3b7",
+            "kind": "receive",
+            "y": 575
+          },
+          {
+            "id": "0f45022d-71e5-428f-8780-d21aa8cd7fe7",
+            "messageId": "d4366f16-9bc0-494c-b168-94bb934be9ed",
+            "lifelineId": "33177be6-2301-4700-8155-687db81af3b7",
+            "kind": "send",
+            "y": 645
+          },
+          {
+            "id": "28146241-86c8-4f0d-9558-f89c60fd4c5d",
+            "messageId": "d4366f16-9bc0-494c-b168-94bb934be9ed",
+            "lifelineId": "183dfe02-1fba-498f-85ee-3a53416c4501",
+            "kind": "receive",
+            "y": 645
+          }
+        ],
+        "executions": [
+          {
+            "id": "6b6d9c4a-a82b-46bd-a716-368c94d66b86",
+            "lifelineId": "33177be6-2301-4700-8155-687db81af3b7",
+            "startY": 150,
+            "endY": 205,
+            "kind": "behavior",
+            "messageId": "21e44eb7-2687-4523-8522-ff3dfe5d7f59"
+          },
+          {
+            "id": "4b8e8171-56ab-41c2-92b4-7dfc5d93d9e3",
+            "lifelineId": "baa5528d-6e2f-4598-818c-fe005880e750",
+            "startY": 225,
+            "endY": 280,
+            "kind": "behavior",
+            "messageId": "57ef1498-d12e-48a9-8c3b-3297bd744898"
+          },
+          {
+            "id": "2fcedf09-b253-4440-94ce-e2cad13b1510",
+            "lifelineId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "startY": 300,
+            "endY": 355,
+            "kind": "behavior",
+            "messageId": "47032e3f-bddf-412c-89fd-cee6127b1987"
+          },
+          {
+            "id": "e7e2d85d-d11f-458d-9c36-85ff7c7bcf66",
+            "lifelineId": "abb1979b-c69d-48dd-971b-7fd5b1b2a50f",
+            "startY": 465,
+            "endY": 520,
+            "kind": "behavior",
+            "messageId": "3e1ed76e-0c9a-46ec-a7d2-e2a8d84e8282"
+          }
+        ],
+        "fragments": [
+          {
+            "id": "5b6bb933-2339-416d-88b7-f85749e480d9",
+            "kind": "combinedFragment",
+            "operator": "alt",
+            "name": "ALT",
+            "x": 615,
+            "y": 390,
+            "w": 430,
+            "h": 235,
+            "coveredLifelineIds": [
+              "baa5528d-6e2f-4598-818c-fe005880e750",
+              "abb1979b-c69d-48dd-971b-7fd5b1b2a50f"
+            ],
+            "operands": [
+              {
+                "id": "5397eeed-3e46-4f21-8280-e003598ce0e2",
+                "guard": "[credenciais válidas]",
+                "documentation": "Gera o token de acesso."
+              },
+              {
+                "id": "1a5c127b-1c09-490a-ada9-747c84159aa9",
+                "guard": "[credenciais inválidas]",
+                "documentation": "Retorna erro de autenticação."
+              }
+            ],
+            "arguments": "",
+            "referencedInteractionId": null,
+            "stereotypes": [],
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "constraints": [],
+        "gates": [],
+        "view": {
+          "lifelines": {
+            "183dfe02-1fba-498f-85ee-3a53416c4501": {
+              "x": 120,
+              "top": 80,
+              "bottom": 760
+            },
+            "33177be6-2301-4700-8155-687db81af3b7": {
+              "x": 380,
+              "top": 80,
+              "bottom": 760
+            },
+            "baa5528d-6e2f-4598-818c-fe005880e750": {
+              "x": 640,
+              "top": 80,
+              "bottom": 760
+            },
+            "abb1979b-c69d-48dd-971b-7fd5b1b2a50f": {
+              "x": 900,
+              "top": 80,
+              "bottom": 760
+            }
+          },
+          "zoom": 1,
+          "pan": {
+            "x": 60,
+            "y": 45
+          },
+          "grid": 20
+        },
+        "createdAt": "2026-10-16T15:45:47.631Z",
+        "updatedAt": "2026-10-16T15:45:47.632Z"
+      }
+    ],
+    "activeDiagramId": "ad0bc5d4-e14e-4a87-8a29-375d052861ee",
+    "profiles": [
+      {
+        "id": "e0637723-70aa-4615-8b5b-aaf6b99c2417",
+        "name": "Perfil de interação",
+        "description": "Estereótipos definidos pelo usuário para participantes e mensagens.",
+        "stereotypes": [
+          {
+            "id": "11eeda48-bd3a-41af-bd45-d937bee18884",
+            "name": "service",
+            "metaclasses": [
+              "Lifeline",
+              "Message"
+            ],
+            "tags": []
+          },
+          {
+            "id": "fae2c66a-3b95-41dc-92af-7a2a90c2c155",
+            "name": "repository",
+            "metaclasses": [
+              "Lifeline",
+              "Message"
+            ],
+            "tags": []
+          },
+          {
+            "id": "070e8620-db83-40b0-9161-6e00c564420f",
+            "name": "controller",
+            "metaclasses": [
+              "Lifeline",
+              "Message"
+            ],
+            "tags": []
+          },
+          {
+            "id": "7305e837-43a0-485f-af8d-35cafff65a96",
+            "name": "externalSystem",
+            "metaclasses": [
+              "Lifeline",
+              "Message"
+            ],
+            "tags": []
+          },
+          {
+            "id": "10e0821e-d05a-4b07-8a28-11ce5b6ea001",
+            "name": "database",
+            "metaclasses": [
+              "Lifeline",
+              "Message"
+            ],
+            "tags": []
+          },
+          {
+            "id": "cf678c20-6ca7-48d5-b3c9-87d84365bdf8",
+            "name": "queue",
+            "metaclasses": [
+              "Lifeline",
+              "Message"
+            ],
+            "tags": []
+          }
+        ]
+      }
+    ],
+    "createdAt": "2026-10-16T15:45:47.632Z",
+    "updatedAt": "2026-10-16T15:45:47.632Z"
+  },
+  "diagramId": "ad0bc5d4-e14e-4a87-8a29-375d052861ee"
+}

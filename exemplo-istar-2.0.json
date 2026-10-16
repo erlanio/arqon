@@ -1,0 +1,232 @@
+{
+  "format": "brmodelo-studio-document",
+  "version": 1,
+  "project": {
+    "id": "projeto-istar-commerce",
+    "title": "E-commerce · Modelo iStar 2.0",
+    "createdAt": "2026-10-16T15:48:27.396Z",
+    "updatedAt": "2026-10-16T15:48:27.396Z",
+    "active": "istar-commerce",
+    "openDiagramIds": [
+      "istar-commerce"
+    ],
+    "diagrams": [
+      {
+        "id": "istar-commerce",
+        "type": "istar",
+        "title": "Compra com pagamento confiável",
+        "nodes": [
+          {
+            "id": "actor-cliente",
+            "kind": "istarBoundary",
+            "title": "Cliente",
+            "x": 90,
+            "y": 250,
+            "width": 112,
+            "height": 112,
+            "fields": [],
+            "istar": {
+              "actorType": "actor",
+              "collapsed": true,
+              "layoutOrigin": {
+                "x": 90,
+                "y": 250
+              },
+              "ownerId": null,
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "agent-plataforma",
+            "kind": "istarAgent",
+            "title": "Plataforma de vendas",
+            "x": 520,
+            "y": 100,
+            "width": 500,
+            "height": 390,
+            "fields": [],
+            "istar": {
+              "actorType": "agent",
+              "collapsed": false,
+              "layoutOrigin": {
+                "x": 520,
+                "y": 100
+              },
+              "ownerId": null,
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "agent-pagamento",
+            "kind": "istarAgent",
+            "title": "Gateway de pagamento",
+            "x": 1120,
+            "y": 250,
+            "width": 112,
+            "height": 112,
+            "fields": [],
+            "istar": {
+              "actorType": "agent",
+              "collapsed": true,
+              "layoutOrigin": {
+                "x": 1120,
+                "y": 250
+              },
+              "ownerId": null,
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "goal-pedido-processado",
+            "kind": "istarGoal",
+            "title": "Pedido processado",
+            "x": 630,
+            "y": 200,
+            "width": 190,
+            "height": 65,
+            "fields": [],
+            "istar": {
+              "ownerId": "agent-plataforma",
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "task-validar-pedido",
+            "kind": "istarTask",
+            "title": "Validar pedido",
+            "x": 620,
+            "y": 310,
+            "width": 190,
+            "height": 65,
+            "fields": [],
+            "istar": {
+              "ownerId": "agent-plataforma",
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "task-processar-pagamento",
+            "kind": "istarTask",
+            "title": "Processar pagamento",
+            "x": 850,
+            "y": 310,
+            "width": 190,
+            "height": 65,
+            "fields": [],
+            "istar": {
+              "ownerId": "agent-plataforma",
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "quality-pagamento-confiavel",
+            "kind": "istarQuality",
+            "title": "Pagamento confiável",
+            "x": 850,
+            "y": 200,
+            "width": 190,
+            "height": 65,
+            "fields": [],
+            "istar": {
+              "ownerId": "agent-plataforma",
+              "stereotypeId": null
+            }
+          },
+          {
+            "id": "resource-dados-pedido",
+            "kind": "istarResource",
+            "title": "Dados do pedido",
+            "x": 620,
+            "y": 410,
+            "width": 190,
+            "height": 65,
+            "fields": [],
+            "istar": {
+              "ownerId": "agent-plataforma",
+              "stereotypeId": null
+            }
+          }
+        ],
+        "edges": [
+          {
+            "id": "dep-cliente-plataforma",
+            "from": "actor-cliente",
+            "to": "agent-plataforma",
+            "type": "dependencyGoal",
+            "dependumKind": "goal",
+            "dependum": "Pedido processado",
+            "documentation": "O cliente depende da plataforma para concluir a compra.",
+            "route": {
+              "corners": [],
+              "curves": {}
+            }
+          },
+          {
+            "id": "dep-plataforma-gateway",
+            "from": "agent-plataforma",
+            "to": "agent-pagamento",
+            "type": "dependencyResource",
+            "dependumKind": "resource",
+            "dependum": "Autorização do pagamento",
+            "documentation": "A plataforma depende do gateway para autorizar a cobrança.",
+            "route": {
+              "corners": [],
+              "curves": {}
+            }
+          },
+          {
+            "id": "ref-validar-pedido",
+            "from": "task-validar-pedido",
+            "to": "goal-pedido-processado",
+            "type": "refinementAnd",
+            "documentation": "A validação é uma etapa necessária do processamento.",
+            "route": {
+              "corners": [],
+              "curves": {}
+            }
+          },
+          {
+            "id": "ref-processar-pagamento",
+            "from": "task-processar-pagamento",
+            "to": "goal-pedido-processado",
+            "type": "refinementAnd",
+            "documentation": "O pagamento é processado em conjunto com a validação.",
+            "route": {
+              "corners": [],
+              "curves": {}
+            }
+          },
+          {
+            "id": "contrib-pagamento-confiavel",
+            "from": "task-processar-pagamento",
+            "to": "quality-pagamento-confiavel",
+            "type": "contributionHelp",
+            "documentation": "O processamento correto ajuda a garantir um pagamento confiável.",
+            "route": {
+              "corners": [],
+              "curves": {}
+            }
+          },
+          {
+            "id": "neededby-dados-pedido",
+            "from": "resource-dados-pedido",
+            "to": "task-validar-pedido",
+            "type": "neededBy",
+            "documentation": "A validação precisa dos dados do pedido.",
+            "route": {
+              "corners": [],
+              "curves": {}
+            }
+          }
+        ],
+        "istar": {
+          "version": "2.0",
+          "view": "SR",
+          "selectedRelationship": "dependencyGoal",
+          "stereotypes": []
+        }
+      }
+    ]
+  },
+  "diagramId": "istar-commerce"
+}

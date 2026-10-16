@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f7fb" />
+  <title>brModelo Studio</title>
+  <link rel="stylesheet" href="styles.css?v=flow-editor-json-import-6" />
+<link rel="stylesheet" href="author-footer.css">
+</head>
+<body>
+  <div class="app">
+    <main class="main">
+      <header class="topbar">
+        <div class="breadcrumbs"><span class="brand-name">brModelo <strong>Studio</strong></span><span class="slash">/</span><span id="crumbProject">Meu projeto</span></div>
+        <div class="top-actions">
+          <span class="save-status" id="saveStatus" aria-live="polite"><span class="status-dot"></span> Salvo</span>
+          <details class="file-menu" id="fileMenu"><summary>Arquivo</summary><div class="file-menu-items" role="menu"><button role="menuitem" data-file-action="save">Salvar <kbd>⌘S</kbd></button><button role="menuitem" data-file-action="saveAs">Salvar como…</button><button role="menuitem" data-file-action="export">Salvar arquivo no dispositivo</button><button role="menuitem" data-file-action="open">Abrir documento…</button><hr><button role="menuitem" data-file-action="close">Fechar documento</button><button role="menuitem" data-file-action="closeAll">Fechar todas as abas</button></div></details>
+          <button class="button subtle" id="projectsNav" data-view="projects">Projetos</button>
+          <button class="button subtle help-nav" id="helpButton" title="Ajuda">Ajuda</button>
+          <button class="button subtle theme-toggle" id="themeToggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-toggle-label">Tema escuro</span></button>
+          <button class="button subtle" id="importButton">Importar</button>
+          <button class="button primary" id="exportButton">Exportar <span>↗</span></button>
+        </div>
+      </header>
+
+      <section class="workspace-heading" id="workspaceHeading" aria-label="Diagrama atual">
+        <div class="diagram-heading"><div class="eyebrow">DIAGRAMA</div><h1 id="projectTitle" contenteditable="true" spellcheck="false" aria-label="Nome do projeto">Modelo de dados</h1></div>
+        <div class="diagram-tabs" id="diagramTabs" role="tablist" aria-label="Diagramas do projeto"></div>
+      </section>
+
+      <section class="editor-shell" id="editorView">
+        <div id="activityEditorView" class="activity-editor-view hidden"><iframe id="activityEditorFrame" title="Editor de atividades UML"></iframe></div>
+        <div id="classEditorView" class="activity-editor-view hidden"><iframe id="classEditorFrame" title="Editor de Diagrama de Classes UML"></iframe></div>
+        <div id="sequenceEditorView" class="activity-editor-view hidden"><iframe id="sequenceEditorFrame" title="Editor de Diagrama de Sequência UML"></iframe></div>
+        <div class="editor-grid" id="standardEditor">
+          <aside class="palette">
+            <div class="panel-heading"><div><div class="eyebrow">FERRAMENTAS</div><h2>Elementos</h2></div><button class="icon-button" id="collapsePalette" aria-label="Recolher ferramentas">⌃</button></div>
+            <div class="palette-navigation"><div class="palette-tabs" role="tablist" aria-label="Painel lateral"><button type="button" class="active" data-palette-view="elements" role="tab" aria-selected="true">Elementos</button><button type="button" data-palette-view="structure" role="tab" aria-selected="false">Estrutura</button></div><label class="palette-search"><span aria-hidden="true">⌕</span><input id="paletteSearch" type="search" placeholder="Buscar elementos" aria-label="Buscar elementos"></label></div>
+            <div class="palette-body" id="paletteBody"></div>
+            <div class="palette-tip"><span>✦</span><div><strong>Dica rápida</strong><p>Arraste um elemento para o canvas ou clique para adicioná-lo.</p></div></div>
+          </aside>
+
+          <section class="canvas-panel" aria-label="Editor de diagrama">
+            <div class="canvas-toolbar" role="toolbar" aria-label="Ferramentas do diagrama">
+              <div class="tool-group" id="editTools" role="group" aria-label="Edição">
+                <button class="tool active" data-tool="select" title="Selecionar (V). Shift+clique ou arraste no canvas para selecionar vários elementos.">↖ <span>Selecionar</span></button>
+                <button class="tool" data-tool="connect" title="Conectar (C)">↗ <span>Conectar</span></button>
+                <button class="tool" data-tool="pan" title="Mover canvas (H)">✋ <span>Mover</span></button>
+                <button class="tool relation-manager" id="manageConnections" title="Abrir propriedades das relações">⌁ <span>Relações</span><b id="connectionCount">0</b></button>
+              </div>
+              <button class="icon-button show-palette" id="showPalette" type="button" title="Abrir biblioteca de elementos" aria-label="Abrir biblioteca de elementos">☰</button>
+              <details class="layout-menu"><summary class="tool" title="Organizar e alinhar elementos">⌖ <span>Organizar</span></summary><div class="layout-menu-popover"><strong>Organizar diagrama</strong><button type="button" data-layout-action="auto">Distribuir automaticamente</button><button type="button" data-layout-action="flow-vertical">Fluxo vertical</button><button type="button" data-layout-action="flow-horizontal">Fluxo horizontal</button><button type="button" data-layout-action="toggle-snap" aria-pressed="true">✓ Ajustar ao grid (20 px)</button><hr><button type="button" data-layout-action="align-x">Alinhar pelo topo</button><button type="button" data-layout-action="align-y">Alinhar pela esquerda</button><button type="button" data-layout-action="distribute-x">Distribuir horizontalmente</button><button type="button" data-layout-action="distribute-y">Distribuir verticalmente</button></div></details>
+              <div class="tool-group logical-tools hidden" id="logicalTools" aria-label="Ferramentas do modelo lógico">
+                <button class="tool" id="logicalValidate" title="Validar modelo">✓ <span>Validar</span></button>
+                <button class="tool" id="logicalSql" title="Gerar SQL DDL">⌘ <span>Gerar SQL</span></button>
+                <button class="tool" id="logicalDictionary" title="Baixar dicionário de dados CSV">▤ <span>Dicionário</span></button>
+                <button class="tool" id="logicalNormalize" title="Analisar formas normais">≋ <span>Normalização</span></button>
+                <button class="tool" id="logicalImportDdl" title="Colar SQL ou importar um arquivo para criar um modelo lógico">↥ <span>Importar SQL</span></button>
+              </div>
+              <div class="tool-group flow-tools hidden" id="flowTools" aria-label="Validação e simulação do fluxograma"><button class="tool" id="flowValidate" title="Validar o fluxograma">✓ <span>Validar</span></button><span class="toolbar-separator"></span><button class="tool" id="flowSimStart" title="Iniciar simulação">▶ <span>Simular</span></button><button class="tool" id="flowSimNext" title="Avançar um passo" disabled>▷ <span>Próximo</span></button><button class="tool" id="flowSimPause" title="Pausar simulação" disabled>Ⅱ <span>Pausar</span></button><button class="tool" id="flowSimReset" title="Reiniciar simulação" disabled>↺ <span>Reiniciar</span></button></div>
+              <div class="tool-group usecase-tools hidden" id="useCaseTools" aria-label="Ferramentas de casos de uso"><label class="usecase-relation-label">Relação<select id="useCaseRelationType" class="inspector-select"><option value="association">Associação</option><option value="include">«include»</option><option value="extend">«extend»</option><option value="generalization">Generalização</option></select></label><button class="tool" id="useCaseLayout" title="Organizar elementos automaticamente">⌖ <span>Organizar</span></button><button class="tool" id="useCaseValidate" title="Validar diagrama de casos de uso">✓ <span>Validar</span></button></div>
+              <div class="tool-group istar-tools hidden" id="istarTools" aria-label="Ferramentas iStar"><select id="istarRelationType" class="inspector-select istar-relation-state" aria-label="Relação selecionada"></select></div>
+              <div class="tool-group conceptual-tools hidden" id="conceptualTools" aria-label="Ferramentas do modelo conceitual">
+                <button class="tool" id="conceptualValidate" title="Validar modelo conceitual">✓ <span>Validar MER</span></button>
+                <button class="tool" id="conceptualNotation" title="Alternar notação Chen e Crow's Foot">◇ <span>Chen</span></button>
+                <button class="tool" id="conceptualConvert" title="Converter para um novo modelo lógico">⇢ <span>Converter para lógico</span></button>
+                <button class="tool" id="conceptualDictionary" title="Exportar dicionário conceitual CSV">▤ <span>Dicionário</span></button>
+              </div>
+              <div class="toolbar-separator"></div>
+              <div class="tool-group" role="group" aria-label="Histórico"><button class="icon-button" id="undoButton" title="Desfazer (⌘Z)">↩</button><button class="icon-button" id="redoButton" title="Refazer (⌘⇧Z)">↪</button></div>
+              <div class="toolbar-spacer"></div>
+              <div class="istar-select-toolbar" id="istarSelectToolbar" role="group" aria-label="Visualização e zoom"><div class="istar-select-controls hidden" id="istarSelectControls"><label class="usecase-relation-label">Todos os atores<select id="istarView" class="inspector-select"><option value="hybrid" disabled>Individual · híbrida</option><option value="SR">Rationale (SR)</option><option value="SD">Dependência (SD)</option></select></label><div class="istar-relation-categories" id="istarRelationCategories" aria-label="Selecionar categoria de relação"></div><button class="tool" id="istarValidate" title="Validar modelo iStar">✓ <span>Validar</span></button></div><button class="icon-button" id="fitButton" title="Ajustar à tela" aria-label="Ajustar diagrama à área visível">⛶</button><div class="zoom-controls"><button id="zoomOut" aria-label="Diminuir zoom">−</button><span id="zoomLabel">100%</span><button id="zoomIn" aria-label="Aumentar zoom">＋</button></div></div>
+            </div>
+            <div class="canvas-viewport" id="canvasViewport" tabindex="0" aria-label="Canvas. Shift+clique ou arraste em uma área vazia para selecionar vários elementos.">
+              <div class="canvas-surface" id="canvasSurface"><svg class="connections" id="connections" role="group" aria-label="Conexões do diagrama"></svg><div class="nodes" id="nodes"></div></div>
+              <div class="diagram-context-menu hidden" id="diagramContextMenu" role="menu" aria-label="Opções do elemento"><button type="button" role="menuitem" data-context-action="edit">Editar propriedades</button><button type="button" role="menuitem" data-context-action="connect">Conectar daqui</button><button type="button" role="menuitem" data-context-action="copy">Copiar</button><button type="button" role="menuitem" data-context-action="paste">Colar</button><button type="button" role="menuitem" data-context-action="duplicate">Duplicar</button><button type="button" role="menuitem" data-context-action="changeType" data-flow-context>Alterar tipo</button><button type="button" role="menuitem" data-context-action="front" data-flow-context>Trazer para frente</button><button type="button" role="menuitem" data-context-action="back" data-flow-context>Enviar para trás</button><button type="button" role="menuitem" data-context-action="delete">Excluir</button></div>
+              <div class="canvas-empty" id="canvasEmpty"><div class="empty-icon">▦</div><h3>Comece seu diagrama</h3><p>Escolha um elemento à esquerda para dar forma às suas ideias.</p><button class="button primary" id="quickAdd">＋ Adicionar entidade</button></div>
+            </div>
+            <div class="canvas-footer"><span id="elementCount">0 elementos</span><span id="canvasHint">Selecione uma linha para editar a cardinalidade · Arraste para organizar</span><span class="footer-key"><kbd>⌘S</kbd> salvar <span aria-hidden="true">·</span> <kbd>H</kbd> mover canvas</span></div>
+          </section>
+
+          <aside class="inspector">
+            <div class="panel-heading"><div><div class="eyebrow">DETALHES</div><h2>Propriedades</h2></div></div>
+            <div id="inspectorBody" class="inspector-body"></div>
+          </aside>
+          <div class="inspector-edge-controls" role="group" aria-label="Controles do painel de propriedades">
+            <button class="inspector-edge-toggle" id="toggleInspectorEdge" type="button" title="Fechar propriedades" aria-label="Fechar propriedades" aria-expanded="true">›</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-view hidden" id="projectsView"><div class="projects-head"><div><div class="eyebrow">ESPAÇO DE TRABALHO</div><h2>Seus projetos</h2><p>Abra um projeto salvo ou comece um novo. Seus dados ficam neste navegador.</p></div><button class="button primary" id="newProject">＋ Novo projeto</button></div><section class="project-section"><div class="project-section-head"><div><h3>Modelos de dados</h3><p>Modelos conceituais, lógicos e fluxogramas.</p></div><span id="workspaceProjectCount" class="project-count"></span></div><div class="projects-grid" id="workspaceProjects"></div></section><section class="project-section"><div class="project-section-head"><div><h3>Documentos salvos</h3><p>Diagramas gravados no armazenamento deste navegador.</p></div></div><div class="projects-grid" id="savedDocuments"></div></section><section class="project-section"><div class="project-section-head"><div><h3>Diagramas UML</h3><p>Atividades, classes, casos de uso e sequências salvos no espaço de trabalho.</p></div></div><div class="projects-grid" id="umlProjects"></div></section></section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <dialog id="modal"><form method="dialog"><div class="modal-head"><h2 id="modalTitle"></h2><button class="icon-button" value="cancel" aria-label="Fechar">×</button></div><div id="modalBody"></div><div class="modal-actions"><button class="button subtle" value="cancel">Cancelar</button><button class="button primary" id="modalConfirm" value="confirm">Confirmar</button></div></form></dialog>
+  <dialog id="unsavedDialog" class="unsaved-dialog"><form method="dialog"><div class="unsaved-icon" aria-hidden="true">!</div><h2>Salvar alterações antes de fechar?</h2><p id="unsavedMessage"></p><div class="unsaved-actions"><button value="discard">Não salvar</button><button value="cancel">Cancelar</button><button class="save-choice" value="save">▣ Salvar</button></div></form></dialog>
+  <input id="fileInput" type="file" accept=".json,application/json" hidden />
+  <input id="ddlInput" type="file" accept=".sql,text/plain" hidden />
+  <script type="module" src="script.js?v=flow-editor-json-import-6"></script>
+<script type="module" src="author-footer.mjs"></script>
+</body>
+</html>

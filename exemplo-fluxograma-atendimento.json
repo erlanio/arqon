@@ -1,0 +1,42 @@
+{
+  "id": "projeto-fluxograma-atendimento",
+  "createdAt": "2026-10-16T12:00:00.000Z",
+  "updatedAt": "2026-10-16T12:00:00.000Z",
+  "title": "Atendimento e resolução de chamado",
+  "active": "fluxo-atendimento",
+  "openDiagramIds": ["fluxo-atendimento"],
+  "diagrams": [
+    {
+      "id": "fluxo-atendimento",
+      "type": "fluxo",
+      "title": "Atendimento ao cliente",
+      "nodes": [
+        { "id": "atendimento-inicio", "kind": "start", "title": "Início", "x": 80, "y": 230, "fields": [] },
+        { "id": "atendimento-receber", "kind": "inputOutput", "title": "Receber solicitação", "x": 230, "y": 215, "width": 190, "height": 72, "fields": [] },
+        { "id": "atendimento-registrar", "kind": "process", "title": "Registrar chamado", "x": 490, "y": 215, "width": 190, "height": 72, "fields": [] },
+        { "id": "atendimento-urgente", "kind": "decision", "title": "É urgente?", "condition": "impacto alto ou serviço indisponível", "branchType": "yes-no", "x": 760, "y": 195, "width": 190, "height": 100, "fields": [] },
+        { "id": "atendimento-priorizar", "kind": "process", "title": "Priorizar atendimento", "x": 1030, "y": 80, "width": 200, "height": 72, "fields": [] },
+        { "id": "atendimento-analisar", "kind": "process", "title": "Analisar e diagnosticar", "x": 1030, "y": 310, "width": 210, "height": 72, "fields": [] },
+        { "id": "atendimento-resolver", "kind": "decision", "title": "Problema resolvido?", "condition": "a solução foi confirmada pelo cliente", "branchType": "yes-no", "x": 1320, "y": 295, "width": 200, "height": 100, "fields": [] },
+        { "id": "atendimento-escalar", "kind": "process", "title": "Escalar para especialista", "x": 1600, "y": 450, "width": 210, "height": 72, "fields": [] },
+        { "id": "atendimento-confirmar", "kind": "process", "title": "Confirmar solução", "x": 1600, "y": 180, "width": 190, "height": 72, "fields": [] },
+        { "id": "atendimento-encerrar", "kind": "process", "title": "Registrar encerramento", "x": 1870, "y": 180, "width": 205, "height": 72, "fields": [] },
+        { "id": "atendimento-fim", "kind": "end", "title": "Chamado encerrado", "x": 2150, "y": 195, "fields": [] }
+      ],
+      "edges": [
+        { "id": "atendimento-e1", "from": "atendimento-inicio", "to": "atendimento-receber", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e2", "from": "atendimento-receber", "to": "atendimento-registrar", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e3", "from": "atendimento-registrar", "to": "atendimento-urgente", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e4", "from": "atendimento-urgente", "to": "atendimento-priorizar", "label": "Sim", "direction": "forward", "lineType": "straight", "comment": "Chamados urgentes passam à frente da fila.", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e5", "from": "atendimento-urgente", "to": "atendimento-analisar", "label": "Não", "direction": "forward", "lineType": "straight", "comment": "Solicitações comuns seguem para diagnóstico.", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e6", "from": "atendimento-priorizar", "to": "atendimento-analisar", "label": "Prioridade definida", "direction": "forward", "lineType": "straight", "comment": "Após a priorização, o chamado também é diagnosticado.", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e7", "from": "atendimento-analisar", "to": "atendimento-resolver", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e8", "from": "atendimento-resolver", "to": "atendimento-confirmar", "label": "Sim", "direction": "forward", "lineType": "straight", "comment": "A solução foi validada.", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e9", "from": "atendimento-resolver", "to": "atendimento-escalar", "label": "Não", "direction": "forward", "lineType": "straight", "comment": "O especialista recebe o chamado para nova análise.", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e10", "from": "atendimento-escalar", "to": "atendimento-analisar", "label": "Nova análise", "direction": "forward", "lineType": "straight", "comment": "O fluxo retorna ao diagnóstico após a escalada.", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e11", "from": "atendimento-confirmar", "to": "atendimento-encerrar", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } },
+        { "id": "atendimento-e12", "from": "atendimento-encerrar", "to": "atendimento-fim", "label": "", "direction": "forward", "lineType": "straight", "comment": "", "route": { "corners": [], "curves": {} } }
+      ]
+    }
+  ]
+}

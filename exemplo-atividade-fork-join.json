@@ -1,0 +1,380 @@
+{
+  "format": "brmodelo.uml-activity",
+  "version": 1,
+  "id": "c0527260-a246-44a1-9f35-036ca5641aa5",
+  "title": "Processamento paralelo de pedido",
+  "diagrams": [
+    {
+      "id": "bb410091-56a0-4588-a543-c7e4cf8dd64e",
+      "name": "Separar pedido e autorizar pagamento",
+      "activity": {
+        "id": "7949cbca-8af0-4529-8602-e0061797cf22",
+        "name": "Separar pedido e autorizar pagamento",
+        "parameters": [],
+        "documentation": "Exemplo de Fork e Join: a conferência do estoque e a autorização do pagamento ocorrem em paralelo. O fluxo continua somente quando ambas terminam."
+      },
+      "model": {
+        "nodes": [
+          {
+            "id": "d636d858-9eb6-45ad-9ee5-c6672d4b70a3",
+            "kind": "initial",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "d64fa020-d05e-44e7-b50b-a2b1a7caffe8"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "b516db33-80ca-4d6e-876e-6e4887dbf9ee",
+            "kind": "action",
+            "name": "Receber pedido",
+            "documentation": "",
+            "properties": {
+              "body": "Registrar os itens e confirmar os dados do cliente."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "d64fa020-d05e-44e7-b50b-a2b1a7caffe8"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "b956b05b-b0c0-4c02-882b-50d76d97e3f3",
+            "kind": "fork",
+            "name": "",
+            "documentation": "",
+            "properties": {
+              "orientation": "horizontal"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "d64fa020-d05e-44e7-b50b-a2b1a7caffe8"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "b7dd5c5a-8d5a-4da4-bd7f-7a9de47c56f2",
+            "kind": "action",
+            "name": "Conferir estoque",
+            "documentation": "",
+            "properties": {
+              "body": "Verificar disponibilidade e reservar os itens."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "3fc84d06-6b07-4d2a-9e10-6f6d27080d6c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "aecb7725-da77-49c6-8697-6e6af0e57ec7",
+            "kind": "callOperation",
+            "name": "Autorizar pagamento",
+            "documentation": "",
+            "properties": {
+              "operation": "Pagamento.autorizar"
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "e19cc289-4f56-4991-b3c7-713bbd388703"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "1e73870d-c6d0-4b88-a838-ea0cf4be35ee",
+            "kind": "join",
+            "name": "",
+            "documentation": "",
+            "properties": {
+              "orientation": "horizontal",
+              "joinSpec": ""
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "af31772e-d60a-439a-a500-d6993e460c5c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "4e511d26-50f9-4629-85dd-3791ac7c8fc3",
+            "kind": "action",
+            "name": "Preparar envio",
+            "documentation": "",
+            "properties": {
+              "body": "Separar os itens e gerar a remessa."
+            },
+            "stereotypes": [],
+            "partitionIds": [
+              "af31772e-d60a-439a-a500-d6993e460c5c"
+            ],
+            "parentId": null
+          },
+          {
+            "id": "43b26c31-fe51-436c-828e-950dc7166b1c",
+            "kind": "activityFinal",
+            "name": "",
+            "documentation": "",
+            "properties": {},
+            "stereotypes": [],
+            "partitionIds": [
+              "af31772e-d60a-439a-a500-d6993e460c5c"
+            ],
+            "parentId": null
+          }
+        ],
+        "edges": [
+          {
+            "id": "da30ef11-ed52-4286-9e95-d246b3950c91",
+            "kind": "control",
+            "sourceId": "d636d858-9eb6-45ad-9ee5-c6672d4b70a3",
+            "targetId": "b516db33-80ca-4d6e-876e-6e4887dbf9ee",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "8df319ac-0295-407c-aae5-e5c447708a0a",
+            "kind": "control",
+            "sourceId": "b516db33-80ca-4d6e-876e-6e4887dbf9ee",
+            "targetId": "b956b05b-b0c0-4c02-882b-50d76d97e3f3",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "e6b3e323-916b-4c16-9887-2f2cfc5e515b",
+            "kind": "control",
+            "sourceId": "b956b05b-b0c0-4c02-882b-50d76d97e3f3",
+            "targetId": "b7dd5c5a-8d5a-4da4-bd7f-7a9de47c56f2",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "f3dfcffb-0581-4098-b044-6d68bc9c6e42",
+            "kind": "control",
+            "sourceId": "b956b05b-b0c0-4c02-882b-50d76d97e3f3",
+            "targetId": "aecb7725-da77-49c6-8697-6e6af0e57ec7",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "3362d024-7e72-46f6-9125-33e1cb16a1ca",
+            "kind": "control",
+            "sourceId": "b7dd5c5a-8d5a-4da4-bd7f-7a9de47c56f2",
+            "targetId": "1e73870d-c6d0-4b88-a838-ea0cf4be35ee",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "fbc51f5a-9408-4c17-bb25-48be817e1ebb",
+            "kind": "control",
+            "sourceId": "aecb7725-da77-49c6-8697-6e6af0e57ec7",
+            "targetId": "1e73870d-c6d0-4b88-a838-ea0cf4be35ee",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "535353b6-dbd5-443a-9b46-47abdf3656bd",
+            "kind": "control",
+            "sourceId": "1e73870d-c6d0-4b88-a838-ea0cf4be35ee",
+            "targetId": "4e511d26-50f9-4629-85dd-3791ac7c8fc3",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          },
+          {
+            "id": "e22471d2-2800-4d05-aa53-0c08eba3f347",
+            "kind": "control",
+            "sourceId": "4e511d26-50f9-4629-85dd-3791ac7c8fc3",
+            "targetId": "43b26c31-fe51-436c-828e-950dc7166b1c",
+            "guard": "",
+            "weight": 1,
+            "objectType": "",
+            "interrupting": false,
+            "documentation": ""
+          }
+        ],
+        "partitions": [
+          {
+            "id": "d64fa020-d05e-44e7-b50b-a2b1a7caffe8",
+            "name": "Pedido",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Atendimento",
+            "role": ""
+          },
+          {
+            "id": "3fc84d06-6b07-4d2a-9e10-6f6d27080d6c",
+            "name": "Estoque",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Operações",
+            "role": ""
+          },
+          {
+            "id": "e19cc289-4f56-4991-b3c7-713bbd388703",
+            "name": "Pagamento",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Financeiro",
+            "role": ""
+          },
+          {
+            "id": "af31772e-d60a-439a-a500-d6993e460c5c",
+            "name": "Expedição",
+            "orientation": "vertical",
+            "parentId": null,
+            "responsible": "Logística",
+            "role": ""
+          }
+        ]
+      },
+      "view": {
+        "nodes": {
+          "d636d858-9eb6-45ad-9ee5-c6672d4b70a3": {
+            "x": 155,
+            "y": 85,
+            "w": 38,
+            "h": 38
+          },
+          "b516db33-80ca-4d6e-876e-6e4887dbf9ee": {
+            "x": 100,
+            "y": 170,
+            "w": 164,
+            "h": 66
+          },
+          "b956b05b-b0c0-4c02-882b-50d76d97e3f3": {
+            "x": 95,
+            "y": 300,
+            "w": 164,
+            "h": 26
+          },
+          "b7dd5c5a-8d5a-4da4-bd7f-7a9de47c56f2": {
+            "x": 405,
+            "y": 155,
+            "w": 164,
+            "h": 66
+          },
+          "aecb7725-da77-49c6-8697-6e6af0e57ec7": {
+            "x": 710,
+            "y": 375,
+            "w": 164,
+            "h": 66
+          },
+          "1e73870d-c6d0-4b88-a838-ea0cf4be35ee": {
+            "x": 1020,
+            "y": 300,
+            "w": 164,
+            "h": 26
+          },
+          "4e511d26-50f9-4629-85dd-3791ac7c8fc3": {
+            "x": 1020,
+            "y": 385,
+            "w": 164,
+            "h": 66
+          },
+          "43b26c31-fe51-436c-828e-950dc7166b1c": {
+            "x": 1083,
+            "y": 490,
+            "w": 38,
+            "h": 38
+          }
+        },
+        "edges": {
+          "da30ef11-ed52-4286-9e95-d246b3950c91": {
+            "style": "automatic",
+            "points": []
+          },
+          "8df319ac-0295-407c-aae5-e5c447708a0a": {
+            "style": "automatic",
+            "points": []
+          },
+          "e6b3e323-916b-4c16-9887-2f2cfc5e515b": {
+            "style": "automatic",
+            "points": []
+          },
+          "f3dfcffb-0581-4098-b044-6d68bc9c6e42": {
+            "style": "automatic",
+            "points": []
+          },
+          "3362d024-7e72-46f6-9125-33e1cb16a1ca": {
+            "style": "automatic",
+            "points": []
+          },
+          "fbc51f5a-9408-4c17-bb25-48be817e1ebb": {
+            "style": "automatic",
+            "points": []
+          },
+          "535353b6-dbd5-443a-9b46-47abdf3656bd": {
+            "style": "automatic",
+            "points": []
+          },
+          "e22471d2-2800-4d05-aa53-0c08eba3f347": {
+            "style": "automatic",
+            "points": []
+          }
+        },
+        "partitions": {
+          "d64fa020-d05e-44e7-b50b-a2b1a7caffe8": {
+            "x": 35,
+            "y": 45,
+            "w": 285,
+            "h": 500
+          },
+          "3fc84d06-6b07-4d2a-9e10-6f6d27080d6c": {
+            "x": 350,
+            "y": 45,
+            "w": 285,
+            "h": 500
+          },
+          "e19cc289-4f56-4991-b3c7-713bbd388703": {
+            "x": 665,
+            "y": 45,
+            "w": 285,
+            "h": 500
+          },
+          "af31772e-d60a-439a-a500-d6993e460c5c": {
+            "x": 980,
+            "y": 45,
+            "w": 285,
+            "h": 500
+          }
+        },
+        "grid": 20,
+        "snap": true,
+        "zoom": 0.86,
+        "pan": {
+          "x": 45,
+          "y": 50
+        }
+      },
+      "createdAt": "2026-10-16T13:55:29.290Z",
+      "updatedAt": "2026-10-16T13:55:29.291Z"
+    }
+  ],
+  "activeDiagramId": "bb410091-56a0-4588-a543-c7e4cf8dd64e",
+  "profiles": [],
+  "createdAt": "2026-10-16T13:55:29.291Z",
+  "updatedAt": "2026-10-16T13:55:29.291Z"
+}

@@ -1,0 +1,1943 @@
+{
+  "format": "brmodelo-uml-class-document",
+  "version": 1,
+  "project": {
+    "format": "brmodelo.uml-class",
+    "version": 1,
+    "id": "f19acb18-09a1-4111-aaa6-3c1c252a5d5e",
+    "title": "Plataforma de comércio eletrônico",
+    "classifiers": [
+      {
+        "id": "436cf1f8-86b8-47b0-bcda-b4032cf735eb",
+        "kind": "class",
+        "name": "Pessoa",
+        "visibility": "public",
+        "isAbstract": true,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "4c5d83d8-058c-4775-b4e6-3f2c4fd97039",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "e4621b79-e332-4a0d-b1f1-abddadb31af0",
+            "name": "nome",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "f8131ced-1676-4214-8fa5-1d50b71f9ac1",
+            "name": "email",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "e18ff709-ff46-42db-b417-f70023d5d89f",
+        "kind": "class",
+        "name": "Cliente",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "2f76e26a-a328-4b00-87d2-b7a61ec0d6a4",
+            "name": "cpf",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "915b6939-d9b8-4408-ad49-764b59fe8961",
+            "name": "criarPedido",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Pedido",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "e887707d-8f87-441f-b952-a94f10355f49",
+        "kind": "class",
+        "name": "Vendedor",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "0f709f39-3468-483f-9e6b-c0f691d779b2",
+            "name": "documentoFiscal",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "79d8b890-3bdb-4593-a28e-a605348206bf",
+            "name": "cadastrarProduto",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "27a7375a-fec5-4081-ba69-c68f215a3111",
+                "name": "nome",
+                "type": "String",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "Produto",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "a9b25ba7-0bf8-4117-ae67-1e1ef8682fb6",
+        "kind": "class",
+        "name": "Endereco",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "b3d273a0-e8ed-4e8c-aa9d-93928e12dacf",
+            "name": "logradouro",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "c4ad41a6-4f00-4c49-8f0f-1ee59ab609d0",
+            "name": "numero",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "fe38bd2b-4022-4177-84f7-5ba8d9a95470",
+            "name": "cidade",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "68e9070d-8543-43a1-a1b1-cf6b17e9b031",
+            "name": "cep",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "76147b09-4e6f-4694-abc8-db214dbf9daa",
+        "kind": "class",
+        "name": "Pedido",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "58a1f05f-0256-4ea5-a346-3b3a08005b85",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "c19c4652-ec7d-40ab-8973-415809e78b11",
+            "name": "criadoEm",
+            "type": "DateTime",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "dc4e0fd2-6fda-467a-a21b-ffa14797cca6",
+            "name": "status",
+            "type": "StatusPedido",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "619752ff-97fb-4264-9423-1370613232cf",
+            "name": "calcularTotal",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Decimal",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          },
+          {
+            "id": "e0316486-265f-4a0c-9386-3c49c6b53093",
+            "name": "cancelar",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "0201da5e-5a07-4338-98a3-21b8a79052b1",
+        "kind": "class",
+        "name": "ItemPedido",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "42a8e38c-b43e-481a-97e6-d718d6e6e85f",
+            "name": "quantidade",
+            "type": "Integer",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "3424132a-f2be-44bf-af4b-a5f0a065b8c9",
+            "name": "precoUnitario",
+            "type": "Decimal",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "ff34ffdf-bbb6-445d-b993-4f3413a34fbc",
+            "name": "subtotal",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Decimal",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "9d3c8b3f-2618-44a4-af45-837704e5771a",
+        "kind": "class",
+        "name": "Produto",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "f06fc8b2-3e31-4871-ad50-76d5658f5e9d",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "705f143f-1e44-487b-a6ec-e88413d6f3e1",
+            "name": "nome",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "b1c164db-5bad-4e29-bf2d-cf21ccf4802e",
+            "name": "preco",
+            "type": "Decimal",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "3588960e-b7e5-4964-a18e-88fdc7a58ede",
+            "name": "estoque",
+            "type": "Integer",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "4c34c424-f196-4ec1-a2a2-d7eee75418d7",
+            "name": "reservarEstoque",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "622405fc-1cde-4795-9a82-9a2997679a42",
+                "name": "quantidade",
+                "type": "Integer",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "cd02d0df-5506-476d-8237-cec2f8c08bb1",
+        "kind": "class",
+        "name": "Categoria",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "bdd241d5-2532-4dbe-abb6-f84a8825205c",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "6ae8e12a-3771-4f4a-8586-4f41e7425c5c",
+            "name": "nome",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "7c92c820-77ff-4fb9-bc00-348dd2156dba",
+        "kind": "class",
+        "name": "Pagamento",
+        "visibility": "public",
+        "isAbstract": true,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "c23941c3-6761-4f7e-b525-7c22f2999e04",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "bd1c3aaf-3a14-4317-b222-a7ea00824704",
+            "name": "valor",
+            "type": "Decimal",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "ddb4e225-9bc6-4ded-8479-d0b7d1ff1ee7",
+            "name": "status",
+            "type": "StatusPagamento",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "647fcd5d-119c-4dba-8073-a037995eac84",
+            "name": "processar",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "6438cf6a-bb1c-46b6-8318-3086e7cc251a",
+        "kind": "class",
+        "name": "PagamentoCartao",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "025d1f40-4306-4650-bb12-7228ab9d35c4",
+            "name": "ultimosQuatroDigitos",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "515ff63e-f39a-4a0b-b4fe-eab8852d690b",
+            "name": "parcelas",
+            "type": "Integer",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "299bae26-fdf9-4341-ac49-8212eca8ed00",
+        "kind": "class",
+        "name": "PagamentoPix",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "b5b203bf-e1a5-411a-b555-84fd0b9e5df7",
+            "name": "codigoCopiaCola",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "751a0da1-f6b4-4172-a580-fe1550ba42b2",
+            "name": "expiraEm",
+            "type": "DateTime",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "733a657d-ac48-4c60-a748-b35783abd917",
+        "kind": "interface",
+        "name": "ProcessadorPagamento",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [],
+        "operations": [
+          {
+            "id": "44d60a0a-40cd-4b92-94ef-2c2efbab6ce7",
+            "name": "autorizar",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "1f95a29b-a7a8-4cb7-bfc0-3caa78522d35",
+                "name": "pagamento",
+                "type": "Pagamento",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          },
+          {
+            "id": "96f1bc03-f84c-49b6-ab0c-cec9d5fd01ea",
+            "name": "estornar",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "5ecbf3f8-2f98-4627-b3ca-fbf5f9757117",
+                "name": "pagamento",
+                "type": "Pagamento",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "69bcde07-7334-4c7c-8a68-dfca9eeda85e",
+        "kind": "class",
+        "name": "GatewayPagamento",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [],
+        "operations": [
+          {
+            "id": "7c15851c-9844-44a0-9c0f-cc78cc298be6",
+            "name": "autorizar",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "38e4b1ce-c493-4929-a327-eafceb15b23a",
+                "name": "pagamento",
+                "type": "Pagamento",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          },
+          {
+            "id": "ae916c1c-4804-4368-8d7a-10a23f854bf6",
+            "name": "estornar",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "6c70fee5-7925-46dd-a475-a85831e1a586",
+                "name": "pagamento",
+                "type": "Pagamento",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "Boolean",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "d1ced085-04c8-4a67-96bc-f71a4cb2afb4",
+        "kind": "class",
+        "name": "Entrega",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "acda8a50-884b-4ed3-adea-4311e552a094",
+            "name": "codigoRastreio",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "44b88dce-de80-4fb0-a703-b69f3997d194",
+            "name": "status",
+            "type": "StatusEntrega",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "9b199cf6-aa0d-485b-9085-d7e3360addbd",
+            "name": "previsao",
+            "type": "Date",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "9db1d282-f36f-4565-8542-cf9f684cd815",
+            "name": "atualizarStatus",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "a53723a9-aa95-4cd2-bd31-cba5fce43797",
+                "name": "status",
+                "type": "StatusEntrega",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "void",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "6acd7459-5bad-46a2-a3bb-6a6d19eb19ab",
+        "kind": "class",
+        "name": "Transportadora",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "8cd1ba79-6181-457a-b56c-7cd5ff486834",
+            "name": "nome",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "799582e2-c9fa-44aa-9404-31e5458a038f",
+            "name": "rastrear",
+            "visibility": "public",
+            "parameters": [
+              {
+                "id": "76a10e63-089c-4d1e-8295-d1d820e990f7",
+                "name": "codigo",
+                "type": "String",
+                "direction": "in",
+                "multiplicity": "1",
+                "defaultValue": ""
+              }
+            ],
+            "returnType": "StatusEntrega",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "6b5b2b0b-a644-442e-933d-9d58cf48c65b",
+        "kind": "enumeration",
+        "name": "StatusPedido",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [],
+        "operations": [],
+        "literals": [
+          {
+            "id": "3da1b91e-5b4b-4723-961e-d12ad10d3a0b",
+            "name": "CRIADO"
+          },
+          {
+            "id": "744d3fa1-1dac-4bec-8057-974670e44317",
+            "name": "CONFIRMADO"
+          },
+          {
+            "id": "b39f9752-c875-4794-b3de-97161f82b7f3",
+            "name": "EM_SEPARACAO"
+          },
+          {
+            "id": "8f4a7841-8742-48b2-9d6a-d2a19c808ccb",
+            "name": "ENVIADO"
+          },
+          {
+            "id": "36edf392-d80c-4d6a-a8b9-ec5658d0d166",
+            "name": "CANCELADO"
+          }
+        ],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "9d78f445-334f-4af8-924e-297ea6842918",
+        "kind": "enumeration",
+        "name": "StatusPagamento",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [],
+        "operations": [],
+        "literals": [
+          {
+            "id": "4f45543f-6791-4ff3-ae75-8912fa155c9b",
+            "name": "PENDENTE"
+          },
+          {
+            "id": "2c6fcce2-0656-43cf-a553-62a614d7209b",
+            "name": "AUTORIZADO"
+          },
+          {
+            "id": "4197c2b1-7371-4487-b6cc-31db9af6fbc7",
+            "name": "RECUSADO"
+          },
+          {
+            "id": "a0549ed5-6314-46c5-b910-1f451bc6dd61",
+            "name": "ESTORNADO"
+          }
+        ],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "bbcac074-fa05-4713-a346-f250f23f23ae",
+        "kind": "enumeration",
+        "name": "StatusEntrega",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [],
+        "operations": [],
+        "literals": [
+          {
+            "id": "d8e6a343-8640-4044-ba8e-3021246c87cc",
+            "name": "PREPARANDO"
+          },
+          {
+            "id": "c1083005-8e16-41ac-9e28-b6abe6cbe12a",
+            "name": "EM_TRANSITO"
+          },
+          {
+            "id": "b4755d06-0c84-4b88-a3d1-32726aa1a4e9",
+            "name": "ENTREGUE"
+          },
+          {
+            "id": "bd5a96a6-f520-4cda-95a1-3a90b7b57f28",
+            "name": "DEVOLVIDO"
+          }
+        ],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      }
+    ],
+    "relationships": [
+      {
+        "id": "4f9bd787-2551-4ff8-9b77-16484c13f1e6",
+        "kind": "generalization",
+        "name": "",
+        "sourceId": "e18ff709-ff46-42db-b417-f70023d5d89f",
+        "targetId": "436cf1f8-86b8-47b0-bcda-b4032cf735eb",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "93f2398e-8825-4884-a30b-7fe55a0b8a1e",
+        "kind": "generalization",
+        "name": "",
+        "sourceId": "e887707d-8f87-441f-b952-a94f10355f49",
+        "targetId": "436cf1f8-86b8-47b0-bcda-b4032cf735eb",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "1c61e2a8-f180-46b3-b593-66f9b8046e89",
+        "kind": "association",
+        "name": "possui",
+        "sourceId": "e18ff709-ff46-42db-b417-f70023d5d89f",
+        "targetId": "a9b25ba7-0bf8-4117-ae67-1e1ef8682fb6",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "a88a5787-c86c-46a1-aac9-d7db94db908b",
+        "kind": "association",
+        "name": "realiza",
+        "sourceId": "e18ff709-ff46-42db-b417-f70023d5d89f",
+        "targetId": "76147b09-4e6f-4694-abc8-db214dbf9daa",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "1bd839e5-63e1-4bc5-b53a-5698d2750f4a",
+        "kind": "composition",
+        "name": "contém",
+        "sourceId": "76147b09-4e6f-4694-abc8-db214dbf9daa",
+        "targetId": "0201da5e-5a07-4338-98a3-21b8a79052b1",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "composite",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "1..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "8ee60762-91cc-4cbb-ba42-9dc33faf0d86",
+        "kind": "association",
+        "name": "referencia",
+        "sourceId": "0201da5e-5a07-4338-98a3-21b8a79052b1",
+        "targetId": "9d3c8b3f-2618-44a4-af45-837704e5771a",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "8a51dccf-96a8-4669-8786-fd77b03155ee",
+        "kind": "association",
+        "name": "oferece",
+        "sourceId": "e887707d-8f87-441f-b952-a94f10355f49",
+        "targetId": "9d3c8b3f-2618-44a4-af45-837704e5771a",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "efe67903-7434-43d2-b435-d4654d9b5306",
+        "kind": "aggregation",
+        "name": "agrupa",
+        "sourceId": "cd02d0df-5506-476d-8237-cec2f8c08bb1",
+        "targetId": "9d3c8b3f-2618-44a4-af45-837704e5771a",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "shared",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "08d69c40-ff7c-4c8d-b1c3-809b256712be",
+        "kind": "composition",
+        "name": "registra",
+        "sourceId": "76147b09-4e6f-4694-abc8-db214dbf9daa",
+        "targetId": "7c92c820-77ff-4fb9-bc00-348dd2156dba",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "composite",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "1e398a7b-3780-4ed1-9db2-28bb6e644875",
+        "kind": "generalization",
+        "name": "",
+        "sourceId": "6438cf6a-bb1c-46b6-8318-3086e7cc251a",
+        "targetId": "7c92c820-77ff-4fb9-bc00-348dd2156dba",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "698a856b-7997-4b71-95f4-15f4329339cd",
+        "kind": "generalization",
+        "name": "",
+        "sourceId": "299bae26-fdf9-4341-ac49-8212eca8ed00",
+        "targetId": "7c92c820-77ff-4fb9-bc00-348dd2156dba",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "3422ef0a-ce14-4645-a68a-2904af8e741d",
+        "kind": "realization",
+        "name": "",
+        "sourceId": "69bcde07-7334-4c7c-8a68-dfca9eeda85e",
+        "targetId": "733a657d-ac48-4c60-a748-b35783abd917",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "788664b9-b4ed-4463-858d-1c546acdeada",
+        "kind": "dependency",
+        "name": "autoriza",
+        "sourceId": "7c92c820-77ff-4fb9-bc00-348dd2156dba",
+        "targetId": "733a657d-ac48-4c60-a748-b35783abd917",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "ea790bb4-99f9-47c9-96bc-0682b698a8f4",
+        "kind": "composition",
+        "name": "gera",
+        "sourceId": "76147b09-4e6f-4694-abc8-db214dbf9daa",
+        "targetId": "d1ced085-04c8-4a67-96bc-f71a4cb2afb4",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "composite",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "f89a92e6-79ee-49fc-b99a-537a0c2909ff",
+        "kind": "association",
+        "name": "executada por",
+        "sourceId": "d1ced085-04c8-4a67-96bc-f71a4cb2afb4",
+        "targetId": "6acd7459-5bad-46a2-a3bb-6a6d19eb19ab",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "f9c601b1-87ed-470b-9d64-ef2b7672fa8a",
+        "kind": "association",
+        "name": "destino",
+        "sourceId": "d1ced085-04c8-4a67-96bc-f71a4cb2afb4",
+        "targetId": "a9b25ba7-0bf8-4117-ae67-1e1ef8682fb6",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      }
+    ],
+    "profiles": [
+      {
+        "id": "3c0cca36-3343-46de-bf9c-e7c8587a94ba",
+        "name": "Perfil de domínio (exemplos)",
+        "description": "Estereótipos personalizados para iniciar a modelagem; não são estereótipos nativos UML.",
+        "stereotypes": [
+          {
+            "id": "ae40a995-9f7b-459b-903e-231b44bd9513",
+            "name": "entity",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "dc5c1aee-b158-4d75-8a7e-014fec96444f",
+            "name": "control",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "377ca5b4-d91c-4714-97a1-fb08d2d8945d",
+            "name": "boundary",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "4a19ecde-0108-4749-950a-c054849fb283",
+            "name": "service",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "9fa32f84-bcf1-4079-8d1e-9927f6978f99",
+            "name": "repository",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "8a1efff2-defd-43f0-93c1-d2de2d14b4e5",
+            "name": "DTO",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "4d1f3aa1-5a70-46ab-abf9-54fc79f66dab",
+            "name": "valueObject",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "f657c758-56cb-4b89-ac50-23458baaeb7a",
+            "name": "aggregateRoot",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          }
+        ]
+      }
+    ],
+    "diagrams": [
+      {
+        "id": "0e7eaecc-6da0-46e1-9c30-3463a5455ce5",
+        "name": "Domínio de vendas, pagamento e entrega",
+        "elementIds": [
+          "436cf1f8-86b8-47b0-bcda-b4032cf735eb",
+          "e18ff709-ff46-42db-b417-f70023d5d89f",
+          "e887707d-8f87-441f-b952-a94f10355f49",
+          "a9b25ba7-0bf8-4117-ae67-1e1ef8682fb6",
+          "76147b09-4e6f-4694-abc8-db214dbf9daa",
+          "0201da5e-5a07-4338-98a3-21b8a79052b1",
+          "9d3c8b3f-2618-44a4-af45-837704e5771a",
+          "cd02d0df-5506-476d-8237-cec2f8c08bb1",
+          "7c92c820-77ff-4fb9-bc00-348dd2156dba",
+          "6438cf6a-bb1c-46b6-8318-3086e7cc251a",
+          "299bae26-fdf9-4341-ac49-8212eca8ed00",
+          "733a657d-ac48-4c60-a748-b35783abd917",
+          "69bcde07-7334-4c7c-8a68-dfca9eeda85e",
+          "d1ced085-04c8-4a67-96bc-f71a4cb2afb4",
+          "6acd7459-5bad-46a2-a3bb-6a6d19eb19ab",
+          "6b5b2b0b-a644-442e-933d-9d58cf48c65b",
+          "9d78f445-334f-4af8-924e-297ea6842918",
+          "bbcac074-fa05-4713-a346-f250f23f23ae"
+        ],
+        "relationshipIds": [
+          "4f9bd787-2551-4ff8-9b77-16484c13f1e6",
+          "93f2398e-8825-4884-a30b-7fe55a0b8a1e",
+          "1c61e2a8-f180-46b3-b593-66f9b8046e89",
+          "a88a5787-c86c-46a1-aac9-d7db94db908b",
+          "1bd839e5-63e1-4bc5-b53a-5698d2750f4a",
+          "8ee60762-91cc-4cbb-ba42-9dc33faf0d86",
+          "8a51dccf-96a8-4669-8786-fd77b03155ee",
+          "efe67903-7434-43d2-b435-d4654d9b5306",
+          "08d69c40-ff7c-4c8d-b1c3-809b256712be",
+          "1e398a7b-3780-4ed1-9db2-28bb6e644875",
+          "698a856b-7997-4b71-95f4-15f4329339cd",
+          "3422ef0a-ce14-4645-a68a-2904af8e741d",
+          "788664b9-b4ed-4463-858d-1c546acdeada",
+          "ea790bb4-99f9-47c9-96bc-0682b698a8f4",
+          "f89a92e6-79ee-49fc-b99a-537a0c2909ff",
+          "f9c601b1-87ed-470b-9d64-ef2b7672fa8a"
+        ],
+        "view": {
+          "nodes": {
+            "436cf1f8-86b8-47b0-bcda-b4032cf735eb": {
+              "x": 80,
+              "y": 80,
+              "w": 250,
+              "h": 150
+            },
+            "e18ff709-ff46-42db-b417-f70023d5d89f": {
+              "x": 80,
+              "y": 380,
+              "w": 250,
+              "h": 150
+            },
+            "e887707d-8f87-441f-b952-a94f10355f49": {
+              "x": 80,
+              "y": 680,
+              "w": 250,
+              "h": 150
+            },
+            "a9b25ba7-0bf8-4117-ae67-1e1ef8682fb6": {
+              "x": 390,
+              "y": 80,
+              "w": 250,
+              "h": 150
+            },
+            "76147b09-4e6f-4694-abc8-db214dbf9daa": {
+              "x": 390,
+              "y": 380,
+              "w": 250,
+              "h": 150
+            },
+            "0201da5e-5a07-4338-98a3-21b8a79052b1": {
+              "x": 390,
+              "y": 680,
+              "w": 250,
+              "h": 150
+            },
+            "9d3c8b3f-2618-44a4-af45-837704e5771a": {
+              "x": 700,
+              "y": 680,
+              "w": 250,
+              "h": 150
+            },
+            "cd02d0df-5506-476d-8237-cec2f8c08bb1": {
+              "x": 1010,
+              "y": 680,
+              "w": 250,
+              "h": 150
+            },
+            "7c92c820-77ff-4fb9-bc00-348dd2156dba": {
+              "x": 700,
+              "y": 380,
+              "w": 250,
+              "h": 150
+            },
+            "6438cf6a-bb1c-46b6-8318-3086e7cc251a": {
+              "x": 1010,
+              "y": 380,
+              "w": 250,
+              "h": 150
+            },
+            "299bae26-fdf9-4341-ac49-8212eca8ed00": {
+              "x": 1320,
+              "y": 380,
+              "w": 250,
+              "h": 150
+            },
+            "733a657d-ac48-4c60-a748-b35783abd917": {
+              "x": 1010,
+              "y": 80,
+              "w": 250,
+              "h": 150
+            },
+            "69bcde07-7334-4c7c-8a68-dfca9eeda85e": {
+              "x": 1320,
+              "y": 80,
+              "w": 250,
+              "h": 150
+            },
+            "d1ced085-04c8-4a67-96bc-f71a4cb2afb4": {
+              "x": 700,
+              "y": 980,
+              "w": 250,
+              "h": 150
+            },
+            "6acd7459-5bad-46a2-a3bb-6a6d19eb19ab": {
+              "x": 1010,
+              "y": 980,
+              "w": 250,
+              "h": 150
+            },
+            "6b5b2b0b-a644-442e-933d-9d58cf48c65b": {
+              "x": 390,
+              "y": 980,
+              "w": 250,
+              "h": 150
+            },
+            "9d78f445-334f-4af8-924e-297ea6842918": {
+              "x": 1320,
+              "y": 680,
+              "w": 250,
+              "h": 150
+            },
+            "bbcac074-fa05-4713-a346-f250f23f23ae": {
+              "x": 1320,
+              "y": 980,
+              "w": 250,
+              "h": 150
+            }
+          },
+          "edges": {
+            "4f9bd787-2551-4ff8-9b77-16484c13f1e6": {
+              "points": []
+            },
+            "93f2398e-8825-4884-a30b-7fe55a0b8a1e": {
+              "points": []
+            },
+            "1c61e2a8-f180-46b3-b593-66f9b8046e89": {
+              "points": []
+            },
+            "a88a5787-c86c-46a1-aac9-d7db94db908b": {
+              "points": []
+            },
+            "1bd839e5-63e1-4bc5-b53a-5698d2750f4a": {
+              "points": []
+            },
+            "8ee60762-91cc-4cbb-ba42-9dc33faf0d86": {
+              "points": []
+            },
+            "8a51dccf-96a8-4669-8786-fd77b03155ee": {
+              "points": []
+            },
+            "efe67903-7434-43d2-b435-d4654d9b5306": {
+              "points": []
+            },
+            "08d69c40-ff7c-4c8d-b1c3-809b256712be": {
+              "points": []
+            },
+            "1e398a7b-3780-4ed1-9db2-28bb6e644875": {
+              "points": []
+            },
+            "698a856b-7997-4b71-95f4-15f4329339cd": {
+              "points": []
+            },
+            "3422ef0a-ce14-4645-a68a-2904af8e741d": {
+              "points": []
+            },
+            "788664b9-b4ed-4463-858d-1c546acdeada": {
+              "points": []
+            },
+            "ea790bb4-99f9-47c9-96bc-0682b698a8f4": {
+              "points": []
+            },
+            "f89a92e6-79ee-49fc-b99a-537a0c2909ff": {
+              "points": []
+            },
+            "f9c601b1-87ed-470b-9d64-ef2b7672fa8a": {
+              "points": []
+            }
+          },
+          "zoom": 1,
+          "pan": {
+            "x": 50,
+            "y": 40
+          },
+          "grid": 20
+        },
+        "createdAt": "2026-10-16T16:06:19.916Z",
+        "updatedAt": "2026-10-16T16:06:19.918Z"
+      }
+    ],
+    "createdAt": "2026-10-16T16:06:19.918Z",
+    "updatedAt": "2026-10-16T16:06:19.918Z"
+  },
+  "diagramId": "0e7eaecc-6da0-46e1-9c30-3463a5455ce5"
+}

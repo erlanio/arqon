@@ -1,0 +1,584 @@
+{
+  "format": "brmodelo-uml-class-document",
+  "version": 1,
+  "project": {
+    "format": "brmodelo.uml-class",
+    "version": 1,
+    "id": "4234ba39-b3b9-49d4-94bc-e66fff1a7386",
+    "title": "Pedidos de e-commerce",
+    "classifiers": [
+      {
+        "id": "565e01d8-84d7-4752-9e72-0055d90a2ed5",
+        "kind": "class",
+        "name": "Cliente",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "ffb34d49-3068-492b-8a3b-0fd1a8edc7be",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "5202b62e-da76-4ca1-a720-ff3b3e0fc772",
+            "name": "nome",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "b54ad118-66d8-45a1-a2dc-a34cc4fd8cc8",
+            "name": "email",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "bb1eeb36-853f-4928-9dda-b3a869314fc9",
+            "name": "realizarPedido",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Pedido",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "3fd23461-8e65-4336-b0e8-faf12eed8509",
+        "kind": "class",
+        "name": "Pedido",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "ac1ebadc-dc40-4d5f-824e-17d41276a21d",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "89e86dc4-6cd0-49a9-aa1d-63ce69630951",
+            "name": "data",
+            "type": "DateTime",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "edc159b8-5538-4458-928f-263574994197",
+            "name": "status",
+            "type": "StatusPedido",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "a7ff96a3-5276-4682-8391-90f0714dd42c",
+            "name": "calcularTotal",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Decimal",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "2c875062-388a-4b44-9586-5c7eded5232a",
+        "kind": "class",
+        "name": "ItemPedido",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "a71c7537-c873-4c4f-b8fe-b2974e4cb790",
+            "name": "quantidade",
+            "type": "Integer",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "f27f6cd7-1a12-44eb-8d65-20aa7d44ead4",
+            "name": "precoUnitario",
+            "type": "Decimal",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [
+          {
+            "id": "bfed3e48-4edb-40dd-9181-b236a8e7c656",
+            "name": "calcularSubtotal",
+            "visibility": "public",
+            "parameters": [],
+            "returnType": "Decimal",
+            "returnMultiplicity": "1",
+            "isAbstract": false,
+            "isStatic": false,
+            "isQuery": false,
+            "constraints": [],
+            "exceptions": [],
+            "documentation": ""
+          }
+        ],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "df6e375d-d5fe-41c9-ae4d-2f3818e071ac",
+        "kind": "class",
+        "name": "Produto",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [
+          {
+            "id": "57340e0c-aa00-4e8b-bedd-8568664aa7fe",
+            "name": "id",
+            "type": "UUID",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "76396452-56a2-440b-8b24-9c587791b5df",
+            "name": "nome",
+            "type": "String",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          },
+          {
+            "id": "c3e931f5-9c46-46fa-8b17-20f806d6428c",
+            "name": "preco",
+            "type": "Decimal",
+            "visibility": "private",
+            "multiplicity": "1",
+            "defaultValue": "",
+            "isStatic": false,
+            "isReadOnly": false,
+            "isDerived": false,
+            "isOrdered": false,
+            "isUnique": true,
+            "constraints": [],
+            "documentation": ""
+          }
+        ],
+        "operations": [],
+        "literals": [],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      },
+      {
+        "id": "5a0b7f47-8a1d-422c-8872-136b89f46e60",
+        "kind": "enumeration",
+        "name": "StatusPedido",
+        "visibility": "public",
+        "isAbstract": false,
+        "isLeaf": false,
+        "attributes": [],
+        "operations": [],
+        "literals": [
+          {
+            "id": "004c6ef7-9f1c-49d6-aa1a-91dc2d953322",
+            "name": "CRIADO"
+          },
+          {
+            "id": "a3f41794-c417-4a65-ab9e-ec4fce6d5163",
+            "name": "PAGO"
+          },
+          {
+            "id": "4f047c79-0c8f-46d1-b005-ea97ba7638ff",
+            "name": "ENVIADO"
+          },
+          {
+            "id": "2ceb543f-6404-42bd-8968-5e5a41714dce",
+            "name": "CANCELADO"
+          }
+        ],
+        "templateParameters": [],
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "representation": "classifier",
+        "compartments": {
+          "attributes": true,
+          "operations": true
+        },
+        "parentId": null
+      }
+    ],
+    "relationships": [
+      {
+        "id": "1c17a1c4-ac4c-4cd6-afef-3b06a4a07b70",
+        "kind": "association",
+        "name": "realiza",
+        "sourceId": "565e01d8-84d7-4752-9e72-0055d90a2ed5",
+        "targetId": "3fd23461-8e65-4336-b0e8-faf12eed8509",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "271f7642-b8e8-473f-aebb-7bf0159a7f91",
+        "kind": "composition",
+        "name": "contém",
+        "sourceId": "3fd23461-8e65-4336-b0e8-faf12eed8509",
+        "targetId": "2c875062-388a-4b44-9586-5c7eded5232a",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "composite",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "1..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      },
+      {
+        "id": "820f88e2-605f-4061-b42b-6b1702c776bc",
+        "kind": "association",
+        "name": "refere-se a",
+        "sourceId": "2c875062-388a-4b44-9586-5c7eded5232a",
+        "targetId": "df6e375d-d5fe-41c9-ae4d-2f3818e071ac",
+        "sourceEnd": {
+          "role": "",
+          "multiplicity": "0..*",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "targetEnd": {
+          "role": "",
+          "multiplicity": "1",
+          "navigability": "unspecified",
+          "aggregation": "none",
+          "ordered": false,
+          "unique": true,
+          "qualifiers": []
+        },
+        "stereotypes": [],
+        "constraints": [],
+        "documentation": "",
+        "points": []
+      }
+    ],
+    "profiles": [
+      {
+        "id": "aaa83dc3-8900-48bf-bcd6-c9f0124dba1a",
+        "name": "Perfil de domínio (exemplos)",
+        "description": "Estereótipos personalizados para iniciar a modelagem; não são estereótipos nativos UML.",
+        "stereotypes": [
+          {
+            "id": "df26128c-04aa-4ba9-8ec6-da3601918ca0",
+            "name": "entity",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "a674e043-b7e5-424b-aee5-1008595538ba",
+            "name": "control",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "ebf5b470-ddc5-4e58-ad62-df418cb77087",
+            "name": "boundary",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "8de53fb7-d5c7-4de7-8fe4-5905b08b5194",
+            "name": "service",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "bdb3a0d1-6308-4dfd-a107-95c02140771c",
+            "name": "repository",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "4c07e9f9-99fe-4948-b1a8-3106e7a6cbec",
+            "name": "DTO",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "85e3270e-861d-44eb-b2f5-ae39d5a23893",
+            "name": "valueObject",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          },
+          {
+            "id": "8f2cd64d-1301-4190-b2cb-73095198f3b1",
+            "name": "aggregateRoot",
+            "metaclasses": [
+              "Class"
+            ],
+            "tags": []
+          }
+        ]
+      }
+    ],
+    "diagrams": [
+      {
+        "id": "aa02ad0f-39af-4e94-a963-f7bc17ad3465",
+        "name": "Modelo de pedidos",
+        "elementIds": [
+          "565e01d8-84d7-4752-9e72-0055d90a2ed5",
+          "3fd23461-8e65-4336-b0e8-faf12eed8509",
+          "2c875062-388a-4b44-9586-5c7eded5232a",
+          "df6e375d-d5fe-41c9-ae4d-2f3818e071ac",
+          "5a0b7f47-8a1d-422c-8872-136b89f46e60"
+        ],
+        "relationshipIds": [
+          "1c17a1c4-ac4c-4cd6-afef-3b06a4a07b70",
+          "271f7642-b8e8-473f-aebb-7bf0159a7f91",
+          "820f88e2-605f-4061-b42b-6b1702c776bc"
+        ],
+        "view": {
+          "nodes": {
+            "565e01d8-84d7-4752-9e72-0055d90a2ed5": {
+              "x": 80,
+              "y": 100,
+              "w": 220,
+              "h": 112
+            },
+            "3fd23461-8e65-4336-b0e8-faf12eed8509": {
+              "x": 400,
+              "y": 100,
+              "w": 220,
+              "h": 112
+            },
+            "2c875062-388a-4b44-9586-5c7eded5232a": {
+              "x": 400,
+              "y": 380,
+              "w": 220,
+              "h": 112
+            },
+            "df6e375d-d5fe-41c9-ae4d-2f3818e071ac": {
+              "x": 740,
+              "y": 380,
+              "w": 220,
+              "h": 112
+            },
+            "5a0b7f47-8a1d-422c-8872-136b89f46e60": {
+              "x": 740,
+              "y": 100,
+              "w": 220,
+              "h": 112
+            }
+          },
+          "edges": {
+            "1c17a1c4-ac4c-4cd6-afef-3b06a4a07b70": {
+              "points": []
+            },
+            "271f7642-b8e8-473f-aebb-7bf0159a7f91": {
+              "points": []
+            },
+            "820f88e2-605f-4061-b42b-6b1702c776bc": {
+              "points": []
+            }
+          },
+          "zoom": 1,
+          "pan": {
+            "x": 50,
+            "y": 40
+          },
+          "grid": 20
+        },
+        "createdAt": "2026-10-16T16:05:05.268Z",
+        "updatedAt": "2026-10-16T16:05:05.268Z"
+      }
+    ],
+    "createdAt": "2026-10-16T16:05:05.268Z",
+    "updatedAt": "2026-10-16T16:05:05.268Z"
+  },
+  "diagramId": "aa02ad0f-39af-4e94-a963-f7bc17ad3465"
+}
