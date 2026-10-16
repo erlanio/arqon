@@ -10,7 +10,7 @@ final class StudioDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         let menu = NSMenu()
-        let openItem = NSMenuItem(title: "Abrir brModelo Studio", action: #selector(openStudio), keyEquivalent: "o")
+        let openItem = NSMenuItem(title: "Abrir ARQON Software Engineering Studio", action: #selector(openStudio), keyEquivalent: "o")
         openItem.target = self
         menu.addItem(openItem)
         menu.addItem(NSMenuItem.separator())
@@ -18,7 +18,7 @@ final class StudioDelegate: NSObject, NSApplicationDelegate {
         quitItem.target = self
         menu.addItem(quitItem)
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem?.button?.title = "▦ brModelo"
+        statusItem?.button?.title = "▦ ARQON"
         statusItem?.menu = menu
 
         guard let resources = Bundle.main.resourceURL else {
@@ -55,7 +55,7 @@ final class StudioDelegate: NSObject, NSApplicationDelegate {
         request.timeoutInterval = 1
         URLSession.shared.dataTask(with: request) { [weak self] data, response, _ in
             let valid = (response as? HTTPURLResponse)?.statusCode == 200 &&
-                data.flatMap { String(data: $0, encoding: .utf8) }?.contains("<title>brModelo Studio</title>") == true
+                data.flatMap { String(data: $0, encoding: .utf8) }?.contains("<title>ARQON Software Engineering Studio</title>") == true
             DispatchQueue.main.async {
                 guard let self = self, !self.stopping else { return }
                 if valid {
@@ -71,7 +71,7 @@ final class StudioDelegate: NSObject, NSApplicationDelegate {
 
     private func showError(_ message: String) {
         let alert = NSAlert()
-        alert.messageText = "brModelo Studio"
+        alert.messageText = "ARQON Software Engineering Studio"
         alert.informativeText = message
         alert.alertStyle = .critical
         alert.runModal()

@@ -1,6 +1,6 @@
 import {iStarCurvePoint,iStarEditableRoute,iStarRoutePoint,iStarEndMarker,iStarOpenArrow} from './istar-routing.mjs';
 import {isIStarActor, isIStarElement, actorCollapsed, iStarVisibleNodes, fitIStarActors, placeIStarElement, clampIStarElement, resizeIStarOwner} from './istar-layout.mjs';
-import { analyzeNormalization, dataDictionaryCsv, generateLogicalSql, importLogicalDiagramFromDdl, validateLogicalDiagram } from './logical-model.mjs?v=logical-ddl-fix-1';
+import { analyzeNormalization, dataDictionaryCsv, generateLogicalSql, importLogicalDiagramFromDdl, validateLogicalDiagram } from './logical-model.mjs?v=arqon-brand-1';
 import { normalizeConceptualDiagram, materializeConceptualAttributeNodes, validateConceptualDiagram, convertConceptualToLogical, conceptualDictionaryCsv } from './conceptual-model.mjs';
 import {saveDocument as saveStoredDocument, getDocument as getStoredDocument, listDocuments as listStoredDocuments, deleteDocument as deleteStoredDocument} from './document-store.mjs';
 import {validateUseCaseDiagram, useCaseRelationshipLabel, layoutUseCaseDiagram} from './use-case-model.mjs';
@@ -1424,7 +1424,7 @@ async function openImportedDocument(file){
         await saveStoredDocument(record);savedDocumentSnapshots.set(record.id,record);await openSavedNativeDocument(record.id);toast('Documento importado.');return true;
       }
       if(validateImport(value)){snapshot();state=normalizeProjectTables(value);state.id=uid('project');state.active=state.diagrams.some(d=>d.id===state.active)?state.active:state.diagrams[0].id;rememberActiveTab('studio',state.id,state.active);selectedId=null;selectedEdge=null;render();save();await persistNativeDocument(state.active);switchView('editor');toast('Projeto importado.');return true}
-      throw new Error('O JSON é válido, mas seu formato não corresponde a um documento suportado pelo brModelo Studio.');
+      throw new Error('O JSON é válido, mas seu formato não corresponde a um documento suportado pelo ARQON Software Engineering Studio.');
     }catch(error){toast(`Não foi possível importar: ${error.message||'o arquivo JSON está malformado.'}`);return false}
   }).catch(error=>{toast(`Não foi possível ler o arquivo: ${error.message}`);return false});
 }

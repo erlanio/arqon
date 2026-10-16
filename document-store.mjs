@@ -35,7 +35,7 @@ function openDatabase() {
       resolve(request.result);
     };
     request.onerror = () => reject(request.error || new Error('Não foi possível abrir o armazenamento de documentos.'));
-    request.onblocked = () => reject(new Error('Feche outras abas do brModelo Studio para atualizar o armazenamento.'));
+    request.onblocked = () => reject(new Error('Feche outras abas do ARQON Software Engineering Studio para atualizar o armazenamento.'));
   }).catch(error => { databasePromise = null; throw error; });
   return databasePromise;
 }

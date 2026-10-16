@@ -1,4 +1,4 @@
-# brModelo Studio Desktop (Tauri 2)
+# ARQON Software Engineering Studio Desktop (Tauri 2)
 
 O shell desktop empacota os mesmos HTML, CSS e módulos JavaScript usados pela versão web. Python e Node.js são necessários somente para os fluxos de desenvolvimento/build; o usuário final executa o aplicativo empacotado. O lançador macOS em Python/Swift continua disponível.
 
@@ -31,7 +31,7 @@ Esta integração é experimental até executar o aplicativo e testar IndexedDB,
 
 ### Build local verificado em 16/10/2026
 
-Em macOS arm64, `npm run build` gerou o aplicativo e o DMG. O primeiro DMG não tinha uma assinatura válida do bundle e podia falhar ao abrir depois do download. A configuração agora solicita assinatura ad hoc ao próprio Tauri. O novo `.app` e o `.app` dentro do DMG passaram em `codesign --verify --deep --strict`; o DMG passou em `hdiutil verify`. As cópias atualizadas estão em `dist/brModelo Studio Tauri.app` e `dist/brModelo-Studio-Tauri-macOS-arm64.dmg`. O binário abriu em execução direta, mas a interface e os fluxos dos editores não foram validados visualmente neste ambiente. A assinatura ad hoc não equivale à assinatura Developer ID nem à notarização da Apple; o macOS pode pedir autorização em **Ajustes do Sistema → Privacidade e Segurança → Abrir Mesmo Assim** após a primeira tentativa de abertura.
+Em macOS arm64, `npm run build` gerou o aplicativo e o DMG. O primeiro DMG não tinha uma assinatura válida do bundle e podia falhar ao abrir depois do download. A configuração agora solicita assinatura ad hoc ao próprio Tauri. O novo `.app` e o `.app` dentro do DMG passaram em `codesign --verify --deep --strict`; o DMG passou em `hdiutil verify`. As cópias atualizadas estão em `dist/ARQON Software Engineering Studio Tauri.app` e `dist/brModelo-Studio-Tauri-macOS-arm64.dmg`. O binário abriu em execução direta, mas a interface e os fluxos dos editores não foram validados visualmente neste ambiente. A assinatura ad hoc não equivale à assinatura Developer ID nem à notarização da Apple; o macOS pode pedir autorização em **Ajustes do Sistema → Privacidade e Segurança → Abrir Mesmo Assim** após a primeira tentativa de abertura.
 
 ### Builds de CI em 16/10/2026
 

@@ -1,6 +1,6 @@
 # Auditoria anterior à integração desktop
 
-Esta auditoria registra o estado do brModelo Studio antes da camada Tauri. Ela foi feita por leitura do código, sem execução de um aplicativo Tauri.
+Esta auditoria registra o estado do ARQON Software Engineering Studio antes da camada Tauri. Ela foi feita por leitura do código, sem execução de um aplicativo Tauri.
 
 ## Entrada e recursos
 

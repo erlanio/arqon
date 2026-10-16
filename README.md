@@ -1,8 +1,8 @@
-# brModelo Studio
+# ARQON Software Engineering Studio
 
 Editor web para modelagem de dados, processos e sistemas em um único espaço de trabalho. O projeto reúne modelos conceituais e lógicos, fluxogramas, UML e iStar 2.0, com edição visual, propriedades semânticas, validação e arquivos de projeto locais.
 
-O brModelo Studio é um projeto independente inspirado na experiência de modelagem do brModelo. Está em fase final de desenvolvimento e é preparado para publicação como código aberto. Não abre arquivos nativos do brModelo nem declara conformidade integral com UML 2.5.1.
+O ARQON Software Engineering Studio é um projeto independente inspirado na experiência de modelagem do brModelo. Está em fase final de desenvolvimento e é preparado para publicação como código aberto. Não abre arquivos nativos do brModelo nem declara conformidade integral com UML 2.5.1.
 
 ## Comece a usar
 
@@ -14,7 +14,7 @@ Para o fluxo web local, são necessários um navegador moderno e Python 3. Esse 
 
 ### Aplicativo macOS
 
-Abra `dist/brModelo Studio.app` com duplo clique. O aplicativo inicia o servidor Python local, abre o navegador e permanece disponível pelo ícone **▦ brModelo** na barra de menus. Escolha **Encerrar** nesse menu para parar o servidor. O pacote inclui a interface, mas usa o Python 3 instalado no macOS; não instala Python nem precisa de internet.
+Abra `dist/ARQON Software Engineering Studio.app` com duplo clique. O aplicativo inicia o servidor Python local, abre o navegador e permanece disponível pelo ícone **▦ ARQON** na barra de menus. Escolha **Encerrar** nesse menu para parar o servidor. O pacote inclui a interface, mas usa o Python 3 instalado no macOS; não instala Python nem precisa de internet.
 
 Para reconstruir o `.app` a partir do código, use macOS com Python 3 e o compilador Swift do Xcode Command Line Tools:
 
@@ -32,7 +32,7 @@ cd brmodelo-modern
 python3 brmodelo.py
 ```
 
-No macOS, também é possível abrir `Abrir brModelo Studio.command` com um duplo clique. O lançador abre [http://127.0.0.1:4173](http://127.0.0.1:4173) no navegador; feche o terminal com **Ctrl+C** para encerrar o aplicativo. Use `python3 brmodelo.py --no-browser` para iniciar sem abrir uma aba automaticamente. A porta padrão é fixa para que o navegador encontre os mesmos projetos em cada execução; alterar a porta com `--port` cria outra origem de armazenamento.
+No macOS, também é possível abrir `Abrir ARQON.command` com um duplo clique. O lançador abre [http://127.0.0.1:4173](http://127.0.0.1:4173) no navegador; feche o terminal com **Ctrl+C** para encerrar o aplicativo. Use `python3 brmodelo.py --no-browser` para iniciar sem abrir uma aba automaticamente. A porta padrão é fixa para que o navegador encontre os mesmos projetos em cada execução; alterar a porta com `--port` cria outra origem de armazenamento.
 
 Crie um projeto, escolha um tipo de diagrama no botão **＋** e arraste elementos da biblioteca para o canvas. Use o painel de propriedades para editar os elementos e o menu **Arquivo** para salvar ou exportar.
 
@@ -155,6 +155,6 @@ Os testes verificam os modelos e suas regras. Para conferir apresentação, impo
 
 ## Código aberto e contribuições
 
-A intenção é publicar o brModelo Studio como projeto open source após a finalização. Sugestões, relatos de problemas e contribuições serão bem-vindos quando o repositório público e suas orientações estiverem disponíveis. A licença específica deste projeto ainda deve ser definida antes da publicação.
+A intenção é publicar o ARQON Software Engineering Studio como projeto open source após a finalização. Sugestões, relatos de problemas e contribuições serão bem-vindos quando o repositório público e suas orientações estiverem disponíveis. A licença específica deste projeto ainda deve ser definida antes da publicação.
 
 Desenvolvido por **Erlânio Freire** · [Lattes](http://lattes.cnpq.br/8383140784249878) · [LinkedIn](https://www.linkedin.com/in/erlaniofreire) · [GitHub](https://github.com/erlanio)

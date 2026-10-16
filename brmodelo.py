@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Abre o brModelo Studio localmente, sem serviços ou dependências online."""
+"""Abre o ARQON Software Engineering Studio localmente, sem serviços ou dependências online."""
 
 import argparse
 from functools import partial
@@ -34,7 +34,7 @@ def port_number(value):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Executa o brModelo Studio somente neste computador.")
+    parser = argparse.ArgumentParser(description="Executa o ARQON Software Engineering Studio somente neste computador.")
     parser.add_argument("--port", type=port_number, default=DEFAULT_PORT, help="porta local (padrão: 4173)")
     parser.add_argument("--no-browser", action="store_true", help="não abrir o navegador automaticamente")
     args = parser.parse_args(argv)
@@ -51,7 +51,7 @@ def main(argv=None):
         return 1
 
     url = f"http://127.0.0.1:{args.port}/"
-    print(f"brModelo Studio disponível em {url}", flush=True)
+    print(f"ARQON Software Engineering Studio disponível em {url}", flush=True)
     print("Pressione Ctrl+C para encerrar.", flush=True)
     if not args.no_browser and not webbrowser.open_new_tab(url):
         print("Abra o endereço acima no navegador.", flush=True)
@@ -59,7 +59,7 @@ def main(argv=None):
     try:
         server.serve_forever(poll_interval=0.2)
     except KeyboardInterrupt:
-        print("\nbrModelo Studio encerrado.")
+        print("\nARQON Software Engineering Studio encerrado.")
     finally:
         server.server_close()
     return 0

@@ -252,5 +252,5 @@ pub fn run() {
             list_recent_projects, save_project, quit_desktop
         ])
         .run(tauri::generate_context!())
-        .expect("Não foi possível iniciar o brModelo Studio desktop.");
+        .expect("Não foi possível iniciar o ARQON Software Engineering Studio desktop.");
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Gera um aplicativo macOS offline com os arquivos do brModelo Studio."""
+"""Gera um aplicativo macOS offline com os arquivos do ARQON Software Engineering Studio."""
 
 import plistlib
 import shutil
@@ -10,7 +10,7 @@ from tempfile import TemporaryDirectory
 
 
 ROOT = Path(__file__).resolve().parent
-OUTPUT = ROOT / "dist" / "brModelo Studio.app"
+OUTPUT = ROOT / "dist" / "ARQON Software Engineering Studio.app"
 WEB_SUFFIXES = {".html", ".css", ".js", ".mjs", ".json"}
 
 
@@ -27,7 +27,7 @@ def main():
     with TemporaryDirectory(prefix="brmodelo-build-") as temporary:
         staging = Path(temporary) / OUTPUT.name
         contents = staging / "Contents"
-        executable = contents / "MacOS" / "brModelo Studio"
+        executable = contents / "MacOS" / "ARQON Software Engineering Studio"
         resources = contents / "Resources" / "web"
         executable.parent.mkdir(parents=True)
         resources.mkdir(parents=True)
@@ -45,11 +45,11 @@ def main():
         with (contents / "Info.plist").open("wb") as plist:
             plistlib.dump({
                 "CFBundleDevelopmentRegion": "pt_BR",
-                "CFBundleDisplayName": "brModelo Studio",
-                "CFBundleExecutable": "brModelo Studio",
+                "CFBundleDisplayName": "ARQON Software Engineering Studio",
+                "CFBundleExecutable": "ARQON Software Engineering Studio",
                 "CFBundleIdentifier": "br.com.erlaniofreire.brmodelostudio",
                 "CFBundleInfoDictionaryVersion": "6.0",
-                "CFBundleName": "brModelo Studio",
+                "CFBundleName": "ARQON Software Engineering Studio",
                 "CFBundlePackageType": "APPL",
                 "CFBundleShortVersionString": "0.1.0",
                 "CFBundleVersion": "1",
