@@ -8,7 +8,7 @@ O brModelo Studio é um projeto independente inspirado na experiência de modela
 
 ### Desktop Tauri (Windows, Linux e macOS)
 
-Há uma camada desktop Tauri 2 em [desktop/README.md](desktop/README.md), com arquivos locais, menu nativo e configuração de builds. Ela ainda precisa de compilação e validação prática em Windows e Linux antes de ser tratada como distribuição pronta. O fluxo web e o aplicativo macOS anterior continuam disponíveis.
+Há uma camada desktop Tauri 2 em [desktop/README.md](desktop/README.md), com arquivos locais, menu nativo e builds de CI para macOS, Windows e Linux. Os instaladores ainda precisam de validação prática em Windows e Linux antes de serem tratados como distribuição pronta. O fluxo web e o aplicativo macOS anterior continuam disponíveis.
 
 Para o fluxo web local, são necessários um navegador moderno e Python 3. Esse fluxo funciona totalmente offline: o lançador abre um servidor apenas em `127.0.0.1`, sem enviar projetos a serviços externos. Não há instalação de dependências JavaScript nem conta de usuário.
 

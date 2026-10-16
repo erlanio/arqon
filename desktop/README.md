@@ -27,10 +27,14 @@ Execute os comandos em `desktop/`. O build cria `src-tauri/target/release/bundle
 
 O workflow em `.github/workflows/desktop.yml` deste projeto testa os modelos e prepara builds Windows x64, Linux x64 e macOS arm64. Tags `v*` criam releases em rascunho com os pacotes, para revisão antes da publicação. Assinatura e atualizações automáticas ainda não estão configuradas.
 
-Esta integração é experimental até executar o aplicativo e testar IndexedDB, todos os editores, importação/exportação, arrastar arquivos, fechamento e operação offline em Windows e Linux reais. O workflow só é ativado quando `brmodelo-modern` é a raiz do repositório GitHub; neste checkout ele está aninhado em `rea`.
+Esta integração é experimental até executar o aplicativo e testar IndexedDB, todos os editores, importação/exportação, arrastar arquivos, fechamento e operação offline em Windows e Linux reais. O workflow está ativo no repositório independente [`erlanio/brmodelo-studio`](https://github.com/erlanio/brmodelo-studio).
 
 ### Build local verificado em 16/10/2026
 
 Em macOS arm64, `npm run build` gerou o aplicativo e o DMG. Uma cópia com assinatura local ad hoc está em `dist/brModelo Studio Tauri.app` e `dist/brModelo-Studio-Tauri-macOS-arm64.dmg`. A assinatura do `.app` e a soma de verificação do DMG passaram. O binário abriu em execução direta, mas a interface e os fluxos dos editores não foram validados visualmente neste ambiente. A assinatura local não equivale à assinatura Developer ID nem à notarização da Apple.
 
-Não há build Windows ou Linux neste checkout: os respectivos runners do workflow ainda precisam ser executados e os instaladores testados nesses sistemas.
+### Builds de CI em 16/10/2026
+
+O [workflow do commit `e7184ec`](https://github.com/erlanio/brmodelo-studio/actions/runs/38953941797) concluiu os três jobs com sucesso e publicou artefatos para macOS arm64, Windows x86_64 e Linux x86_64. O workflow está configurado para coletar MSI/NSIS no Windows e DEB/AppImage no Linux; a lista de arquivos dentro de cada ZIP ainda não foi inspecionada nesta sessão. Para baixá-los, abra a seção **Artifacts** da execução no GitHub Actions e extraia o ZIP correspondente.
+
+Esses resultados comprovam compilação e empacotamento nos runners. Instalação, abertura de arquivos, persistência, compatibilidade dos editores e uso offline ainda precisam de verificação manual em Windows e Linux.
