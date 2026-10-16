@@ -391,6 +391,13 @@ body.projects-active{height:auto;min-height:100vh;overflow-x:hidden;overflow-y:a
 :root[data-theme="dark"] .istar-relation-option.selected{background:#38345e;border-color:#7770df;color:#eeecff}
 :root[data-theme="dark"] .istar-relation-icon,:root[data-theme="dark"] .istar-current-icon{background:#2b3850;color:#dce5f4}
 :root[data-theme="dark"] .istar-relation-option.selected .istar-relation-icon{background:#514b91;color:white}
+
+/* Distraction-free editor controls. */
+.focus-mode-toggle{white-space:nowrap}
+.focus-mode-exit{position:fixed;right:12px;bottom:7px;z-index:250;display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid #8279e9;border-radius:9px;background:#fff;color:#5146b8;box-shadow:0 5px 18px #0003;font-size:12px;font-weight:750}
+.focus-mode-exit[hidden]{display:none}
+:root[data-theme="dark"] .focus-mode-exit{background:#202c3f;border-color:#756ce2;color:#e2dcff}
+@media(max-width:720px){.focus-mode-toggle span,.focus-mode-exit span{display:none}.focus-mode-toggle{padding:8px 10px}}
 /* One toolbar select per iStar relation family. */
 .istar-relation-categories{display:flex;align-items:center;gap:5px;min-width:0;max-width:100%;overflow-x:auto;padding:2px 0}
 .istar-category-select{display:flex;flex-direction:column;gap:2px;min-width:108px;max-width:154px;flex:1 1 128px}

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#111827" />
   <title>brModelo Studio</title>
-  <link rel="stylesheet" href="styles.css?v=flow-editor-json-import-6" />
-<link rel="stylesheet" href="author-footer.css">
+  <link rel="stylesheet" href="styles.css?v=focus-mode-1" />
+<link rel="stylesheet" href="author-footer.css?v=focus-mode-1">
 </head>
 <body>
   <div class="app">
@@ -19,6 +19,7 @@
           <button class="button subtle" id="projectsNav" data-view="projects">Projetos</button>
           <button class="button subtle help-nav" id="helpButton" title="Ajuda">Ajuda</button>
           <button class="button subtle theme-toggle" id="themeToggle" type="button" aria-label="Ativar tema escuro" aria-pressed="false"><span aria-hidden="true">☾</span><span class="theme-toggle-label">Tema escuro</span></button>
+          <button class="button focus-mode-toggle" id="focusModeButton" type="button" aria-label="Entrar em tela cheia" aria-pressed="false" title="Tela cheia">⛶ <span>Tela cheia</span></button>
           <button class="button subtle" id="importButton">Importar</button>
           <button class="button primary" id="exportButton">Exportar <span>↗</span></button>
         </div>
@@ -30,6 +31,7 @@
       </section>
 
       <section class="editor-shell" id="editorView">
+        <button class="focus-mode-exit" id="focusModeExit" type="button" aria-label="Sair da tela cheia" title="Sair da tela cheia (Esc)" hidden>⤢ <span>Sair da tela cheia</span></button>
         <div id="activityEditorView" class="activity-editor-view hidden"><iframe id="activityEditorFrame" title="Editor de atividades UML"></iframe></div>
         <div id="classEditorView" class="activity-editor-view hidden"><iframe id="classEditorFrame" title="Editor de Diagrama de Classes UML"></iframe></div>
         <div id="sequenceEditorView" class="activity-editor-view hidden"><iframe id="sequenceEditorFrame" title="Editor de Diagrama de Sequência UML"></iframe></div>
@@ -99,7 +101,7 @@
   <dialog id="unsavedDialog" class="unsaved-dialog"><form method="dialog"><div class="unsaved-icon" aria-hidden="true">!</div><h2>Salvar alterações antes de fechar?</h2><p id="unsavedMessage"></p><div class="unsaved-actions"><button value="discard">Não salvar</button><button value="cancel">Cancelar</button><button class="save-choice" value="save">▣ Salvar</button></div></form></dialog>
   <input id="fileInput" type="file" accept=".json,application/json" hidden />
   <input id="ddlInput" type="file" accept=".sql,text/plain" hidden />
-  <script type="module" src="script.js?v=dark-default-2"></script>
+  <script type="module" src="script.js?v=focus-mode-1"></script>
 <script type="module" src="author-footer.mjs"></script>
 </body>
 </html>

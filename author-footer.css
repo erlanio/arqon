@@ -10,3 +10,7 @@ body:has(> .author-footer) > .app,body:has(> .author-footer) > .uml-app{height:c
 @media(max-width:680px){body:has(> .author-footer) > .uml-app .workspace{height:calc(100vh - 156px);min-height:0}}
 @media(max-width:720px){.main:has(> .author-footer){grid-template-rows:58px 56px minmax(0,1fr) 48px}}
 @media(max-width:460px){.author-footer{gap:6px;font-size:11px}}
+body.focus-mode .main:has(> .author-footer){grid-template-rows:minmax(0,1fr) 48px}
+body.focus-mode .main>.topbar,body.focus-mode .main>.workspace-heading{display:none!important}
+body.focus-mode .main>.editor-shell{min-height:0;margin:5px}
+body.focus-mode .main>.author-footer{position:fixed;right:0;bottom:0;left:0;z-index:200;height:48px}
